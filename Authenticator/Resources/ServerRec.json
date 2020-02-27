@@ -1,0 +1,13 @@
+[{
+    "authorized": true,
+    "name": "Tom",
+    "password" : "abcd"
+},
+
+{"authorized":false,
+    "name":"add",
+    "password":"none"
+}
+
+
+]
