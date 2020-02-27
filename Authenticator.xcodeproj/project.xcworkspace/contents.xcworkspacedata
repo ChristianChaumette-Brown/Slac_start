@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Authenticator.xcodeproj">
+      location = "group:../Authenticator/User.swift">
+   </FileRef>
+   <FileRef
+      location = "group:../Authenticator/Resources/ServerRec.json">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

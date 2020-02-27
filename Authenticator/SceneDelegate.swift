@@ -11,8 +11,9 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+   // var user: User()
     var window: UIWindow?
-
+var user = User()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -20,12 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        //let contentView = ContentView().environment(\.managedObjectContext, context)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+           // window.rootViewController = UIHostingController(rootView: WireList())
+            window.rootViewController = UIHostingController(rootView: ContentView(login: loginData[0]).environmentObject(user))
             self.window = window
             window.makeKeyAndVisible()
         }
