@@ -1,0 +1,36 @@
+[
+    {
+        "name": "12345",
+        "category": "Sector 4",
+        "city": "Wire Health",
+        "state": "Test Enviro",
+        "id": 1001,
+        "ids": 1001,
+        "isInstalled": true,
+        "isVSource": true,
+        "isVDest": true,
+        "isTerminated": true,
+        "wiretype":"test",
+        "connector": "Type 3",
+        "park": "Test Cable",
+        "imageName": "turtlerock"
+    },
+    {
+        "name": "123456",
+        "category": "Sector 2",
+        "city": "Broken Wire",
+        "state": "Bottom of the well",
+        "id": 1002,
+        "ids": 1002,
+        "isInstalled": false,
+        "isVSource": false,
+        "isVDest": false,
+        "isTerminated": false,
+        "wiretype":"power",
+        "connector":"three-prong",
+        "park": "Broken Test Cable",
+        
+        "imageName": "silversalmoncreek"
+    }
+    
+]
