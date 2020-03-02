@@ -12,7 +12,7 @@ struct Wire: Hashable, Codable, Identifiable {
 var id: Int
 var ids: Int
     //var wid: String = String(ids)
-var name: String
+    var name: String
     var category: String
 fileprivate var imageName: String
 
@@ -23,6 +23,10 @@ fileprivate var imageName: String
 var state: String
 var park: String
 var city: String
+    
+    mutating func lowerme(){
+        name=name.lowercased()
+    }
 }
     
 

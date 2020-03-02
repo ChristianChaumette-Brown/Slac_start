@@ -16,6 +16,22 @@
         "imageName": "turtlerock"
     },
     {
+        "name": "tester",
+        "category": "Sector 4",
+        "city": "Wire Health",
+        "state": "Test Enviro",
+        "id": 1003,
+        "ids": 1003,
+        "isInstalled": true,
+        "isVSource": true,
+        "isVDest": true,
+        "isTerminated": true,
+        "wiretype":"test",
+        "connector": "Type 3",
+        "park": "Test Cable",
+        "imageName": "turtlerock"
+    },
+    {
         "name": "123456",
         "category": "Sector 2",
         "city": "Broken Wire",

@@ -14,7 +14,7 @@ let wireData: [Wire] = load("wireData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
-    
+    //let name: String
     guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
         else {
             fatalError("Couldn't find \(filename) in main bundle.")
@@ -32,6 +32,7 @@ func load<T: Decodable>(_ filename: String) -> T {
     } catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
+    
 }
 
 final class ImageStore {
