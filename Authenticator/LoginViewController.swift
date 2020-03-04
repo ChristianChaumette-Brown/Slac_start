@@ -37,12 +37,23 @@ private extension LoginViewController {
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(controller.view)
         controller.didMove(toParent: self)
-
+        let qr = QRSViewController()
+        addChild(qr)
+        qr.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(qr.view)
+        controller.didMove(toParent: self)
+        
         NSLayoutConstraint.activate([
             controller.view.widthAnchor.constraint(equalTo: view.widthAnchor),
             controller.view.heightAnchor.constraint(equalTo: view.heightAnchor),
             controller.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            qr.view.widthAnchor.constraint(equalTo: view.widthAnchor,multiplier: 0.2),
+            qr.view.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 0.05),
+            qr.view.centerXAnchor.constraint(equalTo: view.centerXAnchor,constant: 150),
+            qr.view.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: -220)
         ])
     }
 }

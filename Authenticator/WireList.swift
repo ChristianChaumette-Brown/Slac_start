@@ -12,18 +12,18 @@ class QRSViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.purple
+        //var commonView = UINib(nibName: "WireList", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! WireList
+        //commonView.delegate = self
+        //view.addSubview(commonView.view)
+       // let wireViewer = UIHostingController(rootView: WireList())
+        //wireViewer.delegate = self
+        //addChild(wireViewer)
+        //wireViewer.view.translatesAutoresizingMaskIntoConstraints = false
         
-        var commonView = UINib(nibName: "WireList", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! WireList
-        commonView.delegate = self
-        //firstView.addSubview(commonView)
-        let wireViewer = UIHostingController(rootView: WireList())
-        
-        addChild(wireViewer)
-        wireViewer.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(wireViewer.view)
+       // view.addSubview(wireViewer.view)
         //wireViewer.delegate=self
-        wireViewer.didMove(toParent: self)
+       // wireViewer.didMove(toParent: self)
     }
     
 
@@ -40,6 +40,7 @@ struct WireList: View {
     @State var i : Int = 0
     @State private var searchText :String = ""
     
+    let control = UIViewController(nibName: "QRSViewController", bundle: nil)
     weak var delegate : CustomViewProtocol? = nil
     
         
@@ -58,13 +59,16 @@ struct WireList: View {
                 HStack{
                 TextField("Search", text : $searchText)
                     //.padding(.horizontal, 21.0)
-                Button(action:{
-                   
+                /*Button(action:{
+                   // delegate?.buttonTapped()
+                    //NavigationLink
+                    
                     self.delegate?.buttonTapped()
+                   LoginViewController().buttonTapped()
                 }){
                     Text("QR Scanner")
                     
-                }
+                }*/
                    
                    
                 }
@@ -105,7 +109,7 @@ private extension QRSViewController{
     }
 }
 
-extension QRSViewController : CustomViewProtocol{
+extension LoginViewController : CustomViewProtocol{
     func buttonTapped() {
         //let scanVC = QRViewController()
         let scanVC = RegisterViewController()
@@ -115,5 +119,11 @@ extension QRSViewController : CustomViewProtocol{
                scanVC.didMove(toParent: self)
         //let scanVC = RegisterViewController()
         //self.navigationController?.pushViewController(scanVC, animated: true)
+        NSLayoutConstraint.activate([
+            scanVC.view.widthAnchor.constraint(equalTo: view.widthAnchor),
+            scanVC.view.heightAnchor.constraint(equalTo: view.heightAnchor),
+            scanVC.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scanVC.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }
