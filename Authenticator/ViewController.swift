@@ -59,8 +59,9 @@ class ViewController: UIViewController {
             self.navigationController?.pushViewController(loginVC, animated: true)
         }
         else if sender == registerButton {
-            let registerVC = RegisterViewController()
+            //let registerVC = RegisterViewController()
             //let registerVC = QRViewController()
+            let registerVC = QRSViewController()
             self.navigationController?.pushViewController(registerVC, animated: true)
         }
     }
