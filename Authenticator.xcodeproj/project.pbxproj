@@ -13,7 +13,7 @@
 		766764192405CA920067241F /* WireDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766764182405CA920067241F /* WireDetail.swift */; };
 		7667641E2405DCD00067241F /* Wire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667641D2405DCD00067241F /* Wire.swift */; };
 		766764202405DDAD0067241F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667641F2405DDAD0067241F /* Data.swift */; };
-		766764222405DFEC0067241F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766764212405DFEC0067241F /* ViewController.swift */; };
+		766764222405DFEC0067241F /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766764212405DFEC0067241F /* QRViewController.swift */; };
 		766764312405E4990067241F /* twinlake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766764252405E4980067241F /* twinlake.jpg */; };
 		766764322405E4990067241F /* yukon_charleyrivers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766764262405E4990067241F /* yukon_charleyrivers.jpg */; };
 		766764332405E4990067241F /* hiddenlake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 766764272405E4990067241F /* hiddenlake.jpg */; };
@@ -35,6 +35,9 @@
 		7667645124079A060067241F /* ServerRec2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7667645024079A050067241F /* ServerRec2.json */; };
 		7667645324079E170067241F /* SLAC_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7667645224079E170067241F /* SLAC_logo.png */; };
 		76676455240841E20067241F /* JSONContainerCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76676454240841E20067241F /* JSONContainerCodable.swift */; };
+		7691565D240F819100284852 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565C240F819100284852 /* LoginViewController.swift */; };
+		7691565F240F81AB00284852 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565E240F81AB00284852 /* ViewController.swift */; };
+		76915661240F81DD00284852 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76915660240F81DD00284852 /* RegisterViewController.swift */; };
 		76A28AA7240DD295008D8A27 /* QRCodeReader in Frameworks */ = {isa = PBXBuildFile; productRef = 76A28AA6240DD295008D8A27 /* QRCodeReader */; };
 		76A28AA9240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A28AA8240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift */; };
 		76B33B1B24044B0D00CB7438 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B33B1A24044B0D00CB7438 /* AppDelegate.swift */; };
@@ -44,6 +47,8 @@
 		76B33B2424044B0E00CB7438 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B33B2324044B0E00CB7438 /* Preview Assets.xcassets */; };
 		76B33B2724044B0E00CB7438 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B33B2524044B0E00CB7438 /* LaunchScreen.storyboard */; };
 		76CEA8E7240483D300D93EBB /* authen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA8E6240483D300D93EBB /* authen.swift */; };
+		76E4A837240F21030019369A /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4A836240F21030019369A /* SwiftUIView.swift */; };
+		76E4A839240F21490019369A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4A838240F21490019369A /* QRView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +58,7 @@
 		766764182405CA920067241F /* WireDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireDetail.swift; sourceTree = SOURCE_ROOT; };
 		7667641D2405DCD00067241F /* Wire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wire.swift; sourceTree = SOURCE_ROOT; };
 		7667641F2405DDAD0067241F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		766764212405DFEC0067241F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		766764212405DFEC0067241F /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		766764252405E4980067241F /* twinlake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twinlake.jpg; sourceTree = "<group>"; };
 		766764262405E4990067241F /* yukon_charleyrivers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yukon_charleyrivers.jpg; sourceTree = "<group>"; };
 		766764272405E4990067241F /* hiddenlake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hiddenlake.jpg; sourceTree = "<group>"; };
@@ -75,6 +80,9 @@
 		7667645024079A050067241F /* ServerRec2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServerRec2.json; sourceTree = "<group>"; };
 		7667645224079E170067241F /* SLAC_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SLAC_logo.png; sourceTree = "<group>"; };
 		76676454240841E20067241F /* JSONContainerCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONContainerCodable.swift; sourceTree = "<group>"; };
+		7691565C240F819100284852 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7691565E240F81AB00284852 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		76915660240F81DD00284852 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		76A28AA8240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeReaderViewControllerDelegate.swift; sourceTree = "<group>"; };
 		76B33B1724044B0D00CB7438 /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B33B1A24044B0D00CB7438 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +93,8 @@
 		76B33B2624044B0E00CB7438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76B33B2824044B0E00CB7438 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76CEA8E6240483D300D93EBB /* authen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authen.swift; sourceTree = "<group>"; };
+		76E4A836240F21030019369A /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		76E4A838240F21490019369A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +154,8 @@
 		76B33B0E24044B0D00CB7438 = {
 			isa = PBXGroup;
 			children = (
+				76E4A836240F21030019369A /* SwiftUIView.swift */,
+				76E4A838240F21490019369A /* QRView.swift */,
 				76676441240717360067241F /* LoginView.swift */,
 				76B33B1924044B0D00CB7438 /* Authenticator */,
 				76B33B1824044B0D00CB7438 /* Products */,
@@ -167,7 +179,10 @@
 				76B33B1A24044B0D00CB7438 /* AppDelegate.swift */,
 				76B33B1C24044B0D00CB7438 /* SceneDelegate.swift */,
 				76B33B1E24044B0D00CB7438 /* ContentView.swift */,
-				766764212405DFEC0067241F /* ViewController.swift */,
+				766764212405DFEC0067241F /* QRViewController.swift */,
+				7691565C240F819100284852 /* LoginViewController.swift */,
+				7691565E240F81AB00284852 /* ViewController.swift */,
+				76915660240F81DD00284852 /* RegisterViewController.swift */,
 				76676454240841E20067241F /* JSONContainerCodable.swift */,
 				7667640B2405C1C00067241F /* WireList.swift */,
 				7667641A2405DBF00067241F /* Models */,
@@ -287,16 +302,21 @@
 			files = (
 				76CEA8E7240483D300D93EBB /* authen.swift in Sources */,
 				766764202405DDAD0067241F /* Data.swift in Sources */,
+				76E4A837240F21030019369A /* SwiftUIView.swift in Sources */,
 				7667640C2405C1C00067241F /* WireList.swift in Sources */,
+				7691565D240F819100284852 /* LoginViewController.swift in Sources */,
 				7667641E2405DCD00067241F /* Wire.swift in Sources */,
-				766764222405DFEC0067241F /* ViewController.swift in Sources */,
+				766764222405DFEC0067241F /* QRViewController.swift in Sources */,
 				76B33B1B24044B0D00CB7438 /* AppDelegate.swift in Sources */,
 				76676442240717360067241F /* LoginView.swift in Sources */,
+				76915661240F81DD00284852 /* RegisterViewController.swift in Sources */,
 				7667644F240789E50067241F /* Login.swift in Sources */,
+				7691565F240F81AB00284852 /* ViewController.swift in Sources */,
 				76B33B1D24044B0D00CB7438 /* SceneDelegate.swift in Sources */,
 				7667644B240787590067241F /* LoginData.swift in Sources */,
 				76676449240766F90067241F /* User.swift in Sources */,
 				766764192405CA920067241F /* WireDetail.swift in Sources */,
+				76E4A839240F21490019369A /* QRView.swift in Sources */,
 				76676455240841E20067241F /* JSONContainerCodable.swift in Sources */,
 				76B33B1F24044B0D00CB7438 /* ContentView.swift in Sources */,
 				76A28AA9240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift in Sources */,

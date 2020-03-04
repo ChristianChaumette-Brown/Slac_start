@@ -11,9 +11,9 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-   // var user: User()
+    var navigationController:UINavigationController?
     var window: UIWindow?
-var user = User()
+//var user = User()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -27,7 +27,13 @@ var user = User()
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
            // window.rootViewController = UIHostingController(rootView: WireList())
-            window.rootViewController = UIHostingController(rootView: ContentView(login: loginData[0]).environmentObject(user))
+            //navigationController = UIHostingController(rootView: ContentView(login:loginData[0]).environmentObject(user))
+            let mainVC = ViewController()
+            navigationController = UINavigationController(rootViewController: mainVC)
+            window.rootViewController = navigationController
+                //UIHostingController(rootView: ContentView(login: loginData[0]).environmentObject(user))
+           // navigationController = UINavigationController(rootViewController: window.rootViewController!)
+           // window.rootViewController = UIHostingController(
             self.window = window
             window.makeKeyAndVisible()
         }
