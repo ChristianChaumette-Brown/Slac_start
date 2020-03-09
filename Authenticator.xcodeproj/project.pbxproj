@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19B547542416BEC7009E4DE6 /* UIToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B547532416BEC7009E4DE6 /* UIToggleButton.swift */; };
+		19B547562416C110009E4DE6 /* UIToggleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B547552416C110009E4DE6 /* UIToggleViewController.swift */; };
 		7667640C2405C1C00067241F /* WireList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667640B2405C1C00067241F /* WireList.swift */; };
 		766764132405C72F0067241F /* WireRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766764122405C72F0067241F /* WireRow.swift */; };
 		766764152405C8D90067241F /* wireData.json in Resources */ = {isa = PBXBuildFile; fileRef = 766764142405C8D90067241F /* wireData.json */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19B547532416BEC7009E4DE6 /* UIToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToggleButton.swift; sourceTree = "<group>"; };
+		19B547552416C110009E4DE6 /* UIToggleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToggleViewController.swift; sourceTree = "<group>"; };
 		7667640B2405C1C00067241F /* WireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireList.swift; sourceTree = "<group>"; };
 		766764122405C72F0067241F /* WireRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireRow.swift; sourceTree = "<group>"; };
 		766764142405C8D90067241F /* wireData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wireData.json; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				76915660240F81DD00284852 /* RegisterViewController.swift */,
 				76676454240841E20067241F /* JSONContainerCodable.swift */,
 				7667640B2405C1C00067241F /* WireList.swift */,
+				19B547532416BEC7009E4DE6 /* UIToggleButton.swift */,
+				19B547552416C110009E4DE6 /* UIToggleViewController.swift */,
 				7667641A2405DBF00067241F /* Models */,
 				766764112405C7010067241F /* Supporting Views */,
 				7667640D2405C5200067241F /* Resources */,
@@ -307,6 +313,7 @@
 				7691565D240F819100284852 /* LoginViewController.swift in Sources */,
 				7667641E2405DCD00067241F /* Wire.swift in Sources */,
 				766764222405DFEC0067241F /* QRViewController.swift in Sources */,
+				19B547542416BEC7009E4DE6 /* UIToggleButton.swift in Sources */,
 				76B33B1B24044B0D00CB7438 /* AppDelegate.swift in Sources */,
 				76676442240717360067241F /* LoginView.swift in Sources */,
 				76915661240F81DD00284852 /* RegisterViewController.swift in Sources */,
@@ -318,6 +325,7 @@
 				766764192405CA920067241F /* WireDetail.swift in Sources */,
 				76E4A839240F21490019369A /* QRView.swift in Sources */,
 				76676455240841E20067241F /* JSONContainerCodable.swift in Sources */,
+				19B547562416C110009E4DE6 /* UIToggleViewController.swift in Sources */,
 				76B33B1F24044B0D00CB7438 /* ContentView.swift in Sources */,
 				76A28AA9240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift in Sources */,
 				766764132405C72F0067241F /* WireRow.swift in Sources */,

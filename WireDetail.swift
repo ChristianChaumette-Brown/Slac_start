@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WireDetail: View {
     var wire: Wire
-    
+
     var body: some View {
         VStack{
             
@@ -61,7 +61,7 @@ struct WireDetail: View {
             Text("Installation Status: ")
                         
                         if wire.isInstalled{
-                            Text("Yes")
+                            Text("Check1")
                         }
                         else{
                             Text("No")
@@ -77,7 +77,7 @@ struct WireDetail: View {
             Text("Verified Source: ")
                         
                         if wire.isVSource{
-                            Text("Yes")
+                            Text("Changeup")
                                     }
                                 else{
                             Text("No")
@@ -92,7 +92,7 @@ struct WireDetail: View {
                     HStack{
             Text("Verified Destination: ")
                         if wire.isVDest{
-                                                   Text("Yes")
+                                                   Text("AppleGate")
                                                            }
                                                        else{
                                                    Text("No")
@@ -106,7 +106,7 @@ struct WireDetail: View {
                     HStack{
             Text("Terminating Source: ")
                         if wire.isTerminated{
-                                                   Text("Yes")
+                                                   Text("CheckLast")
                                                            }
                                                        else{
                                                    Text("No")
