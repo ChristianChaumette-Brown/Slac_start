@@ -4,7 +4,8 @@ import UIKit
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-
+    @Published dynamic var output:String = "taco"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,8 +86,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     func found(code: String) {
         print(code)
-        WireList().searchBar.text=code
-       
+        
+        print(output)
+        output=code
+        print(output)
+        searchData[0]=output
     }
 
     override var prefersStatusBarHidden: Bool {

@@ -10,7 +10,7 @@ import SwiftUI
 import CoreLocation
 
 let wireData: [Wire] = load("wireData.json")
-
+var searchData = [""]
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         addData()
+        qrShow()
         if ContentView(login: loginData[0]).selection == 1 {
             let loginVC = RegisterViewController()
             self.navigationController?.pushViewController(loginVC, animated: true)
@@ -80,13 +81,13 @@ class LoginViewController: UIViewController {
        
     }
     func qrShow(){
-        let qr = QRSViewController()
+        let qr = ScannerViewController()
         addChild(qr)
         qr.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(qr.view)
        // qr.view.isHidden = true
         qr.didMove(toParent: self)
-        self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+       // self.navigationController?.pushViewController(RegisterViewController(), animated: true)
         NSLayoutConstraint.activate([
                    qr.view.widthAnchor.constraint(equalTo: view.widthAnchor,multiplier: 0.2),
                    qr.view.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 0.05),
