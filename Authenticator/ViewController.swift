@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  UINavigationController-Example
-//
-//  Created by strawb3rryx7 on 12.12.2017.
-//  Copyright © 2017 strawb3rryx7. All rights reserved.
-//
+
 
 import UIKit
 
@@ -54,14 +48,14 @@ class ViewController: UIViewController {
     }
     
     @objc func onButtonPressed(_ sender: UIButton) {
-        if sender == loginButton {
+        if sender == loginButton && loginData[0].name=="Tom"{
             let loginVC = LoginViewController()
             self.navigationController?.pushViewController(loginVC, animated: true)
         }
         else if sender == registerButton {
             //let registerVC = RegisterViewController()
             //let registerVC = QRViewController()
-            let registerVC = QRSViewController()
+            let registerVC = ScannerViewController()
             self.navigationController?.pushViewController(registerVC, animated: true)
         }
     }

@@ -8,13 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+ struct ContentView: View {
    // @Environment(\.editMode) var mode
     //let login = Bundle.main.decode(User.self, from: "Server.json")
-    @State private var selection : Int? = nil
+    @State  var selection : Int? = nil
     @State private var usern: String = ""
       @State private var passw: String = ""
       @EnvironmentObject var user: User
+    @State var log: String = "in"
     //@EnvironmentObject var user2:User
     @State var login:Login
     
@@ -29,15 +30,19 @@ struct ContentView: View {
    // private var isResfreshing = true
    // var login : Login?
     
+    
    
-      var body: some View {
+     public var body: some View {
         NavigationView{
           VStack(alignment: HorizontalAlignment .leading){
+            
+            
             TextField("Username", text: $usern)
               SecureField("Password", text: $passw)
            
-            NavigationLink(destination:WireList(),tag: 1, selection: $selection){
+           NavigationLink(destination:WireList(),tag: 1, selection: $selection){
             Button(action: {
+               // RegisterViewController().viewDidLoad()
                 self.user.acq().self
                 self.user.acq()
                 self.user.usern=self.usern
@@ -53,6 +58,8 @@ struct ContentView: View {
                 if
                     self.user.usern==self.user.confirmed&&self.user.passw==self.user.cpass{
                      self.selection = 1
+                    //LoginViewController().viewDidLoad()
+                    //LoginViewController().
                 }
                 else{
                     self.i = 1
@@ -97,10 +104,12 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         //@EnvironmentObject var user: User
         ContentView(login: loginData[0])
+        
     }
 }
 
 struct DetailedView : View{
+    
     @EnvironmentObject var user: User
     var body :some View{
         VStack{

@@ -10,9 +10,31 @@ import AVFoundation
 import SwiftUI
 class QRSViewController: UIViewController{
     
+    lazy var qrbutton:UIButton = {
+        let button = UIButton()
+        button.setTitle("QRread", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor(red: 142.0/255.0, green: 68.0/255.0, blue: 173.0/255.0, alpha: 1.0)
+        button.layer.cornerRadius = 25
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       let controller = UIHostingController(rootView:WireList())
+        addChild(controller)
+          controller.view.translatesAutoresizingMaskIntoConstraints = false
+          view.addSubview(controller.view)
+          controller.didMove(toParent: self)
         view.backgroundColor = UIColor.purple
+        view.addSubview(qrbutton)
+        qrbutton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        qrbutton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        qrbutton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        qrbutton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
         //var commonView = UINib(nibName: "WireList", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! WireList
         //commonView.delegate = self
         //view.addSubview(commonView.view)
@@ -26,6 +48,14 @@ class QRSViewController: UIViewController{
        // wireViewer.didMove(toParent: self)
     }
     
+    @objc func onButtonPressed(_ sender: UIButton) {
+         if sender == qrbutton {
+            //let registerVC = RegisterViewController()
+            //let registerVC = QRViewController()
+            let QRVC = QRViewController()
+            self.navigationController?.pushViewController(QRVC, animated: true)
+        }
+    }
 
 }
 
@@ -35,17 +65,19 @@ protocol CustomViewProtocol : NSObjectProtocol{
 
 
 struct WireList: View {
-    let searchController = UISearchController(searchResultsController: nil)
+    
+  let searchController = UISearchController(searchResultsController: nil)
     var searchBar = UISearchBar()
     @State var i : Int = 0
-    @State private var searchText :String = ""
-    
+    @State  var searchText :String = ""
+    @State var qrText:String = ""
+     var viewState:Bool = true
     let control = UIViewController(nibName: "QRSViewController", bundle: nil)
     weak var delegate : CustomViewProtocol? = nil
     
         
     
-    lazy var newWire=wireData.filter{$0.name.contains(searchText)||searchText==""}
+    lazy var newWire=wireData.filter{$0.name.contains(searchText)||searchText==""||qrText==""||$0.name.contains(qrText)}
     @State private var qrbutton :String = "qrbutton"
    
     
@@ -57,20 +89,10 @@ struct WireList: View {
            
             VStack{
                 HStack{
+                    
                 TextField("Search", text : $searchText)
-                    //.padding(.horizontal, 21.0)
-                /*Button(action:{
-                   // delegate?.buttonTapped()
-                    //NavigationLink
+                    //NavigationLink(destination: CodeScannerView())
                     
-                    self.delegate?.buttonTapped()
-                   LoginViewController().buttonTapped()
-                }){
-                    Text("QR Scanner")
-                    
-                }*/
-                   
-                   
                 }
                 List(wireData.filter{$0.name.contains(searchText.lowercased())||searchText==""}) {wire in
                     
@@ -94,12 +116,14 @@ struct WireList: View {
 
 struct WireList_Previews: PreviewProvider {
     static var previews: some View {
+        
         ForEach(["iPhone SE", "iPhone XS Max"], id: \.self) { deviceName in
             WireList()
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }
     }
+    
 }
 
 
@@ -126,4 +150,26 @@ extension LoginViewController : CustomViewProtocol{
             scanVC.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
+}
+public func isVisible(view: UIView) -> Bool {
+
+  if view.window == nil {
+    return false
+  }
+
+  var currentView: UIView = view
+  while let superview = currentView.superview {
+
+    if (superview.bounds).intersects(currentView.frame) == false {
+      return false;
+    }
+
+    if currentView.isHidden {
+      return false
+    }
+
+    currentView = superview
+  }
+
+  return true
 }

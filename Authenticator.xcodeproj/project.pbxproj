@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		762D812024201800003ECC2A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D811F24201800003ECC2A /* CodeScanner.swift */; };
+		762D812224214534003ECC2A /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D812124214534003ECC2A /* QRScannerController.swift */; };
+		762D8124242146D7003ECC2A /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D8123242146D7003ECC2A /* ScannerViewController.swift */; };
 		7667640C2405C1C00067241F /* WireList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667640B2405C1C00067241F /* WireList.swift */; };
 		766764132405C72F0067241F /* WireRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766764122405C72F0067241F /* WireRow.swift */; };
 		766764152405C8D90067241F /* wireData.json in Resources */ = {isa = PBXBuildFile; fileRef = 766764142405C8D90067241F /* wireData.json */; };
@@ -52,6 +55,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		762D811F24201800003ECC2A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
+		762D812124214534003ECC2A /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
+		762D8123242146D7003ECC2A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		7667640B2405C1C00067241F /* WireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireList.swift; sourceTree = "<group>"; };
 		766764122405C72F0067241F /* WireRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireRow.swift; sourceTree = "<group>"; };
 		766764142405C8D90067241F /* wireData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wireData.json; sourceTree = "<group>"; };
@@ -182,6 +188,9 @@
 				766764212405DFEC0067241F /* QRViewController.swift */,
 				7691565C240F819100284852 /* LoginViewController.swift */,
 				7691565E240F81AB00284852 /* ViewController.swift */,
+				762D811F24201800003ECC2A /* CodeScanner.swift */,
+				762D812124214534003ECC2A /* QRScannerController.swift */,
+				762D8123242146D7003ECC2A /* ScannerViewController.swift */,
 				76915660240F81DD00284852 /* RegisterViewController.swift */,
 				76676454240841E20067241F /* JSONContainerCodable.swift */,
 				7667640B2405C1C00067241F /* WireList.swift */,
@@ -307,6 +316,7 @@
 				7691565D240F819100284852 /* LoginViewController.swift in Sources */,
 				7667641E2405DCD00067241F /* Wire.swift in Sources */,
 				766764222405DFEC0067241F /* QRViewController.swift in Sources */,
+				762D8124242146D7003ECC2A /* ScannerViewController.swift in Sources */,
 				76B33B1B24044B0D00CB7438 /* AppDelegate.swift in Sources */,
 				76676442240717360067241F /* LoginView.swift in Sources */,
 				76915661240F81DD00284852 /* RegisterViewController.swift in Sources */,
@@ -314,6 +324,7 @@
 				7691565F240F81AB00284852 /* ViewController.swift in Sources */,
 				76B33B1D24044B0D00CB7438 /* SceneDelegate.swift in Sources */,
 				7667644B240787590067241F /* LoginData.swift in Sources */,
+				762D812224214534003ECC2A /* QRScannerController.swift in Sources */,
 				76676449240766F90067241F /* User.swift in Sources */,
 				766764192405CA920067241F /* WireDetail.swift in Sources */,
 				76E4A839240F21490019369A /* QRView.swift in Sources */,
@@ -321,6 +332,7 @@
 				76B33B1F24044B0D00CB7438 /* ContentView.swift in Sources */,
 				76A28AA9240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift in Sources */,
 				766764132405C72F0067241F /* WireRow.swift in Sources */,
+				762D812024201800003ECC2A /* CodeScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +470,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Authenticator/Preview Content\"";
+				DEVELOPMENT_TEAM = K642A8SNMF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -477,6 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Authenticator/Preview Content\"";
+				DEVELOPMENT_TEAM = K642A8SNMF;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Authenticator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
