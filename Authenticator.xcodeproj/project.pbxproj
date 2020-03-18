@@ -52,6 +52,7 @@
 		76CEA8E7240483D300D93EBB /* authen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CEA8E6240483D300D93EBB /* authen.swift */; };
 		76E4A837240F21030019369A /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4A836240F21030019369A /* SwiftUIView.swift */; };
 		76E4A839240F21490019369A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4A838240F21490019369A /* QRView.swift */; };
+		76F4E24D2422A62B00852F56 /* FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F4E24C2422A62B00852F56 /* FolderRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,7 @@
 		76CEA8E6240483D300D93EBB /* authen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authen.swift; sourceTree = "<group>"; };
 		76E4A836240F21030019369A /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		76E4A838240F21490019369A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
+		76F4E24C2422A62B00852F56 /* FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				766764122405C72F0067241F /* WireRow.swift */,
+				76F4E24C2422A62B00852F56 /* FolderRow.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				76676449240766F90067241F /* User.swift in Sources */,
 				766764192405CA920067241F /* WireDetail.swift in Sources */,
 				76E4A839240F21490019369A /* QRView.swift in Sources */,
+				76F4E24D2422A62B00852F56 /* FolderRow.swift in Sources */,
 				76676455240841E20067241F /* JSONContainerCodable.swift in Sources */,
 				76B33B1F24044B0D00CB7438 /* ContentView.swift in Sources */,
 				76A28AA9240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift in Sources */,

@@ -8,7 +8,9 @@
 
 import SwiftUI
 
-struct Wire: Hashable, Codable, Identifiable {
+struct Wire: Hashable, Codable, Identifiable  {
+    
+     //Identifiable
 var id: Int
 var ids: Int
     //var wid: String = String(ids)
@@ -20,13 +22,36 @@ fileprivate var imageName: String
     var isVSource: Bool
     var isVDest: Bool
     var isTerminated:Bool
-var state: String
-var park: String
-var city: String
+    var park:String
+    var city:String
+    var state:String
+ 
+    //test datafields above
+    //actual data fields below
+    /*
+    var id:String
+    var Area_code: String
+    var Jobnum: String
+    var Cablenum: String
+    var system: String
+    var Func: String
+    var Cabletype: String
+    var Origin_location: String
+    var Origin_station: String
+    var Origin_Conntype: String
+    var Origin_Instr: String
+    var Destination_location: String
+    var Destination_station: String
+    var Destination_Conntype: String
+    var Destination_Instr: String
+    var Length: String
+    var Routing: String
+    */
     
     mutating func lowerme(){
         name=name.lowercased()
     }
+ 
 }
     
 

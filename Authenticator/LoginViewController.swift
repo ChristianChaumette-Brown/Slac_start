@@ -28,11 +28,22 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         addData()
-        qrShow()
-        if ContentView(login: loginData[0]).selection == 1 {
-            let loginVC = RegisterViewController()
-            self.navigationController?.pushViewController(loginVC, animated: true)
-        }
+        //qrShow()
+        let qr = RegisterViewController()
+               print("QRaction recieved")
+               addChild(qr)
+               qr.view.translatesAutoresizingMaskIntoConstraints = false
+               view.addSubview(qr.view)
+               //qr.view.isHidden = true
+               qr.didMove(toParent: self)
+              // self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+               NSLayoutConstraint.activate([
+                          qr.view.widthAnchor.constraint(equalTo: view.widthAnchor,multiplier: 0.2),
+                          qr.view.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 0.05),
+                          qr.view.centerXAnchor.constraint(equalTo: view.centerXAnchor,constant: 150),
+                          qr.view.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: -220)
+                      ])
+       
       // view.addSubview(loginButton)
         
         view.backgroundColor = UIColor.blue
@@ -64,7 +75,7 @@ class LoginViewController: UIViewController {
      func addData(){
         
         var user = User()
-        let controller = UIHostingController(rootView: ContentView(login: loginData[0]).environmentObject(user))
+        let controller = UIHostingController(rootView: WireList())
         addChild(controller)
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(controller.view)
@@ -81,18 +92,20 @@ class LoginViewController: UIViewController {
        
     }
     func qrShow(){
-        let qr = ScannerViewController()
+        //let qr = ScannerViewController()
+        let qr = RegisterViewController()
+        print("QRaction recieved")
         addChild(qr)
         qr.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(qr.view)
-       // qr.view.isHidden = true
+        qr.view.isHidden = true
         qr.didMove(toParent: self)
        // self.navigationController?.pushViewController(RegisterViewController(), animated: true)
         NSLayoutConstraint.activate([
                    qr.view.widthAnchor.constraint(equalTo: view.widthAnchor,multiplier: 0.2),
                    qr.view.heightAnchor.constraint(equalTo: view.heightAnchor,multiplier: 0.05),
                    qr.view.centerXAnchor.constraint(equalTo: view.centerXAnchor,constant: 150),
-                   qr.view.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: -220)
+                   qr.view.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: -240)
                ])
     }
     

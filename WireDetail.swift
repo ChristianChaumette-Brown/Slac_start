@@ -158,7 +158,12 @@ struct WireDetail: View {
             
  
            // Spacer()
-                    }
+        }.onAppear(){
+            print("Wiredetail appear")
+            RegisterViewController().view.isHidden = true
+        }.onDisappear(){
+            print("Wiredetail disappear")
+        }
            
         .navigationBarTitle(Text(wire.name), displayMode: .inline)
     }

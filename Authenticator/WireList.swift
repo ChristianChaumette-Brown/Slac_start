@@ -20,9 +20,9 @@ struct WireList: View {
     @State var qrText:String = ""
     @State dynamic var scanner:String = searchData[0]
     
-     var viewState:Bool = true
+   //  var viewState:Bool = true
     //@EnvironmentObject var searcher:searchInfo
-    let control = UIViewController(nibName: "QRSViewController", bundle: nil)
+  //  let control = UIViewController(nibName: "QRSViewController", bundle: nil)
    // weak var delegate : CustomViewProtocol? = nil
     
         func assign (_ text: String){
@@ -30,14 +30,16 @@ struct WireList: View {
            }
     func refresh(){
         //let qrvc = ScannerViewController()
-    
+
+        
         self.scanner=searchData[0]
         //self.scanner="Help"
+        print("Refreshed search")
         print(scanner)
         searchText=searchData[0]
     }
     
-    lazy var newWire=wireData.filter{$0.name.contains(searchText)||searchText==""||qrText==""||$0.name.contains(qrText)}
+   // lazy var newWire=wireData.filter{$0.name.contains(searchText)||searchText==""||qrText==""||$0.name.contains(qrText)}
     @State private var qrbutton :String = "qrbutton"
    
     
@@ -59,7 +61,13 @@ struct WireList: View {
                     }
                 TextField("Search", text : $searchText)
                     //NavigationLink(destination: CodeScannerView())
-                    
+                    Button(action:{
+                        LoginViewController().qrShow()
+                        //LoginViewController()
+                        print("QRaction called")
+                    }){
+                        Text("QRReader")
+                    }
                     
                 }
                 List(wireData.filter{$0.name.contains(searchText.lowercased())||searchText==""}) {wire in
@@ -77,6 +85,13 @@ struct WireList: View {
                 
                 
             }
+        }.onAppear(){
+            print("Wirelist appear")
+            //refresh()
+            RegisterViewController().view.isHidden = false
+            self.refresh()
+        }.onDisappear(){
+            print("Moved out of Wirelist")
         }
     }
 }
