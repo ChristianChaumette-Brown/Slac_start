@@ -87,6 +87,7 @@ class ViewController: UIViewController {
         
         */
         view.backgroundColor = UIColor.white
+        folderBuild()
         view.addSubview(myLogin)
         view.addSubview(myPass)
         view.addSubview(loginButton)

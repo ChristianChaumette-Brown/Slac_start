@@ -11,7 +11,26 @@ import CoreLocation
 
 let wireData: [Wire] = load("wireData.json")
 var searchData = [""]
+var folders : [String:Int]=[:]
 
+func folderBuild(){
+    //var i = 0
+    for  i in wireData {
+        //let searchTerm = wireData[0].name
+        let category = i.category
+        let keyExists = folders[category] != nil
+        
+        if keyExists{
+            folders.updateValue((folders[category]!+1), forKey: category)
+        }
+        else{
+            folders.updateValue(1, forKey: category)
+        }
+    }
+   // wireData
+    print(folders)
+    
+}
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
     //let name: String
@@ -67,4 +86,5 @@ final class ImageStore {
         return images.index(forKey: name)!
     }
 }
+
 
