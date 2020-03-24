@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController{
     //var text:String=passwd
     lazy var loginButton: UIButton = {
            let button = UIButton()
@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+       // WireList().delegate=self
         
         // Do any additional setup after loading the view.
         

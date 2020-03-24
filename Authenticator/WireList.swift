@@ -6,8 +6,12 @@
 //  Copyright © 2020 Christian Chaumette-Brown. All rights reserved.
 //
 import AVFoundation
-
+import UIKit
 import SwiftUI
+
+protocol WirelistDelegate {
+   func didTapButton()
+}
 
 struct WireList: View {
     
@@ -19,6 +23,8 @@ struct WireList: View {
     @State  var searchText :String = ""
     @State var qrText:String = ""
     @State dynamic var scanner:String = searchData[0]
+    @State var showingQr = false
+     var delegate: WirelistDelegate?
     
    //  var viewState:Bool = true
     //@EnvironmentObject var searcher:searchInfo
@@ -55,6 +61,7 @@ struct WireList: View {
                     //Text("Pudding")
                     Button(action:{
                         self.refresh()
+                        self.delegate?.didTapButton()
                     }
                     ){
                         Text("Refresh")
@@ -62,8 +69,17 @@ struct WireList: View {
                 TextField("Search", text : $searchText)
                     //NavigationLink(destination: CodeScannerView())
                     Button(action:{
+                        self.showingQr.toggle()
+                    }){
+                        Text("Qr code")
+                    }.sheet(isPresented: $showingQr){
+                        QRPickers()
+                    }
+                    
+                    Button(action:{
                         LoginViewController().qrShow()
                         //LoginViewController()
+                        //NavigationLink( RegisterViewController())
                         print("QRaction called")
                     }){
                         Text("QRReader")
@@ -112,3 +128,19 @@ struct WireList_Previews: PreviewProvider {
 
 
 
+struct QRPickers: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> RegisterViewController {
+        //let picker = UIViewController()
+        //return picker
+        return RegisterViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: RegisterViewController, context: Context) {
+        
+    }
+    
+   // typealias UIViewControllerType = <#type#>
+    
+  // typealias UIViewControllerType = UIViewController
+
+}

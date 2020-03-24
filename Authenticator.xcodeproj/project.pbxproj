@@ -53,6 +53,7 @@
 		76E4A837240F21030019369A /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4A836240F21030019369A /* SwiftUIView.swift */; };
 		76E4A839240F21490019369A /* QRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E4A838240F21490019369A /* QRView.swift */; };
 		76F4E24D2422A62B00852F56 /* FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F4E24C2422A62B00852F56 /* FolderRow.swift */; };
+		76F4E24F242A5B7F00852F56 /* QRPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F4E24E242A5B7E00852F56 /* QRPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +104,7 @@
 		76E4A836240F21030019369A /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		76E4A838240F21490019369A /* QRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRView.swift; sourceTree = "<group>"; };
 		76F4E24C2422A62B00852F56 /* FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderRow.swift; sourceTree = "<group>"; };
+		76F4E24E242A5B7E00852F56 /* QRPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				76B33B1E24044B0D00CB7438 /* ContentView.swift */,
 				766764212405DFEC0067241F /* QRViewController.swift */,
 				7691565C240F819100284852 /* LoginViewController.swift */,
+				76F4E24E242A5B7E00852F56 /* QRPicker.swift */,
 				7691565E240F81AB00284852 /* ViewController.swift */,
 				762D811F24201800003ECC2A /* CodeScanner.swift */,
 				762D812124214534003ECC2A /* QRScannerController.swift */,
@@ -316,6 +319,7 @@
 				766764202405DDAD0067241F /* Data.swift in Sources */,
 				76E4A837240F21030019369A /* SwiftUIView.swift in Sources */,
 				7667640C2405C1C00067241F /* WireList.swift in Sources */,
+				76F4E24F242A5B7F00852F56 /* QRPicker.swift in Sources */,
 				7691565D240F819100284852 /* LoginViewController.swift in Sources */,
 				7667641E2405DCD00067241F /* Wire.swift in Sources */,
 				766764222405DFEC0067241F /* QRViewController.swift in Sources */,
