@@ -86,7 +86,7 @@ class ViewController: UIViewController {
              self.view.addSubview(myTextField)
         
         */
-        view.backgroundColor = UIColor.white
+        //view.backgroundColor = UIColor.white
         folderBuild()
         view.addSubview(myLogin)
         view.addSubview(myPass)
