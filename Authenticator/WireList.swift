@@ -72,18 +72,13 @@ struct WireList: View {
                         self.showingQr.toggle()
                     }){
                         Text("Qr code")
-                    }.sheet(isPresented: $showingQr){
-                        QRPickers()
-                    }
-                    
-                    Button(action:{
-                        LoginViewController().qrShow()
-                        //LoginViewController()
-                        //NavigationLink( RegisterViewController())
-                        print("QRaction called")
+                    }.sheet(isPresented: $showingQr, onDismiss: {
+                        self.refresh()
                     }){
-                        Text("QRReader")
+                        QRPickers()
+                        //self.refresh()
                     }
+                  
                     
                 }
                 List(wireData.filter{$0.name.contains(searchText.lowercased())||searchText==""}) {wire in
@@ -129,13 +124,13 @@ struct WireList_Previews: PreviewProvider {
 
 
 struct QRPickers: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> RegisterViewController {
+    func makeUIViewController(context: Context) -> ScannerViewController {
         //let picker = UIViewController()
         //return picker
-        return RegisterViewController()
+        return ScannerViewController()
     }
     
-    func updateUIViewController(_ uiViewController: RegisterViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: ScannerViewController, context: Context) {
         
     }
     

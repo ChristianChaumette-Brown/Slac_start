@@ -30,6 +30,7 @@ class LoginViewController: UIViewController{
         
         addData()
         //qrShow()
+        /*
         let qr = RegisterViewController()
                print("QRaction recieved")
                addChild(qr)
@@ -46,6 +47,7 @@ class LoginViewController: UIViewController{
                       ])
        
       // view.addSubview(loginButton)
+ */
         
         view.backgroundColor = UIColor.blue
        // loginButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -74,8 +76,7 @@ class LoginViewController: UIViewController{
  extension LoginViewController {
     
      func addData(){
-        
-        var user = User()
+              
         let controller = UIHostingController(rootView: WireList())
         addChild(controller)
         controller.view.translatesAutoresizingMaskIntoConstraints = false

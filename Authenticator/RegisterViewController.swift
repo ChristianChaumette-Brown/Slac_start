@@ -1,10 +1,3 @@
-//
-//  RegisterViewController.swift
-//  UINavigationController-Example
-//
-//  Created by strawb3rryx7 on 12.12.2017.
-//  Copyright © 2017 strawb3rryx7. All rights reserved.
-//
 
 import UIKit
 
@@ -24,9 +17,7 @@ class RegisterViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //view.isHidden = true
-         WireList().onAppear(){
-            self.view.isHidden = true
-        }
+       
        // view.backgroundColor = UIColor.red
         view.addSubview(qrButton)
         qrButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
