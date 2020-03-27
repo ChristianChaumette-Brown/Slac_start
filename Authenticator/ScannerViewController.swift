@@ -4,7 +4,7 @@ import UIKit
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    @Published dynamic var output:String = "taco"
+    @Published dynamic var output:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
