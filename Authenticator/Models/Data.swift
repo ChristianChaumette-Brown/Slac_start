@@ -9,9 +9,20 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
+struct MyStruct {
+    let title: String
+   // let selected: Bool
+}
+
+
+ var folderArr = [String]()
+
+
+
 let wireData: [Wire] = load("wireData.json")
 var searchData = [""]
 var folders : [String:Int]=[:]
+
 
 func folderBuild(){
     //var i = 0
@@ -29,6 +40,10 @@ func folderBuild(){
     }
    // wireData
     print(folders)
+    for (key, value) in folders {
+        folderArr.append("\(key) Number of wires: \(value)")
+    }
+    print(folderArr[0])
     
 }
 func load<T: Decodable>(_ filename: String) -> T {
