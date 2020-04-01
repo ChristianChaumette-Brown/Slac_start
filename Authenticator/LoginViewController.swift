@@ -77,7 +77,8 @@ class LoginViewController: UIViewController{
     
      func addData(){
               
-        let controller = UIHostingController(rootView: WireList())
+       // let controller = UIHostingController(rootView: WireList())
+        let controller = UIHostingController(rootView: FolderView())
         addChild(controller)
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(controller.view)
