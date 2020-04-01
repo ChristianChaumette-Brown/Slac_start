@@ -7,15 +7,23 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct FolderView: View {
     
     var body: some View {
+        NavigationView{
         List(folderArr,id: \.self){
+            
             Text($0)
+        }
+        .navigationBarTitle("Folders")
+        }
     }
 }
-}
+
+
+
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
         FolderView()

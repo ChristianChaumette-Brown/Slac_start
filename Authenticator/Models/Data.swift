@@ -21,6 +21,7 @@ struct MyStruct {
 
 let wireData: [Wire] = load("wireData.json")
 var searchData = [""]
+var folderData = [""]
 var folders : [String:Int]=[:]
 
 

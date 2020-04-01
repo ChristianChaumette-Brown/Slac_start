@@ -14,13 +14,11 @@ protocol WirelistDelegate {
 }
 
 struct WireList: View {
-    
-   
-
   let searchController = UISearchController(searchResultsController: nil)
     var searchBar = UISearchBar()
     @State var i : Int = 0
     @State  var searchText :String = ""
+    @State  var folderText: String = folderData[0]
     @State var qrText:String = ""
     @State dynamic var scanner:String = searchData[0]
     @State var showingQr = false
@@ -35,30 +33,19 @@ struct WireList: View {
                searchText=text
            }
     func refresh(){
-        //let qrvc = ScannerViewController()
-
-        
         self.scanner=searchData[0]
         //self.scanner="Help"
         print("Refreshed search")
         print(scanner)
         searchText=searchData[0]
     }
-    
-   // lazy var newWire=wireData.filter{$0.name.contains(searchText)||searchText==""||qrText==""||$0.name.contains(qrText)}
     @State private var qrbutton :String = "qrbutton"
    
     
     var body: some View {
-        
-        
-        
         NavigationView {
-           
             VStack{
                 HStack{
-                    //Text(scanner)
-                    //Text("Pudding")
                     Button(action:{
                         self.refresh()
                         self.delegate?.didTapButton()
@@ -76,12 +63,10 @@ struct WireList: View {
                         self.refresh()
                     }){
                         QRPickers()
-                        //self.refresh()
                     }
-                  
                     
                 }
-                List(wireData.filter{$0.name.contains(searchText.lowercased())||searchText==""}) {wire in
+                List(wireData.filter{($0.name.contains(searchText.lowercased())||searchText=="")&&($0.category.contains(folderText.lowercased())||folderText=="")}) {wire in
                     
                     NavigationLink(destination: WireDetail(wire: wire)) {
                         
