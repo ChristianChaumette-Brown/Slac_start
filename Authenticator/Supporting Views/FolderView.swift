@@ -13,9 +13,11 @@ struct FolderView: View {
     
     var body: some View {
         NavigationView{
-        List(folderArr,id: \.self){
+        List(folderArr,id: \.self){ wire in
+            NavigationLink(destination: WireList()){
+                Text(wire)
+            }
             
-            Text($0)
         }
         .navigationBarTitle("Folders")
         }
