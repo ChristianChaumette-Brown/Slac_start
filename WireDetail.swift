@@ -21,35 +21,36 @@ struct WireDetail: View {
                    // Text(wire.name)
                 //}
                 Group{
-                Text(wire.name)
+                Text(wire.Cablenum)
                 .font(.title)
+                    
 
                 HStack(alignment: .top) {
-                    Text(wire.park)
+                    Text(wire.AreaCode)
                         .font(.subheadline)
                     Spacer()
                     Text("Wire Group: ")
-                    Text(wire.state)
+                    Text(wire.Jobnum)
                         .font(.subheadline)
                     
                 }
                 Group{
             HStack{
-                Text("Wire ID: ")
+                Text("Wire CableType: ")
                 
-                 Text(String(wire.ids)).font(.title)
+                Text(String(wire.Cabletype)).font(.title)
                 }
            
            
             
             HStack{
-                Text("Wire Status: ")
-            Text(wire.city)
+                Text("Destination Connection Type: ")
+                Text(wire.DestinationConntype)
             
             }
             HStack (){
-                Text("Wire Designation: ")
-                Text(wire.park)
+                Text("Wire Designation Instructions: ")
+                Text(wire.DestinationInstr)
                 
             }
                     }
@@ -58,9 +59,9 @@ struct WireDetail: View {
                     
                     HStack{
                         
-            Text("Installation Status: ")
+            Text("Origin Instruction: ")
                         
-                        if wire.isInstalled{
+                        if wire.OriginInstr==""{
                             Text("Yes")
                         }
                         else{
@@ -74,9 +75,9 @@ struct WireDetail: View {
                                             }
                     
                     HStack{
-            Text("Verified Source: ")
+            Text("Destination Instruction: ")
                         
-                        if wire.isVSource{
+                        if wire.DestinationInstr==""{
                             Text("Yes")
                                     }
                                 else{
@@ -91,7 +92,7 @@ struct WireDetail: View {
                     
                     HStack{
             Text("Verified Destination: ")
-                        if wire.isVDest{
+                        if wire.DestinationStation==""{
                                                    Text("Yes")
                                                            }
                                                        else{
@@ -103,9 +104,10 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                     }
+                    if wire.Newrev=="1" {
                     HStack{
             Text("Terminating Source: ")
-                        if wire.isTerminated{
+                        if wire.Newrev=="1"{
                                                    Text("Yes")
                                                            }
                                                        else{
@@ -116,6 +118,7 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
+                    }
                     }
                     HStack{
             Text("Connection Type: ")
@@ -165,7 +168,7 @@ struct WireDetail: View {
             print("Wiredetail disappear")
         }
            
-        .navigationBarTitle(Text(wire.name), displayMode: .inline)
+        .navigationBarTitle(Text(wire.Cablenum), displayMode: .inline)
     }
 
 }

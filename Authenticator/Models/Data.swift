@@ -19,7 +19,7 @@ struct MyStruct {
 
 
 
-let wireData: [Wire] = load("wireData.json")
+let wireData: [Wire] = load("csvjson.json")
 var searchData = [""]
 var folderData = [""]
 var folders : [String:Int]=[:]
@@ -29,7 +29,8 @@ func folderBuild(){
     //var i = 0
     for  i in wireData {
         //let searchTerm = wireData[0].name
-        let category = i.category
+      //  let category = i.category
+        let category = i.Jobnum
         let keyExists = folders[category] != nil
         
         if keyExists{
@@ -64,12 +65,14 @@ func load<T: Decodable>(_ filename: String) -> T {
     do {
         let decoder = JSONDecoder()
         return try decoder.decode(T.self, from: data)
-    } catch {
+    }
+        
+    catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
     
 }
-
+/*
 final class ImageStore {
     typealias _ImageDictionary = [String: CGImage]
     fileprivate var images: _ImageDictionary = [:]
@@ -104,3 +107,4 @@ final class ImageStore {
 }
 
 
+*/

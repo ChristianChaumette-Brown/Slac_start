@@ -12,13 +12,15 @@ struct WireRow: View {
     var wire: Wire
     var body: some View {
         HStack{
+            /*
             wire.image
             .resizable()
                 .frame(width: 50, height: 50)
-            Text(wire.name)
-            Text(String(wire.id))
+            */
+            Text(wire.Cablenum)
+            //Text(String(wire.id))
             Text("Group: ")
-            Text(wire.category)
+            Text(wire.Jobnum)
             Spacer()
         }
     }

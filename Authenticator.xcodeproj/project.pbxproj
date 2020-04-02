@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7624EE1A24356A09009F5FC8 /* csvjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 7624EE1924356A08009F5FC8 /* csvjson.json */; };
 		762D812024201800003ECC2A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D811F24201800003ECC2A /* CodeScanner.swift */; };
 		762D812224214534003ECC2A /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D812124214534003ECC2A /* QRScannerController.swift */; };
 		762D8124242146D7003ECC2A /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D8123242146D7003ECC2A /* ScannerViewController.swift */; };
@@ -38,6 +39,7 @@
 		7667645124079A060067241F /* ServerRec2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7667645024079A050067241F /* ServerRec2.json */; };
 		7667645324079E170067241F /* SLAC_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7667645224079E170067241F /* SLAC_logo.png */; };
 		76676455240841E20067241F /* JSONContainerCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76676454240841E20067241F /* JSONContainerCodable.swift */; };
+		766DD5FF2435581300509EDC /* realWireData.json in Resources */ = {isa = PBXBuildFile; fileRef = 766DD5FE2435581200509EDC /* realWireData.json */; };
 		7691565D240F819100284852 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565C240F819100284852 /* LoginViewController.swift */; };
 		7691565F240F81AB00284852 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565E240F81AB00284852 /* ViewController.swift */; };
 		76915661240F81DD00284852 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76915660240F81DD00284852 /* RegisterViewController.swift */; };
@@ -58,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7624EE1924356A08009F5FC8 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
 		762D811F24201800003ECC2A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		762D812124214534003ECC2A /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		762D8123242146D7003ECC2A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 		7667645024079A050067241F /* ServerRec2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServerRec2.json; sourceTree = "<group>"; };
 		7667645224079E170067241F /* SLAC_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SLAC_logo.png; sourceTree = "<group>"; };
 		76676454240841E20067241F /* JSONContainerCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONContainerCodable.swift; sourceTree = "<group>"; };
+		766DD5FE2435581200509EDC /* realWireData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = realWireData.json; sourceTree = "<group>"; };
 		7691565C240F819100284852 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7691565E240F81AB00284852 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		76915660240F81DD00284852 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 		7667640D2405C5200067241F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7624EE1924356A08009F5FC8 /* csvjson.json */,
+				766DD5FE2435581200509EDC /* realWireData.json */,
 				76676446240766250067241F /* ServerRec.json */,
 				7667645224079E170067241F /* SLAC_logo.png */,
 				7667645024079A050067241F /* ServerRec2.json */,
@@ -300,6 +306,7 @@
 				766764382405E4990067241F /* chilkoottrail.jpg in Resources */,
 				76B33B2424044B0E00CB7438 /* Preview Assets.xcassets in Resources */,
 				7667645124079A060067241F /* ServerRec2.json in Resources */,
+				7624EE1A24356A09009F5FC8 /* csvjson.json in Resources */,
 				766764152405C8D90067241F /* wireData.json in Resources */,
 				766764362405E4990067241F /* chincoteague.jpg in Resources */,
 				7667643C2405E4990067241F /* silversalmoncreek.jpg in Resources */,
@@ -307,6 +314,7 @@
 				76B33B2124044B0E00CB7438 /* Assets.xcassets in Resources */,
 				766764332405E4990067241F /* hiddenlake.jpg in Resources */,
 				7667643B2405E4990067241F /* rainbowlake.jpg in Resources */,
+				766DD5FF2435581300509EDC /* realWireData.json in Resources */,
 				766764392405E4990067241F /* icybay.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -66,7 +66,7 @@ struct WireList: View {
                     }
                     
                 }
-                List(wireData.filter{($0.name.contains(searchText.lowercased())||searchText=="")&&($0.category.contains(folderText.lowercased())||folderText=="")}) {wire in
+                List(wireData.filter{($0.Cablenum.contains(searchText.lowercased())||searchText=="")&&($0.Jobnum.contains(folderText.lowercased())||folderText=="")}) {wire in
                     
                     NavigationLink(destination: WireDetail(wire: wire)) {
                         
