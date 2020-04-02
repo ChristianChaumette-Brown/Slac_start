@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7624EE1A24356A09009F5FC8 /* csvjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 7624EE1924356A08009F5FC8 /* csvjson.json */; };
 		7624EE1E24365EA4009F5FC8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7624EE1D24365EA4009F5FC8 /* WebView.swift */; };
+		7624EE2024369633009F5FC8 /* LCLSII.json in Resources */ = {isa = PBXBuildFile; fileRef = 7624EE1F24369633009F5FC8 /* LCLSII.json */; };
 		762D812024201800003ECC2A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D811F24201800003ECC2A /* CodeScanner.swift */; };
 		762D812224214534003ECC2A /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D812124214534003ECC2A /* QRScannerController.swift */; };
 		762D8124242146D7003ECC2A /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D8123242146D7003ECC2A /* ScannerViewController.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		7624EE1924356A08009F5FC8 /* csvjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = csvjson.json; sourceTree = "<group>"; };
 		7624EE1D24365EA4009F5FC8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		7624EE1F24369633009F5FC8 /* LCLSII.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LCLSII.json; sourceTree = "<group>"; };
 		762D811F24201800003ECC2A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		762D812124214534003ECC2A /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		762D8123242146D7003ECC2A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		7667640D2405C5200067241F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7624EE1F24369633009F5FC8 /* LCLSII.json */,
 				7624EE1924356A08009F5FC8 /* csvjson.json */,
 				766DD5FE2435581200509EDC /* realWireData.json */,
 				76676446240766250067241F /* ServerRec.json */,
@@ -315,6 +318,7 @@
 				7667643C2405E4990067241F /* silversalmoncreek.jpg in Resources */,
 				7667645324079E170067241F /* SLAC_logo.png in Resources */,
 				76B33B2124044B0E00CB7438 /* Assets.xcassets in Resources */,
+				7624EE2024369633009F5FC8 /* LCLSII.json in Resources */,
 				766764332405E4990067241F /* hiddenlake.jpg in Resources */,
 				7667643B2405E4990067241F /* rainbowlake.jpg in Resources */,
 				766DD5FF2435581300509EDC /* realWireData.json in Resources */,

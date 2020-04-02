@@ -100,6 +100,7 @@ struct WireList: View {
             self.refresh()
         }.onDisappear(){
             print("Moved out of Wirelist")
+            searchData[0]=""
         }
     }
 }
