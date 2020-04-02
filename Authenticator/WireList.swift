@@ -23,7 +23,8 @@ struct WireList: View {
     @State dynamic var scanner:String = searchData[0]
     @State var showingQr = false
      var delegate: WirelistDelegate?
-    
+    var folderInput: String
+   
    //  var viewState:Bool = true
     //@EnvironmentObject var searcher:searchInfo
   //  let control = UIViewController(nibName: "QRSViewController", bundle: nil)
@@ -38,6 +39,9 @@ struct WireList: View {
         print("Refreshed search")
         print(scanner)
         searchText=searchData[0]
+         print(folderInput)
+        folderText=folderData[0]
+        print(folderData[0])
     }
     @State private var qrbutton :String = "qrbutton"
    
@@ -66,7 +70,8 @@ struct WireList: View {
                     }
                     
                 }
-                List(wireData.filter{($0.Cablenum.contains(searchText.lowercased())||searchText=="")&&($0.Jobnum.contains(folderText.lowercased())||folderText=="")}) {wire in
+               //
+                List(wireData.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum.lowercased().contains(folderText.lowercased())||folderText=="")}) {wire in
                     
                     NavigationLink(destination: WireDetail(wire: wire)) {
                         
@@ -83,6 +88,13 @@ struct WireList: View {
             }
         }.onAppear(){
             print("Wirelist appear")
+            if let index = self.folderInput.firstIndex(of: " "){
+                let distance = self.folderInput.distance(from: self.folderInput.startIndex, to: index)
+                print(distance)
+                let subfolderInput = self.folderInput[..<index]
+                print(subfolderInput)
+                folderData[0]=String(subfolderInput)
+            }
             //refresh()
             RegisterViewController().view.isHidden = false
             self.refresh()
@@ -97,7 +109,7 @@ struct WireList_Previews: PreviewProvider {
     static var previews: some View {
         
         ForEach(["iPhone SE", "iPhone XS Max"], id: \.self) { deviceName in
-            WireList( )
+            WireList(folderInput: folderArr[0] )
                 .previewDevice(PreviewDevice(rawValue: deviceName))
                 .previewDisplayName(deviceName)
         }

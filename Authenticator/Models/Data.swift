@@ -21,7 +21,7 @@ struct MyStruct {
 
 let wireData: [Wire] = load("csvjson.json")
 var searchData = [""]
-var folderData = [""]
+var folderData: [String] = [""]
 var folders : [String:Int]=[:]
 
 
@@ -41,6 +41,7 @@ func folderBuild(){
         }
     }
    // wireData
+   // print(wireData)
     print(folders)
     for (key, value) in folders {
         folderArr.append("\(key) Number of wires: \(value)")

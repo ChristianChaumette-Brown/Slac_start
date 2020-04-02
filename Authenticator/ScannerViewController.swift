@@ -91,7 +91,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         output=code
         print(output)
         searchData[0]=output
-        WireList().refresh()
+        //WireList().refresh()
         navigationController?.popViewController(animated: true)
     }
 

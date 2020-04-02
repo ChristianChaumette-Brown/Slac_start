@@ -5,7 +5,7 @@
 //  Created by Christian Chaumette-Brown on 2/24/20.
 //  Copyright © 2020 Christian Chaumette-Brown. All rights reserved.
 //
-
+/*
 import SwiftUI
 
  struct ContentView: View {
@@ -119,3 +119,4 @@ struct DetailedView : View{
     }
 }
 
+*/
