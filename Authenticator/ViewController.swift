@@ -121,7 +121,8 @@ class ViewController: UIViewController {
         else if sender == registerButton {
             //let registerVC = RegisterViewController()
             //let registerVC = QRViewController()
-            let registerVC = ScannerViewController()
+           // let registerVC = ScannerViewController()
+            let registerVC = WebView()
             self.navigationController?.pushViewController(registerVC, animated: true)
         }
     }
