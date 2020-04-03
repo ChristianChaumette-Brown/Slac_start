@@ -1,17 +1,43 @@
 import AVFoundation
 import UIKit
+import CoreGraphics
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var qrCodeFrameView:UIView?
     @Published dynamic var output:String = ""
-    
+    var scanAreaView:UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.black
-        captureSession = AVCaptureSession()
+        let size = 200
+        let screenWidth = self.view.frame.size.width
+        let xPos = (CGFloat(screenWidth) / CGFloat(2)) - (CGFloat(size) / CGFloat(2))
+        let scanRect = CGRect(x: Int(xPos), y: 100, width: size, height: size)
 
+        // create UIView that will server as a red square to indicate where to place QRCode for scanning
+        scanAreaView = UIView()
+        scanAreaView?.layer.borderColor = UIColor.red.cgColor
+        scanAreaView?.layer.borderWidth = 4
+        scanAreaView?.frame = scanRect
+        view.addSubview(scanAreaView!)
+        
+        captureSession = AVCaptureSession()
+       // let aimRect = CGRect(x: 0, y: 0, width: 50, height: 50)
+       // view.addSubview(aimRect)
+         qrCodeFrameView = UIView()
+       
+         
+        if let qrCodeFrameView = qrCodeFrameView {
+            qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
+            qrCodeFrameView.layer.borderWidth = 2
+            //view.addSubview(qrCodeFrameView)
+           // view.bringSubviewToFront(qrCodeFrameView)
+        }
+        //view.addSubview(qrCodeFrameView)
+        
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         let videoInput: AVCaptureDeviceInput
 
@@ -44,7 +70,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
-
+        view.bringSubviewToFront(scanAreaView!)
         captureSession.startRunning()
     }
 
@@ -78,6 +104,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            let barCodeObject = previewLayer?.transformedMetadataObject(for: metadataObject)
+            qrCodeFrameView?.frame = barCodeObject!.bounds
+            scanAreaView?.layer.borderColor = UIColor.green.cgColor
             found(code: stringValue)
         }
 

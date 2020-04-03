@@ -104,7 +104,7 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                     }
-                    if wire.Newrev=="1" {
+                    if wire.Newrev != "1" {
                     HStack{
             Text("Terminating Source: ")
                         if wire.Newrev=="1"{

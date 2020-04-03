@@ -26,6 +26,8 @@ struct FolderView: View {
             
         }
         .navigationBarTitle("Folders")
+        }.onAppear(){
+            searchData[0]=""
         }
     }
 }
