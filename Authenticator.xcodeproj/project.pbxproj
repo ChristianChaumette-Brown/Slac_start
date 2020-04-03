@@ -13,6 +13,7 @@
 		762D812024201800003ECC2A /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D811F24201800003ECC2A /* CodeScanner.swift */; };
 		762D812224214534003ECC2A /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D812124214534003ECC2A /* QRScannerController.swift */; };
 		762D8124242146D7003ECC2A /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762D8123242146D7003ECC2A /* ScannerViewController.swift */; };
+		762E7F742437AE1700696B91 /* ServerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762E7F732437AE1700696B91 /* ServerTestViewController.swift */; };
 		7667640C2405C1C00067241F /* WireList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667640B2405C1C00067241F /* WireList.swift */; };
 		766764132405C72F0067241F /* WireRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766764122405C72F0067241F /* WireRow.swift */; };
 		766764152405C8D90067241F /* wireData.json in Resources */ = {isa = PBXBuildFile; fileRef = 766764142405C8D90067241F /* wireData.json */; };
@@ -65,6 +66,7 @@
 		762D811F24201800003ECC2A /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		762D812124214534003ECC2A /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		762D8123242146D7003ECC2A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		762E7F732437AE1700696B91 /* ServerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTestViewController.swift; sourceTree = "<group>"; };
 		7667640B2405C1C00067241F /* WireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireList.swift; sourceTree = "<group>"; };
 		766764122405C72F0067241F /* WireRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireRow.swift; sourceTree = "<group>"; };
 		766764142405C8D90067241F /* wireData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wireData.json; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				762D8123242146D7003ECC2A /* ScannerViewController.swift */,
 				76915660240F81DD00284852 /* RegisterViewController.swift */,
 				7624EE1D24365EA4009F5FC8 /* WebView.swift */,
+				762E7F732437AE1700696B91 /* ServerTestViewController.swift */,
 				76676454240841E20067241F /* JSONContainerCodable.swift */,
 				7667640B2405C1C00067241F /* WireList.swift */,
 				7667641A2405DBF00067241F /* Models */,
@@ -339,6 +342,7 @@
 				7667644F240789E50067241F /* Login.swift in Sources */,
 				7691565F240F81AB00284852 /* ViewController.swift in Sources */,
 				76B33B1D24044B0D00CB7438 /* SceneDelegate.swift in Sources */,
+				762E7F742437AE1700696B91 /* ServerTestViewController.swift in Sources */,
 				7667644B240787590067241F /* LoginData.swift in Sources */,
 				762D812224214534003ECC2A /* QRScannerController.swift in Sources */,
 				76676449240766F90067241F /* User.swift in Sources */,

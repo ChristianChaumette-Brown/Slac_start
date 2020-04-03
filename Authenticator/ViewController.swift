@@ -123,7 +123,8 @@ class ViewController: UIViewController {
             //let registerVC = RegisterViewController()
             //let registerVC = QRViewController()
            // let registerVC = ScannerViewController()
-            let registerVC = WebView()
+            //let registerVC = WebView()
+            let registerVC = ServerTestViewController()
             self.navigationController?.pushViewController(registerVC, animated: true)
         }
     }
