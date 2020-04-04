@@ -24,7 +24,7 @@ struct WireList: View {
     @State var showingQr = false
      var delegate: WirelistDelegate?
     var folderInput: String
-   
+    
    //  var viewState:Bool = true
     //@EnvironmentObject var searcher:searchInfo
   //  let control = UIViewController(nibName: "QRSViewController", bundle: nil)
@@ -48,7 +48,7 @@ struct WireList: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack(alignment: .leading){
                 HStack{
                     Button(action:{
                         self.refresh()
@@ -83,6 +83,7 @@ struct WireList: View {
                 }
                     
                 .navigationBarTitle(Text("Wires"))
+           // .navigationBarHidden(true)
                 
                 
             }

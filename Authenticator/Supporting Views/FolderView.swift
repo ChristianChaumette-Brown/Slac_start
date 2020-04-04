@@ -26,9 +26,11 @@ struct FolderView: View {
             
         }
         .navigationBarTitle("Folders")
+        
         }.onAppear(){
             searchData[0]=""
         }
+            .onDisappear().navigationBarHidden(true)
     }
 }
 

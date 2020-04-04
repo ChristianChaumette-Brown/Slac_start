@@ -67,7 +67,7 @@
 		762D812124214534003ECC2A /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
 		762D8123242146D7003ECC2A /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		762E7F732437AE1700696B91 /* ServerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTestViewController.swift; sourceTree = "<group>"; };
-		7667640B2405C1C00067241F /* WireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireList.swift; sourceTree = "<group>"; };
+		7667640B2405C1C00067241F /* WireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireList.swift; sourceTree = "<group>"; usesTabs = 0; };
 		766764122405C72F0067241F /* WireRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireRow.swift; sourceTree = "<group>"; };
 		766764142405C8D90067241F /* wireData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wireData.json; sourceTree = "<group>"; };
 		766764182405CA920067241F /* WireDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireDetail.swift; sourceTree = SOURCE_ROOT; };

@@ -47,7 +47,7 @@ fileprivate var imageName: String
     var Length: String
     var Routing: String
     var Newrev: String
-    //var project: String
+    var project: String?
     
     enum CodingKeys: String, CodingKey{
         case Area_Code, Jobnum, Cablenum, System, Func, Cabletype, Origin_Location, Origin_Station, Origin_Conntype, Origin_Instr, Destination_Location, Destination_Station, Destination_Conntype, Destination_Instr, Length, Routing, Newrev

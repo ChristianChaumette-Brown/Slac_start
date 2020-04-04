@@ -12,6 +12,7 @@ struct WireDetail: View {
     var wire: Wire
     
     var body: some View {
+        ScrollView{
         VStack{
             
             VStack(alignment: HorizontalAlignment.leading) {
@@ -157,7 +158,7 @@ struct WireDetail: View {
                            
             
             
-            .padding()
+            //.padding()
             
  
            // Spacer()
@@ -170,7 +171,7 @@ struct WireDetail: View {
            
         .navigationBarTitle(Text(wire.Cablenum), displayMode: .inline)
     }
-
+    }
 }
 struct WireDetail_Previews: PreviewProvider {
     static var previews: some View {
