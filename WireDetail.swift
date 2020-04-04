@@ -13,7 +13,7 @@ struct WireDetail: View {
     
     var body: some View {
         ScrollView{
-        VStack{
+        //VStack{
             
             VStack(alignment: HorizontalAlignment.leading) {
                 
@@ -169,9 +169,9 @@ struct WireDetail: View {
             print("Wiredetail disappear")
         }
            
-        .navigationBarTitle(Text(wire.Cablenum), displayMode: .inline)
+        .navigationBarTitle(Text(wire.Cablenum))
     }
-    }
+    //}
 }
 struct WireDetail_Previews: PreviewProvider {
     static var previews: some View {

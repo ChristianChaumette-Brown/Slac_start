@@ -13,11 +13,12 @@ struct FolderView: View {
     @State private var actionState: Int? = 0
     
     var body: some View {
-        NavigationView{
+       NavigationView{
+           // ScrollView(){
         List(folderArr,id: \.self){ wire in
             NavigationLink(destination: WireList(folderInput: wire)){
                 
-                  //  folderData[0]=folderArr[wire]
+                
                 
                 Text(wire)
                   
@@ -29,8 +30,9 @@ struct FolderView: View {
         
         }.onAppear(){
             searchData[0]=""
+        
         }
-            .onDisappear().navigationBarHidden(true)
+        .onDisappear()
     }
 }
 
