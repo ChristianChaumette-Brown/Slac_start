@@ -25,6 +25,7 @@ struct WireList: View {
 	var delegate: WirelistDelegate?
 	var folderInput: String
 	
+	
 	//  var viewState:Bool = true
 	//@EnvironmentObject var searcher:searchInfo
 	//  let control = UIViewController(nibName: "QRSViewController", bundle: nil)
@@ -123,6 +124,11 @@ List(wireData.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())
 			//RegisterViewController().view.isHidden = false
 			//self.refresh()
 			
+			
+			Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false){timer in
+				self.refresh()
+			}
+			
 		}
 	}
 		
@@ -161,3 +167,4 @@ struct QRPickers: UIViewControllerRepresentable {
 	// typealias UIViewControllerType = UIViewController
 	
 }
+ 
