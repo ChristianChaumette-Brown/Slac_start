@@ -40,8 +40,15 @@ struct WireList: View {
 		print(scanner)
 		searchText=searchData[0]
 		print(folderInput)
+		/*
+		if folderData.count==2{
+			folderData.remove(at: 0)
+		}*/
+		
 		folderText=folderData[0]
 		print(folderData[0])
+		folderText=folderData[0]
+		print(folderText)
 	}
 	@State private var qrbutton :String = "qrbutton"
 	
@@ -49,7 +56,7 @@ struct WireList: View {
 	var body: some View {
 		//NavigationView {
 		//ScrollView(){
-			
+		
 			VStack{
 				HStack{
 					Button(action:{
@@ -75,8 +82,8 @@ List(wireData.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())
 					
 					NavigationLink(destination: WireDetail(wire: wire)) {
 						WireRow(wire:wire)
-					}
-				}
+	}
+	}
 				.navigationBarTitle(Text("Wires"))
 				//FolderView().navigationBarHidden(true)
 		}.onDisappear(){
@@ -84,6 +91,25 @@ List(wireData.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())
 			searchData[0]=""
 		}.onAppear(){
 			print("Wirelist appear")
+			if let index = self.folderInput.firstIndex(of: " "){
+				print("test")
+				let distance = self.folderInput.distance(from: self.folderInput.startIndex, to: index)
+				print(distance)
+				let subfolderInput = self.folderInput[..<index]
+				print(subfolderInput)
+				let cleanedFolder = String(subfolderInput)
+				print(cleanedFolder)
+				print(folderData.count)
+				
+				//folderData.append(cleanedFolder)
+				//folderData.remove(at: 0)
+				print(folderData.count)
+				print(folderData[0])
+				//self.folderText="test"
+				folderData[0] = cleanedFolder
+				//folderData.insert(cleanedFolder, at: 0)
+			}
+			
 			/*
 			if let index = self.folderInput.firstIndex(of: " "){
 				let distance = self.folderInput.distance(from: self.folderInput.startIndex, to: index)
@@ -95,7 +121,8 @@ List(wireData.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())
 			}*/
 			//refresh()
 			//RegisterViewController().view.isHidden = false
-			self.refresh()
+			//self.refresh()
+			
 		}
 	}
 		

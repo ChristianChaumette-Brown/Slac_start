@@ -32,7 +32,9 @@ struct FolderView: View {
             searchData[0]=""
         
         }
-        .onDisappear()
+       .onDisappear(){
+        print("Left folder view")
+        }
     }
 }
 
