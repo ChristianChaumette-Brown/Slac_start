@@ -26,7 +26,7 @@ struct WireDetail: View {
                     
 
                 HStack(alignment: .top) {
-                    Text(wire.AreaCode)
+                    Text(wire.Area_Code)
                         .font(.subheadline)
                     Spacer()
                     Text("Wire Group: ")
@@ -45,12 +45,12 @@ struct WireDetail: View {
             
             HStack{
                 Text("Destination Connection Type: ")
-                Text(wire.DestinationConntype)
+                Text(wire.Destination_Conntype)
             
             }
             HStack (){
                 Text("Wire Designation Instructions: ")
-                Text(wire.DestinationInstr)
+                Text(wire.Destination_Instr)
                 
             }
                     }
@@ -61,7 +61,7 @@ struct WireDetail: View {
                         
             Text("Origin Instruction: ")
                         
-                        if wire.OriginInstr==""{
+                        if wire.Origin_Instr==""{
                             Text("Yes")
                         }
                         else{
@@ -77,7 +77,7 @@ struct WireDetail: View {
                     HStack{
             Text("Destination Instruction: ")
                         
-                        if wire.DestinationInstr==""{
+                        if wire.Destination_Instr==""{
                             Text("Yes")
                                     }
                                 else{
@@ -92,7 +92,7 @@ struct WireDetail: View {
                     
                     HStack{
             Text("Verified Destination: ")
-                        if wire.DestinationStation==""{
+                        if wire.Destination_Station==""{
                                                    Text("Yes")
                                                            }
                                                        else{

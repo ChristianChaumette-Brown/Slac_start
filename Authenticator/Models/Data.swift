@@ -42,13 +42,37 @@ func folderBuild(){
     }
    // wireData
    // print(wireData)
+    
     print(folders)
     for (key, value) in folders {
         folderArr.append("\(key) Number of wires: \(value)")
     }
     print(folderArr[0])
     
+    folderArr = folderArr.sorted()
+    
+    print(folderArr)
 }
+
+
+
+
+/*
+func quicksort<T: Comparable>(_ a: [T])-> [T]{
+    guard a.count > 1 else {return a}
+    
+    let pivot = a[a.count/2]
+    let less = a.filter { $0 < pivot}
+    let equal = a.filter {$0 == pivot}
+    let greater = a.filter {$0 > pivot}
+    
+    return quicksort(less) + equal + quicksort(greater)
+    
+    
+}
+*/
+
+
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
     //let name: String
