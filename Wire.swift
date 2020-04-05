@@ -43,10 +43,10 @@ fileprivate var imageName: String
     var Destination_Location: String
     var Destination_Station: String
     var Destination_Conntype: String
-    var Destination_Instr: String
-    var Length: String
-    var Routing: String
-    var Newrev: String
+    var Destination_Instr: String?
+    var Length: String?
+    var Routing: String?
+    var Newrev: String?
     var project: String?
     
     enum CodingKeys: String, CodingKey{
@@ -73,12 +73,12 @@ extension Wire {
 struct project:Hashable, Codable{
    // var id = UUID()
     var area_code:String
-    var rOfInstall: [rci]? = []
+    var rOfInstall: [String:rci]? = [:]
     var cables: [Wire]? = []
 }
 
-struct rci: Hashable, Codable,Identifiable{
-    var id = UUID()
+struct rci: Hashable, Codable{
+   // var id = UUID()
     var Cablenum : String?
     var project: String?
     var INSTALL_STATUS: Bool?
@@ -90,7 +90,7 @@ struct rci: Hashable, Codable,Identifiable{
     var VERIFY_DEST: Bool?
     var VERIFY_DEST_user: String?
     var VERIFY_DEST_date: String?
-    var ORIGIN_TERM: String?
+    var ORIGIN_TERM: Bool?
     var ORIGIN_TERM_user: String?
     var ORIGIN_TERM_date: String?
     var DEST_TERM: Bool?

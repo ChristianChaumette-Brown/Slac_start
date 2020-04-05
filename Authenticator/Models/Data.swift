@@ -143,6 +143,8 @@ func loadFiles(){
        
        
        func fetchFiles(){
+        print("Fetch files called")
+        print(projects.capacity)
            if(projects.capacity != 0){
                for i in 0...projects.capacity-1{
                    let session = URLSession.shared

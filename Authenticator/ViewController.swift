@@ -91,6 +91,9 @@ class ViewController: UIViewController {
         */
         //view.backgroundColor = UIColor.white
         start()
+        fetchProjects()
+       // fetchFiles()
+       // print(projects[0].area_code)
         folderBuild()
         view.addSubview(myLogin)
         view.addSubview(myPass)

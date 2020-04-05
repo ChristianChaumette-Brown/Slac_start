@@ -17,10 +17,10 @@ struct WireRow: View {
             .resizable()
                 .frame(width: 50, height: 50)
             */
-            Text(wire.Cablenum)
+            Text(wire.Cablenum ?? "test")
             //Text(String(wire.id))
             Text("Group: ")
-            Text(wire.Jobnum)
+            Text(wire.Jobnum ?? "test_job")
             Spacer()
         }
     }

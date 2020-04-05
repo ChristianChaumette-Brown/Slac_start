@@ -11,6 +11,7 @@ import SwiftUI
 struct WireDetail: View {
     var wire: Wire
     
+   // @State var cablenumber : String
     var body: some View {
         ScrollView{
         //VStack{
@@ -22,17 +23,17 @@ struct WireDetail: View {
                    // Text(wire.name)
                 //}
                 Group{
-                Text(wire.Cablenum)
-                .font(.title)
+                    Text(String((wire.Cablenum)))
+               // .font(.title)
                     
 
-                HStack(alignment: .top) {
-                    Text(wire.Area_Code)
+                HStack() {
+                    Text((wire.Area_Code))
                         .font(.subheadline)
                     Spacer()
                     Text("Wire Group: ")
                     Text(wire.Jobnum)
-                        .font(.subheadline)
+                       // .font(.subheadline)
                     
                 }
                 Group{
@@ -51,7 +52,7 @@ struct WireDetail: View {
             }
             HStack (){
                 Text("Wire Designation Instructions: ")
-                Text(wire.Destination_Instr)
+                //Text(wire.Destination_Instr ?? "")
                 
             }
                     }
@@ -62,7 +63,7 @@ struct WireDetail: View {
                         
             Text("Origin Instruction: ")
                         
-                        if wire.Origin_Instr==""{
+                        if (wire.Origin_Instr) == ""{
                             Text("Yes")
                         }
                         else{
@@ -78,7 +79,7 @@ struct WireDetail: View {
                     HStack{
             Text("Destination Instruction: ")
                         
-                        if wire.Destination_Instr==""{
+                        if (wire.Destination_Instr) == ""{
                             Text("Yes")
                                     }
                                 else{
@@ -87,13 +88,13 @@ struct WireDetail: View {
                         Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
-                        .padding(.trailing, 20.0)
-                        .frame(width: 60.0)
+                       // .padding(.trailing, 20.0)
+                       // .frame(width: 60.0)
                                             }
                     
                     HStack{
             Text("Verified Destination: ")
-                        if wire.Destination_Station==""{
+                        if (wire.Destination_Station) == ""{
                                                    Text("Yes")
                                                            }
                                                        else{
@@ -105,10 +106,10 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                     }
-                    if wire.Newrev != "1" {
+                    if (wire.Newrev ?? "1") == "1" {
                     HStack{
             Text("Terminating Source: ")
-                        if wire.Newrev=="1"{
+                        if (wire.Newrev ?? "1") == "1"{
                                                    Text("Yes")
                                                            }
                                                        else{
@@ -143,8 +144,8 @@ struct WireDetail: View {
                         Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
-                        .padding(.trailing, 20.0)
-                        .frame(width: 60.0)
+                       // .padding(.trailing, 20.0)
+                        //.frame(width: 60.0)
                     }
                 }
             }
@@ -167,9 +168,9 @@ struct WireDetail: View {
             RegisterViewController().view.isHidden = true
         }.onDisappear(){
             print("Wiredetail disappear")
-        }
+            }
            
-        .navigationBarTitle(Text(wire.Cablenum))
+        .navigationBarTitle(Text(wire.Cablenum ))
     }
     //}
 }
