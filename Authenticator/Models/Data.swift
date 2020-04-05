@@ -17,12 +17,76 @@ struct MyStruct {
 
  var folderArr = [String]()
 
-
+let file0 = "projects.json"
+let file1 = "_rci.json"
+let file2 = "_cables.json"
 
 let wireData: [Wire] = load("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
 var folders : [String:Int]=[:]
+
+
+class DataAssignment: ObservableObject{
+    @Published var logins = UserDefaults.standard.integer(forKey: "logins"){
+        didSet { UserDefaults.standard.set(self.logins, forKey: "logins") }
+    
+    }
+    
+   @Published var projects :[project] = []
+
+    init(){
+        print("Initializer called")
+        
+        //check for initial app launch
+        if(logins < 1){
+            print("Initial launch data load")
+            createInitFiles()
+        }
+        else{
+            print("Loading files")
+            projects = load(file0)
+        }
+        
+    }
+    
+    
+    func createInitFiles(){
+        print("called createfiles")
+        let str = "[]"
+        let path0 = file0
+
+        var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(path0)
+        do {
+            try str.write(to: url, atomically: true, encoding: .utf8)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+      if(projects.capacity != 0){
+            for i in 0...projects.capacity{
+                url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file1)
+                let url2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file2)
+                do {
+                    try str.write(to: url, atomically: true, encoding: .utf8)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                do {
+                    try str.write(to: url2, atomically: true, encoding: .utf8)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                
+            }
+        }
+        
+    }
+    
+    
+    
+}
 
 
 func folderBuild(){
@@ -76,11 +140,14 @@ func quicksort<T: Comparable>(_ a: [T])-> [T]{
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
     //let name: String
+     let file = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filename)
+    /*
     guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
         else {
             fatalError("Couldn't find \(filename) in main bundle.")
     }
-    
+    */
+    print(file)
     do {
         data = try Data(contentsOf: file)
     } catch {
@@ -133,3 +200,4 @@ final class ImageStore {
 
 
 */
+
