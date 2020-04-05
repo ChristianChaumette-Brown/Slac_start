@@ -4,6 +4,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
@@ -14,6 +16,7 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
+    
     
    
     lazy var registerButton: UIButton = {
@@ -87,6 +90,7 @@ class ViewController: UIViewController {
         
         */
         //view.backgroundColor = UIColor.white
+        start()
         folderBuild()
         view.addSubview(myLogin)
         view.addSubview(myPass)

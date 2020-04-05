@@ -21,11 +21,169 @@ let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
 
-let wireData: [Wire] = load("csvjson.json")
+let wireData: [Wire] = loader("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
 var folders : [String:Int]=[:]
 
+var successfulLogins = UserDefaults.standard.integer(forKey: "logins"){
+    didSet { UserDefaults.standard.set(successfulLogins, forKey: "logins") }
+
+}
+var projects : [project] = []
+
+
+
+
+
+func start(){
+    
+        print("Initializer called")
+        
+        //check for initial app launch
+        if(successfulLogins < 1){
+            print("Initial launch data load")
+            createInitFiles()
+        }
+        else{
+            print("Loading files")
+            projects = load(file0)
+            if (projects.capacity != 0){
+                loadFiles()
+        }
+        
+    }
+
+    
+    
+}
+func createInitFiles(){
+       print("called createfiles")
+       let str = "[]"
+       let path0 = file0
+
+       var url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(path0)
+       do {
+           try str.write(to: url, atomically: true, encoding: .utf8)
+       } catch {
+           print(error.localizedDescription)
+       }
+       
+     if(projects.capacity != 0){
+           for i in 0...projects.capacity{
+               url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file1)
+               let url2 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file2)
+               do {
+                   try str.write(to: url, atomically: true, encoding: .utf8)
+               } catch {
+                   print(error.localizedDescription)
+               }
+               do {
+                   try str.write(to: url2, atomically: true, encoding: .utf8)
+               } catch {
+                   print(error.localizedDescription)
+               }
+               
+               
+           }
+       }
+       
+   }
+func loadFiles(){
+        if(projects.capacity != 0){
+            for i in 0...projects.capacity-1{
+                projects[i].cables = load(projects[i].area_code+file2)
+                projects[i].rOfInstall = load(projects[i].area_code+file1)
+                print("loaded \(projects[i].area_code+file2)")
+                print("loaded \(projects[i].area_code+file1)")
+            }
+        }
+    }
+    func loadProjectFiles(i: Int,file: Int){
+        
+        if(file == 0){
+        projects[i].cables = load(projects[i].area_code+file2)
+        }
+        else{
+        projects[i].rOfInstall = load(projects[i].area_code+file1)
+        }
+        
+    }
+    func updateData(){
+        print("updating data...")
+        fetchProjects()
+    }
+    func fetchProjects(){
+           print("Fetching projects...")
+           let session = URLSession.shared
+           let url = URL(string: "http://10.0.0.237:5000/ws/projects")!
+           let task = session.dataTask(with: url) { data, response, error in
+           
+               let str = String(decoding: data!, as: UTF8.self)
+                   print(str)
+                   let url1 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(file0)
+                   
+                   do {
+                       try str.write(to: url1, atomically: true, encoding: .utf8)
+                       
+                   } catch {
+                       print(error.localizedDescription)
+                   }
+               
+               DispatchQueue.main.async {
+                   print("loading projects")
+                projects = load(file0)
+                   fetchFiles()
+                   
+               }
+           }
+           task.resume()
+           
+       }
+       
+       
+       func fetchFiles(){
+           if(projects.capacity != 0){
+               for i in 0...projects.capacity-1{
+                   let session = URLSession.shared
+                   let url = URL(string: "http://10.0.0.237:5000/ws/\(projects[i].area_code)/cables")!
+                   let task = session.dataTask(with: url) { data, response, error in
+                           let str = String(decoding: data!, as: UTF8.self)
+                           print("Fetched")
+                           let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file2)
+                           do {
+                               try str.write(to: url, atomically: true, encoding: .utf8)
+                               DispatchQueue.main.async {
+                                   loadProjectFiles(i: i, file: 0)
+                               }
+                           } catch {
+                               print(error.localizedDescription)
+                           }
+                       }
+                   task.resume()
+//currently contains my local ip address for testing
+                   let session2 = URLSession.shared
+                   let url2 = URL(string: "http://10.0.0.237:5000/ws/\(projects[i].area_code)/rci")!
+                   let task2 = session2.dataTask(with: url2) { data, response, error in
+                           let str2 = String(decoding: data!, as: UTF8.self)
+                           let url1 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file1)
+                           do {
+                               try str2.write(to: url1, atomically: true, encoding: .utf8)
+                               DispatchQueue.main.async {
+                                   loadProjectFiles(i: i, file: 1)
+                               }
+
+                       } catch {
+                           print(error.localizedDescription)
+                       }
+               }
+               task2.resume()
+    
+           }
+               
+               
+       }
+}
 
 class DataAssignment: ObservableObject{
     @Published var logins = UserDefaults.standard.integer(forKey: "logins"){
@@ -46,10 +204,12 @@ class DataAssignment: ObservableObject{
         else{
             print("Loading files")
             projects = load(file0)
+            if (projects.capacity != 0){
+                loadFiles()
         }
         
     }
-    
+    }
     
     func createInitFiles(){
         print("called createfiles")
@@ -84,10 +244,102 @@ class DataAssignment: ObservableObject{
         
     }
     
-    
-    
-}
+    func loadFiles(){
+        if(self.projects.capacity != 0){
+            for i in 0...self.projects.capacity-1{
+                self.projects[i].cables = load(self.projects[i].area_code+file2)
+                self.projects[i].rOfInstall = load(self.projects[i].area_code+file1)
+                print("loaded \(self.projects[i].area_code+file2)")
+                print("loaded \(self.projects[i].area_code+file1)")
+            }
+        }
+    }
+    func loadProjectFiles(i: Int,file: Int){
+        
+        if(file == 0){
+        self.projects[i].cables = load(self.projects[i].area_code+file2)
+        }
+        else{
+        self.projects[i].rOfInstall = load(self.projects[i].area_code+file1)
+        }
+        
+    }
+    func updateData(){
+        print("updating data...")
+        self.fetchProjects()
+    }
+    func fetchProjects(){
+           print("Fetching projects...")
+           let session = URLSession.shared
+           let url = URL(string: "http://10.0.0.237:5000/ws/projects")!
+           let task = session.dataTask(with: url) { data, response, error in
+           
+               let str = String(decoding: data!, as: UTF8.self)
+                   print(str)
+                   let url1 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(file0)
+                   
+                   do {
+                       try str.write(to: url1, atomically: true, encoding: .utf8)
+                       
+                   } catch {
+                       print(error.localizedDescription)
+                   }
+               
+               DispatchQueue.main.async {
+                   print("loading projects")
+                self.projects = load(file0)
+                   self.fetchFiles()
+                   
+               }
+           }
+           task.resume()
+           
+       }
+       
+       
+       func fetchFiles(){
+           if(self.projects.capacity != 0){
+               for i in 0...projects.capacity-1{
+                   let session = URLSession.shared
+                   let url = URL(string: "http://10.0.0.237:5000/ws/\(projects[i].area_code)/cables")!
+                   let task = session.dataTask(with: url) { data, response, error in
+                           let str = String(decoding: data!, as: UTF8.self)
+                           print("Fetched")
+                           let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(self.projects[i].area_code+file2)
+                           do {
+                               try str.write(to: url, atomically: true, encoding: .utf8)
+                               DispatchQueue.main.async {
+                                   self.loadProjectFiles(i: i, file: 0)
+                               }
+                           } catch {
+                               print(error.localizedDescription)
+                           }
+                       }
+                   task.resume()
+//currently contains my local ip address for testing
+                   let session2 = URLSession.shared
+                   let url2 = URL(string: "http://10.0.0.237:5000/ws/\(self.projects[i].area_code)/rci")!
+                   let task2 = session2.dataTask(with: url2) { data, response, error in
+                           let str2 = String(decoding: data!, as: UTF8.self)
+                           let url1 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(self.projects[i].area_code+file1)
+                           do {
+                               try str2.write(to: url1, atomically: true, encoding: .utf8)
+                               DispatchQueue.main.async {
+                                   self.loadProjectFiles(i: i, file: 1)
+                               }
 
+                       } catch {
+                           print(error.localizedDescription)
+                       }
+               }
+               task2.resume()
+    
+           }
+               
+               
+       }
+}
+}
 
 func folderBuild(){
     //var i = 0
@@ -201,3 +453,30 @@ final class ImageStore {
 
 */
 
+func loader<T: Decodable>(_ filename: String) -> T {
+    let data: Data
+    //let name: String
+     /*let file = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(filename)*/
+    
+    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+        else {
+            fatalError("Couldn't find \(filename) in main bundle.")
+    }
+    
+    print(file)
+    do {
+        data = try Data(contentsOf: file)
+    } catch {
+        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
+    }
+    
+    do {
+        let decoder = JSONDecoder()
+        return try decoder.decode(T.self, from: data)
+    }
+        
+    catch {
+        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+    }
+    
+}

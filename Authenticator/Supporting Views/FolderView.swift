@@ -12,7 +12,12 @@ import UIKit
 struct FolderView: View {
     @State private var actionState: Int? = 0
     
+  // @EnvironmentObject var ServerData : DataAssignment
+    
+    init(){
+    }
     var body: some View {
+        
        NavigationView{
            // ScrollView(){
         List(folderArr,id: \.self){ wire in
@@ -21,16 +26,21 @@ struct FolderView: View {
                 
                 
                 Text(wire)
-                  
+                
+                 /* if self.ServerData.projects.count != 0 {
+                    Text(self.ServerData.projects[0].area_code)
+                        }
+                */
                 
                 }
             
         }
+            
         .navigationBarTitle("Folders")
         
         }.onAppear(){
             searchData[0]=""
-        
+          
         }
        .onDisappear(){
         print("Left folder view")
@@ -38,12 +48,12 @@ struct FolderView: View {
     }
 }
 
-
+/*
 
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderView()
+        FolderView( )
     }
 }
 
-
+*/
