@@ -71,7 +71,7 @@ extension Wire {
 
 */
 struct project:Hashable, Codable{
-   // var id = UUID()
+    //var id = UUID()
     var area_code:String
     var rOfInstall: [String:rci]? = [:]
     var cables: [Wire]? = []

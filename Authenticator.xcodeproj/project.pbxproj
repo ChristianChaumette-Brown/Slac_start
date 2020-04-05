@@ -42,6 +42,7 @@
 		7667645324079E170067241F /* SLAC_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7667645224079E170067241F /* SLAC_logo.png */; };
 		76676455240841E20067241F /* JSONContainerCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76676454240841E20067241F /* JSONContainerCodable.swift */; };
 		766DD5FF2435581300509EDC /* realWireData.json in Resources */ = {isa = PBXBuildFile; fileRef = 766DD5FE2435581200509EDC /* realWireData.json */; };
+		76861082243A605900622CAF /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76861081243A605900622CAF /* ProjectView.swift */; };
 		7691565D240F819100284852 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565C240F819100284852 /* LoginViewController.swift */; };
 		7691565F240F81AB00284852 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565E240F81AB00284852 /* ViewController.swift */; };
 		76915661240F81DD00284852 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76915660240F81DD00284852 /* RegisterViewController.swift */; };
@@ -95,6 +96,7 @@
 		7667645224079E170067241F /* SLAC_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SLAC_logo.png; sourceTree = "<group>"; };
 		76676454240841E20067241F /* JSONContainerCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONContainerCodable.swift; sourceTree = "<group>"; };
 		766DD5FE2435581200509EDC /* realWireData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = realWireData.json; sourceTree = "<group>"; };
+		76861081243A605900622CAF /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		7691565C240F819100284852 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7691565E240F81AB00284852 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		76915660240F81DD00284852 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				76F4E2542433E5AF00852F56 /* Folder.swift */,
 				76F4E2522433DF3F00852F56 /* FolderView.swift */,
+				76861081243A605900622CAF /* ProjectView.swift */,
 				766764122405C72F0067241F /* WireRow.swift */,
 			);
 			path = "Supporting Views";
@@ -351,6 +354,7 @@
 				76B33B1F24044B0D00CB7438 /* ContentView.swift in Sources */,
 				76A28AA9240DD5FE008D8A27 /* QRCodeReaderViewControllerDelegate.swift in Sources */,
 				766764132405C72F0067241F /* WireRow.swift in Sources */,
+				76861082243A605900622CAF /* ProjectView.swift in Sources */,
 				762D812024201800003ECC2A /* CodeScanner.swift in Sources */,
 				76F4E2552433E5AF00852F56 /* Folder.swift in Sources */,
 			);

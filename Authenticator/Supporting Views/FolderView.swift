@@ -11,14 +11,13 @@ import UIKit
 
 struct FolderView: View {
     @State private var actionState: Int? = 0
-    
+   // var projName:String
   // @EnvironmentObject var ServerData : DataAssignment
-    
-    init(){
-    }
+    var proj: Int
+    //init(){}
     var body: some View {
         
-       NavigationView{
+       //NavigationView{
            // ScrollView(){
         List(folderArr,id: \.self){ wire in
             NavigationLink(destination: WireList(folderInput: wire)){
@@ -34,26 +33,26 @@ struct FolderView: View {
                 
                 }
             
-        }
+            }.onAppear(){
+                 searchData[0]=""
+                 print("showing Cable Groups for project \(self.proj)")
+             }
+            .onDisappear(){
+             print("Left folder view")
+             }
             
-        .navigationBarTitle("Folders")
+        .navigationBarTitle("Cable Groups")
         
-        }.onAppear(){
-            searchData[0]=""
-          
-        }
-       .onDisappear(){
-        print("Left folder view")
-        }
+        //}
     }
 }
 
-/*
+
 
 struct FolderView_Previews: PreviewProvider {
     static var previews: some View {
-        FolderView( )
+        FolderView(proj: 1)
     }
 }
 
-*/
+

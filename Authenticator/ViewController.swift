@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         fetchProjects()
        // fetchFiles()
        // print(projects[0].area_code)
-        folderBuild()
+       // folderBuild()
         view.addSubview(myLogin)
         view.addSubview(myPass)
         view.addSubview(loginButton)

@@ -134,7 +134,7 @@ func loadFiles(){
                    print("loading projects")
                 projects = load(file0)
                    fetchFiles()
-                   
+                   //folderBuild()
                }
            }
            task.resume()
@@ -183,7 +183,7 @@ func loadFiles(){
     
            }
                
-               
+            folderBuild()
        }
 }
 
