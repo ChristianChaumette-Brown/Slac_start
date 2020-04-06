@@ -30,7 +30,12 @@ struct WireDetail: View {
     var changed : Bool = false
     var saved : Bool = false
     
+   
+    
     var body: some View {
+        
+        //toggle cleaning
+        
         
         ScrollView{
         //VStack{
@@ -41,11 +46,12 @@ struct WireDetail: View {
                // VStack{
                    // Text(wire.name)
                 //}
+               
+                
+                
                 Group{
                    // Text(String((wire.Cablenum)))
                // .font(.title)
-                    
-
                 HStack() {
                     Text("Area Code: \(wire.Area_Code)")
                         .font(.subheadline)
@@ -84,22 +90,32 @@ struct WireDetail: View {
                         
                         if (tog1) {
                             Text("Installed by user \(rci.INSTALL_STATUS_user ?? "default_user")\n Installed on \(rci.INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
+                            
                         }
                         else{
                             Text("No")
+                            //tog2 = false
+                            
                         }
                         Toggle(isOn: $tog1) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                            
                         }
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
-                                            }
+                    }.onAppear(){
+                        if self.tog1==false{
+                            self.tog2=false
+                        }
+                    }
                     if tog1 == true{
+                        
                         HStack{
                         Text("Source Verification: ")
                                     
                                     if (tog2){
                                         Text("Verified by user \(rci.VERIFY_SOURCE_user ?? "default_user")\n Verified on \(rci.VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
+                                        
                                                 }
                                             else{
                                         Text("No")
@@ -109,7 +125,13 @@ struct WireDetail: View {
                                     }
                                     .padding(.trailing, 20.0)
                                     .frame(width: 60.0)
-                                                        }
+                        }.onDisappear(){
+                            self.tog2=false
+                        }.onAppear(){
+                            if self.tog2==false{
+                                self.tog3=false
+                            }
+                        }
                         
                     }
                     
@@ -127,6 +149,10 @@ struct WireDetail: View {
                                                }
                                                .padding(.trailing, 20.0)
                                                .frame(width: 60.0)
+                                           }.onAppear(){
+                                               if self.tog3==false{
+                                                   self.tog4=false
+                                               }
                                            }
                         
                     }
@@ -145,6 +171,10 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
+                    }.onAppear(){
+                        if self.tog4==false{
+                            self.tog5=false
+                        }
                     }
                     }
                     if tog1&&tog2&&tog3&&tog4{
@@ -161,6 +191,10 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
+                    }.onAppear(){
+                        if self.tog5==false{
+                            self.tog6=false
+                        }
                     }
                 }
                     if tog1&&tog2&&tog3&&tog4&&tog5{
@@ -177,6 +211,10 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
+                    }.onAppear(){
+                        if self.tog6==false{
+                            self.tog7=false
+                        }
                     }
                 }
                   if tog1&&tog2&&tog3&&tog4&&tog5&&tog6  {
@@ -193,6 +231,10 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
+                    }.onAppear(){
+                        if self.tog7==false{
+                            self.tog8=false
+                        }
                     }
                 }
                     
@@ -216,6 +258,10 @@ struct WireDetail: View {
                                        }
                                        .padding(.trailing, 20.0)
                                        .frame(width: 60.0)
+                                   }.onAppear(){
+                                       if self.tog8==false{
+                                           self.tog9=false
+                                       }
                                    }
             }
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8{
@@ -232,6 +278,10 @@ struct WireDetail: View {
                                        }
                                        .padding(.trailing, 20.0)
                                        .frame(width: 60.0)
+                                   }.onAppear(){
+                                       if self.tog9==false{
+                                           self.tog10=false
+                                       }
                                    }
             }
                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9     {
@@ -248,6 +298,10 @@ struct WireDetail: View {
                              }
                              .padding(.trailing, 20.0)
                              .frame(width: 60.0)
+                         }.onAppear(){
+                             if self.tog10==false{
+                                 self.tog11=false
+                             }
                          }
             }
                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10  {
@@ -269,6 +323,7 @@ struct WireDetail: View {
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10&&tog11 {
                 Text("Source Comments \(rci.COMMENT_SOURCE ?? "Default Source Comment")")
                 Text("Destination Comments \(rci.COMMENT_DEST ?? "Default Destination Comment")")
+                    
             }
                 
                 
@@ -298,6 +353,7 @@ struct WireDetail: View {
             self.tog9 = self.rci.CONN_ORIGIN ?? false
             self.tog10 = self.rci.CONN_DEST ?? false
             self.tog11 = self.rci.RELEASED ?? false
+            //self.updater()
             
         }.onDisappear(){
             print("Wiredetail disappear")
@@ -316,8 +372,43 @@ struct WireDetail: View {
             }
            
         .navigationBarTitle(Text(wire.Cablenum ))
+        
+        
     }
     //}
+    func updater(){
+           if tog1 != true{
+               tog2 = false
+           }
+           if tog2 != true{
+                      tog3 = false
+                  }
+           if tog3 != true{
+                      tog4 = false
+                  }
+           if tog4 != true{
+                      tog5 = false
+                  }
+           if tog5 != true{
+                      tog6 = false
+                  }
+           if tog6 != true{
+                      tog7 = false
+                  }
+           if tog7 != true{
+                      tog8 = false
+                  }
+           if tog8 != true{
+                      tog9 = false
+                  }
+           if tog9 != true{
+                      tog10 = false
+                  }
+           if tog10 != true{
+                      tog11 = false
+                  }
+           
+       }
 }
 /*
 struct WireDetail_Previews: PreviewProvider {
