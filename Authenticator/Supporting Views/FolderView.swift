@@ -19,7 +19,7 @@ struct FolderView: View {
         
        //NavigationView{
            // ScrollView(){
-        List(folderArr,id: \.self){ wire in
+        List(completeFoldersArr[proj],id: \.self){ wire in
             NavigationLink(destination: WireList(folderInput: wire)){
                 
                 
