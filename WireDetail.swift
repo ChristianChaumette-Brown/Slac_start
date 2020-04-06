@@ -126,7 +126,7 @@ struct WireDetail: View {
                                     .padding(.trailing, 20.0)
                                     .frame(width: 60.0)
                         }.onDisappear(){
-                            self.tog2=false
+                            self.tog3=false
                         }.onAppear(){
                             if self.tog2==false{
                                 self.tog3=false
