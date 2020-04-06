@@ -82,7 +82,7 @@ struct WireDetail: View {
                         
             Text("Installation: ")
                         
-                        if (rci.INSTALL_STATUS ?? false) {
+                        if (tog1) {
                             Text("Installed by user \(rci.INSTALL_STATUS_user ?? "default_user")\n Installed on \(rci.INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
                         }
                         else{
@@ -94,41 +94,47 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                                             }
-                    
-                    HStack{
-            Text("Source Verification: ")
-                        
-                        if (rci.VERIFY_SOURCE ?? false){
-                            Text("Verified by user \(rci.VERIFY_SOURCE_user ?? "default_user")\n Verified on \(rci.VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
-                                    }
-                                else{
-                            Text("No")
-                                               }
-                        Toggle(isOn: $tog2) {
-                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
-                        }
-                        .padding(.trailing, 20.0)
-                        .frame(width: 60.0)
-                                            }
-                    
-                    HStack{
-            Text("Verified Destination: ")
-                        if (rci.VERIFY_DEST ?? false){
-                        Text("Verified by user \(rci.VERIFY_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
+                    if tog1 == true{
+                        HStack{
+                        Text("Source Verification: ")
+                                    
+                                    if (tog2){
+                                        Text("Verified by user \(rci.VERIFY_SOURCE_user ?? "default_user")\n Verified on \(rci.VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
+                                                }
+                                            else{
+                                        Text("No")
                                                            }
-                                                       else{
-                                                   Text("No")
-                                                                      }
-                        Toggle(isOn: $tog3) {
-                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
-                        }
-                        .padding(.trailing, 20.0)
-                        .frame(width: 60.0)
+                                    Toggle(isOn: $tog2) {
+                                    /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                                    }
+                                    .padding(.trailing, 20.0)
+                                    .frame(width: 60.0)
+                                                        }
+                        
                     }
-                    if (wire.Newrev ?? "1") == "1" {
+                    
+                    if tog1 == true && tog2 == true{
+                        HStack{
+                                   Text("Verified Destination: ")
+                                               if (tog3){
+                                               Text("Verified by user \(rci.VERIFY_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
+                                                                                  }
+                                                                              else{
+                                                                          Text("No")
+                                                                                             }
+                                               Toggle(isOn: $tog3) {
+                                               /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                                               }
+                                               .padding(.trailing, 20.0)
+                                               .frame(width: 60.0)
+                                           }
+                        
+                    }
+                   
+                    if tog1&&tog2&&tog3 {
                     HStack{
             Text("Origin Termination: ")
-                        if (rci.ORIGIN_TERM ?? true){
+                        if (tog4){
                                                    Text("Termination verified by user \(rci.ORIGIN_TERM_user ?? "default_user")\n Verified on \(rci.ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
                                                            }
                                                        else{
@@ -141,9 +147,10 @@ struct WireDetail: View {
                         .frame(width: 60.0)
                     }
                     }
+                    if tog1&&tog2&&tog3&&tog4{
                     HStack{
             Text("Destination Termination: ")
-                        if (rci.DEST_TERM ?? true){
+                        if (tog5){
                         Text("Termination verified by user \(rci.DEST_TERM_user ?? "default_user")\n Verified on \(rci.DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
@@ -155,9 +162,11 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                     }
+                }
+                    if tog1&&tog2&&tog3&&tog4&&tog5{
                     HStack{
             Text("Origin Connection Verification: ")
-                        if (rci.VERIFY_CONN_ORIGIN ?? true){
+                        if (tog6){
                         Text("Termination verified by user \(rci.VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
@@ -169,9 +178,11 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                     }
+                }
+                  if tog1&&tog2&&tog3&&tog4&&tog5&&tog6  {
                     HStack{
             Text("Destination Connection Verification: ")
-           if (rci.VERIFY_CONN_DEST ?? true){
+           if (tog7){
            Text("Termination verified by user \(rci.VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                    }
                else{
@@ -183,7 +194,7 @@ struct WireDetail: View {
                         .padding(.trailing, 20.0)
                         .frame(width: 60.0)
                     }
-                    
+                }
                     
                     
                     
@@ -191,10 +202,10 @@ struct WireDetail: View {
             }
             
             Group{
-                
+               if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7 {
                 HStack{
                            Text("Cable Testing: ")
-                          if (rci.TESTED ?? true){
+                          if (tog8){
                           Text("Tested by user \(rci.TESTED_user ?? "default_user")\n Verified on \(rci.TESTED_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
@@ -206,9 +217,11 @@ struct WireDetail: View {
                                        .padding(.trailing, 20.0)
                                        .frame(width: 60.0)
                                    }
+            }
+                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8{
                 HStack{
                            Text("Connection Origin: ")
-                          if (rci.CONN_ORIGIN ?? true){
+                          if (tog9){
                           Text("Termination verified by user \(rci.CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
@@ -220,9 +233,11 @@ struct WireDetail: View {
                                        .padding(.trailing, 20.0)
                                        .frame(width: 60.0)
                                    }
+            }
+               if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9     {
                 HStack{
                  Text("Connection Destination: ")
-                    if (rci.CONN_DEST ?? true){
+                    if (tog10){
                 Text("Termination verified by user \(rci.CONN_DEST_user ?? "default_user")\n Verified on \(rci.CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
@@ -234,9 +249,11 @@ struct WireDetail: View {
                              .padding(.trailing, 20.0)
                              .frame(width: 60.0)
                          }
+            }
+               if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10  {
                 HStack{
                  Text("Cable Released: ")
-                if (rci.RELEASED ?? true){
+                if (tog11){
                 Text("Termination verified by user \(rci.RELEASED_user ?? "default_user")\n Verified on \(rci.RELEASED_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
@@ -248,9 +265,11 @@ struct WireDetail: View {
                              .padding(.trailing, 20.0)
                              .frame(width: 60.0)
                          }
+            }
+                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10&&tog11 {
                 Text("Source Comments \(rci.COMMENT_SOURCE ?? "Default Source Comment")")
                 Text("Destination Comments \(rci.COMMENT_DEST ?? "Default Destination Comment")")
-                
+            }
                 
                 
             }
