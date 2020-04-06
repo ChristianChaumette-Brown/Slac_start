@@ -103,6 +103,8 @@ func loadFiles(){
                 print("loaded \(projects[i].area_code+file1)")
             }
         }
+        print(projects[0].rOfInstall)
+    print(projects[0].rOfInstall!["L2D04268"])
     }
     func loadProjectFiles(i: Int,file: Int){
         

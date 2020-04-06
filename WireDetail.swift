@@ -10,8 +10,10 @@ import SwiftUI
 
 struct WireDetail: View {
     var wire: Wire
-    
+    var projn: Int
    // @State var cablenumber : String
+    
+    var rci: rci
     var body: some View {
         ScrollView{
         //VStack{
@@ -165,7 +167,7 @@ struct WireDetail: View {
            // Spacer()
         }.onAppear(){
             print("Wiredetail appear")
-            RegisterViewController().view.isHidden = true
+           
         }.onDisappear(){
             print("Wiredetail disappear")
             }

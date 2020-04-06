@@ -80,9 +80,10 @@ struct WireList: View {
 					}
 					
 				}
+				//when more rci are available from server "L2D04268" will be replace with the name of the wire
 				List(projects[projNum].cables!.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum.lowercased().contains(folderText.lowercased())||folderText=="")}) {wire in
 					
-					NavigationLink(destination: WireDetail(wire: wire)) {
+					NavigationLink(destination: WireDetail(wire: wire, projn: self.projNum, rci: projects[self.projNum].rOfInstall!["L2D04268"]!)) {
 						WireRow(wire:wire, projnumb: self.projNum)
 						
 	}
