@@ -24,6 +24,7 @@ struct WireList: View {
 	@State var showingQr = false
 	var delegate: WirelistDelegate?
 	var folderInput: String
+	var projNum : Int
 	
 	
 	//  var viewState:Bool = true
@@ -45,7 +46,7 @@ struct WireList: View {
 		if folderData.count==2{
 			folderData.remove(at: 0)
 		}*/
-		
+		//folderText = completeFoldersArr[projNum][folderInput]
 		folderText=folderData[0]
 		print(folderData[0])
 		folderText=folderData[0]
@@ -79,19 +80,21 @@ struct WireList: View {
 					}
 					
 				}
-				List(wireData.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum.lowercased().contains(folderText.lowercased())||folderText=="")}) {wire in
+				List(projects[projNum].cables!.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum.lowercased().contains(folderText.lowercased())||folderText=="")}) {wire in
 					
 					NavigationLink(destination: WireDetail(wire: wire)) {
-						WireRow(wire:wire)
+						WireRow(wire:wire, projnumb: self.projNum)
+						
 	}
 	}
-				.navigationBarTitle(Text("Wires"))
+				.navigationBarTitle(Text("Cables"))
 				//FolderView().navigationBarHidden(true)
 		}.onDisappear(){
 			print("Moved out of Wirelist")
 			searchData[0]=""
 		}.onAppear(){
 			print("Wirelist appear")
+			//if let index = completeFoldersArr[self.projNum][self.folderInput.firstIndex(of: " ")]
 			if let index = self.folderInput.firstIndex(of: " "){
 				print("test")
 				let distance = self.folderInput.distance(from: self.folderInput.startIndex, to: index)
@@ -101,7 +104,7 @@ struct WireList: View {
 				let cleanedFolder = String(subfolderInput)
 				print(cleanedFolder)
 				print(folderData.count)
-				
+				print("Folder Input: \(self.folderInput)")
 				//folderData.append(cleanedFolder)
 				//folderData.remove(at: 0)
 				print(folderData.count)
@@ -140,7 +143,7 @@ struct WireList_Previews: PreviewProvider {
 	static var previews: some View {
 		
 		ForEach(["iPhone SE", "iPhone XS Max"], id: \.self) { deviceName in
-			WireList(folderInput: folderArr[0] )
+			WireList(folderInput: folderArr[0], projNum: 0 )
 				.previewDevice(PreviewDevice(rawValue: deviceName))
 				.previewDisplayName(deviceName)
 		}

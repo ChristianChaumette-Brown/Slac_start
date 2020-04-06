@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WireRow: View {
     var wire: Wire
+    var projnumb: Int
     var body: some View {
         HStack{
             /*
@@ -29,8 +30,8 @@ struct WireRow: View {
 struct WireRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WireRow(wire:wireData[0])
-            WireRow(wire:wireData[1])
+            WireRow(wire:wireData[0], projnumb: 0)
+            WireRow(wire:wireData[1], projnumb: 0)
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }
