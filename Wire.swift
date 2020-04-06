@@ -100,7 +100,7 @@ struct rci: Hashable, Codable{
     var DEST_TERM_date: String?
     var VERIFY_CONN_ORIGIN: Bool?
     var VERIFY_CONN_ORIGIN_user: String?
-    var VERIFY_CONN_ORIGIN_base: String?
+    var VERIFY_CONN_ORIGIN_date: String?
     var VERIFY_CONN_DEST: Bool?
     var VERIFY_CONN_DEST_user: String?
     var VERIFY_CONN_DEST_date: String?

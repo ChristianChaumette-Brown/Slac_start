@@ -63,10 +63,10 @@ struct WireDetail: View {
                     
                     HStack{
                         
-            Text("Origin Instruction: ")
+            Text("Installation: ")
                         
-                        if (wire.Origin_Instr) == ""{
-                            Text("Yes")
+                        if (rci.INSTALL_STATUS ?? false) {
+                            Text("Installed by user \(rci.INSTALL_STATUS_user ?? "default_user")\n Installed on \(rci.INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
                         }
                         else{
                             Text("No")
@@ -79,10 +79,10 @@ struct WireDetail: View {
                                             }
                     
                     HStack{
-            Text("Destination Instruction: ")
+            Text("Source Verification: ")
                         
-                        if (wire.Destination_Instr) == ""{
-                            Text("Yes")
+                        if (rci.VERIFY_SOURCE ?? false){
+                            Text("Verified by user \(rci.VERIFY_SOURCE_user ?? "default_user")\n Verified on \(rci.VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
                                     }
                                 else{
                             Text("No")
@@ -90,14 +90,14 @@ struct WireDetail: View {
                         Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
-                       // .padding(.trailing, 20.0)
-                       // .frame(width: 60.0)
+                        .padding(.trailing, 20.0)
+                        .frame(width: 60.0)
                                             }
                     
                     HStack{
             Text("Verified Destination: ")
-                        if (wire.Destination_Station) == ""{
-                                                   Text("Yes")
+                        if (rci.VERIFY_DEST ?? false){
+                        Text("Verified by user \(rci.VERIFY_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
                                                            }
                                                        else{
                                                    Text("No")
@@ -110,9 +110,9 @@ struct WireDetail: View {
                     }
                     if (wire.Newrev ?? "1") == "1" {
                     HStack{
-            Text("Terminating Source: ")
-                        if (wire.Newrev ?? "1") == "1"{
-                                                   Text("Yes")
+            Text("Origin Termination: ")
+                        if (rci.ORIGIN_TERM ?? true){
+                                                   Text("Termination verified by user \(rci.ORIGIN_TERM_user ?? "default_user")\n Verified on \(rci.ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
                                                            }
                                                        else{
                                                    Text("No")
@@ -125,7 +125,13 @@ struct WireDetail: View {
                     }
                     }
                     HStack{
-            Text("Connection Type: ")
+            Text("Destination Termination: ")
+                        if (rci.DEST_TERM ?? true){
+                        Text("Termination verified by user \(rci.DEST_TERM_user ?? "default_user")\n Verified on \(rci.DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
+                                }
+                            else{
+                        Text("No")
+                                           }
                         Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
@@ -133,7 +139,13 @@ struct WireDetail: View {
                         .frame(width: 60.0)
                     }
                     HStack{
-            Text("Connector: ")
+            Text("Origin Connection Verification: ")
+                        if (rci.VERIFY_CONN_ORIGIN ?? true){
+                        Text("Termination verified by user \(rci.VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
+                                }
+                            else{
+                        Text("No")
+                                           }
                         Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
@@ -141,18 +153,90 @@ struct WireDetail: View {
                         .frame(width: 60.0)
                     }
                     HStack{
-            Text("Wire Type: ")
-           //
+            Text("Destination Connection Verification: ")
+           if (rci.VERIFY_CONN_DEST ?? true){
+           Text("Termination verified by user \(rci.VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
+                   }
+               else{
+           Text("No")
+                              }
                         Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
-                       // .padding(.trailing, 20.0)
-                        //.frame(width: 60.0)
+                        .padding(.trailing, 20.0)
+                        .frame(width: 60.0)
                     }
+                    
+                    
+                    
+                    
                 }
             }
             
-               
+            Group{
+                
+                HStack{
+                           Text("Cable Testing: ")
+                          if (rci.TESTED ?? true){
+                          Text("Tested by user \(rci.TESTED_user ?? "default_user")\n Verified on \(rci.TESTED_date ?? "2020-04-06T05:49:07Z")")
+                                  }
+                              else{
+                          Text("No")
+                                             }
+                                       Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                                       /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                                       }
+                                       .padding(.trailing, 20.0)
+                                       .frame(width: 60.0)
+                                   }
+                HStack{
+                           Text("Connection Origin: ")
+                          if (rci.CONN_ORIGIN ?? true){
+                          Text("Termination verified by user \(rci.CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
+                                  }
+                              else{
+                          Text("No")
+                                             }
+                                       Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                                       /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                                       }
+                                       .padding(.trailing, 20.0)
+                                       .frame(width: 60.0)
+                                   }
+                HStack{
+                 Text("Connection Destination: ")
+                    if (rci.CONN_DEST ?? true){
+                Text("Termination verified by user \(rci.CONN_DEST_user ?? "default_user")\n Verified on \(rci.CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
+                        }
+                    else{
+                Text("No")
+                                   }
+                             Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                             /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                             }
+                             .padding(.trailing, 20.0)
+                             .frame(width: 60.0)
+                         }
+                HStack{
+                 Text("Cable Released: ")
+                if (rci.RELEASED ?? true){
+                Text("Termination verified by user \(rci.RELEASED_user ?? "default_user")\n Verified on \(rci.RELEASED_date ?? "2020-04-06T05:49:07Z")")
+                        }
+                    else{
+                Text("No")
+                                   }
+                             Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                             /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                             }
+                             .padding(.trailing, 20.0)
+                             .frame(width: 60.0)
+                         }
+                Text("Source Comments \(rci.COMMENT_SOURCE ?? "Default Source Comment")")
+                Text("Destination Comments \(rci.COMMENT_DEST ?? "Default Destination Comment")")
+                
+                
+                
+            }
             
                 
                                
