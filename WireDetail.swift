@@ -93,7 +93,7 @@ struct WireDetail: View {
                             
                         }
                         else{
-                            Text("No")
+                            Text("No").onAppear(){self.tog2=false}
                             //tog2 = false
                             
                         }
@@ -118,8 +118,11 @@ struct WireDetail: View {
                                         
                                                 }
                                             else{
-                                        Text("No")
-                                                           }
+                                        Text("No").onAppear(){
+                                            self.tog3=false
+                                        }
+                                        
+                            }
                                     Toggle(isOn: $tog2) {
                                     /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                                     }
@@ -142,7 +145,7 @@ struct WireDetail: View {
                                                Text("Verified by user \(rci.VERIFY_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
                                                                                   }
                                                                               else{
-                                                                          Text("No")
+                                                                          Text("No").onAppear(){self.tog4=false}
                                                                                              }
                                                Toggle(isOn: $tog3) {
                                                /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -164,7 +167,7 @@ struct WireDetail: View {
                                                    Text("Termination verified by user \(rci.ORIGIN_TERM_user ?? "default_user")\n Verified on \(rci.ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
                                                            }
                                                        else{
-                                                   Text("No")
+                                                   Text("No").onAppear(){self.tog5=false}
                                                                       }
                         Toggle(isOn: $tog4) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -184,7 +187,7 @@ struct WireDetail: View {
                         Text("Termination verified by user \(rci.DEST_TERM_user ?? "default_user")\n Verified on \(rci.DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
-                        Text("No")
+                        Text("No").onAppear(){self.tog6=false}
                                            }
                         Toggle(isOn: $tog5) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -204,7 +207,7 @@ struct WireDetail: View {
                         Text("Termination verified by user \(rci.VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
-                        Text("No")
+                        Text("No").onAppear(){self.tog7=false}
                                            }
                         Toggle(isOn: $tog6) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -224,7 +227,7 @@ struct WireDetail: View {
            Text("Termination verified by user \(rci.VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                    }
                else{
-           Text("No")
+           Text("No").onAppear(){self.tog8=false}
                               }
                         Toggle(isOn: $tog7) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -251,7 +254,7 @@ struct WireDetail: View {
                           Text("Tested by user \(rci.TESTED_user ?? "default_user")\n Verified on \(rci.TESTED_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
-                          Text("No")
+                          Text("No").onAppear(){self.tog9=false}
                                              }
                                        Toggle(isOn: $tog8) {
                                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -271,7 +274,7 @@ struct WireDetail: View {
                           Text("Termination verified by user \(rci.CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
-                          Text("No")
+                          Text("No").onAppear(){self.tog10=false}
                                              }
                                        Toggle(isOn: $tog9) {
                                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
