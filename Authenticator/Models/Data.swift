@@ -28,11 +28,12 @@ var folders : [String:Int]=[:]
 
 var completeFolders = [[String:Int]]()
 var completeFoldersArr = [[String]]()
-
+/*
 var successfulLogins = UserDefaults.standard.integer(forKey: "logins"){
     didSet { UserDefaults.standard.set(successfulLogins, forKey: "logins") }
 
 }
+*/
 var projects : [project] = []
 
 
@@ -44,7 +45,8 @@ func start(){
         print("Initializer called")
         
         //check for initial app launch
-        if(successfulLogins < 1){
+    let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
+        if(successfulLogins != true){
             print("Initial launch data load")
             createInitFiles()
         }

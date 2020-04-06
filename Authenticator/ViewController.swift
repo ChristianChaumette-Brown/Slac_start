@@ -4,6 +4,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let defaults = UserDefaults.standard
+    
+    
     
     
     lazy var loginButton: UIButton = {
@@ -62,6 +65,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if defaults.bool(forKey: "First Launch")==true{
+            print("Second+")
+            
+            defaults.set(true, forKey: "First Launch")
+        } else{
+            
+            
+            
+            print("First")
+            
+            defaults.set(true, forKey:  "First Launch")
+        }
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         // Create UITextField
        /*      let myTextField: UITextField = UITextField(frame: CGRect(x: 0, y: 0, width: 300.00, height: 30.00));
@@ -91,7 +111,32 @@ class ViewController: UIViewController {
         */
         //view.backgroundColor = UIColor.white
         start()
-        fetchProjects()
+        
+        
+        
+        func checkWebsite(completion: @escaping (Bool) -> Void ) {
+            guard let url = URL(string: "http://10.0.0.237:5000/ws/projects") else { return }
+
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 1.0
+
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("\(error.localizedDescription)")
+                    completion(false)
+                }
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("statusCode: \(httpResponse.statusCode)")
+                    // do your logic here
+                    // if statusCode == 200 ...
+                    fetchProjects()
+                    completion(true)
+
+                }
+            }
+            task.resume()
+        }
+        
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()

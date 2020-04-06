@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let successfulLogins = UserDefaults.standard.integer(forKey: "launchCount")
+
+        UserDefaults.standard.set(successfulLogins+1, forKey: "launchCount")
+        
         return true
     }
 
