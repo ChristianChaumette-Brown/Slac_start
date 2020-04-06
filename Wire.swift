@@ -75,6 +75,8 @@ struct project:Hashable, Codable{
     var area_code:String
     var rOfInstall: [String:rci]? = [:]
     var cables: [Wire]? = []
+    //var folders : [String:Int]=[:]
+   // var folderArr = [String]()
 }
 
 struct rci: Hashable, Codable{

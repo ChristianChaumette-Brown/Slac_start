@@ -27,7 +27,7 @@ class LoginViewController: UIViewController{
        // WireList().delegate=self
         
         // Do any additional setup after loading the view.
-        
+        folderBuild()
         addData()
         //qrShow()
         /*

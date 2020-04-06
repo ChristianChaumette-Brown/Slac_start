@@ -26,6 +26,9 @@ var searchData = [""]
 var folderData: [String] = [""]
 var folders : [String:Int]=[:]
 
+var completeFolders = [[String:Int]]()
+var completeFoldersArr = [[String]]()
+
 var successfulLogins = UserDefaults.standard.integer(forKey: "logins"){
     didSet { UserDefaults.standard.set(successfulLogins, forKey: "logins") }
 
@@ -183,7 +186,7 @@ func loadFiles(){
     
            }
                
-            folderBuild()
+            //folderBuild()
        }
 }
 
@@ -344,6 +347,48 @@ class DataAssignment: ObservableObject{
 }
 
 func folderBuild(){
+    
+    for j in 0..<projects.count{
+        
+        var fold : [String:Int] = [:]
+        
+        for k in 0..<projects[j].cables!.count{
+            let group = projects[j].cables![k].Jobnum
+            let keyExists = fold[group] != nil
+            
+            if keyExists{
+                //completeFolders[j][group] = (completeFolders[j][group]! + 1)
+                fold.updateValue(fold[group]! + 1, forKey: group)
+                //projects[j].folders.updateValue(projects[j].folders[group]!+1, forKey: group)
+            }
+            else{
+               // projects[j].folders.updateValue(1, forKey: group)
+                fold.updateValue(1, forKey: group)
+            }
+            
+        }
+        completeFolders.append(fold)
+    }
+    print(completeFolders)
+    for j in 0..<projects.count{
+        var fold : [String] = []
+        for (key, value) in completeFolders[j]{
+            fold.append("\(key) Number of Cables: \(value)")
+            
+            
+        }
+        completeFoldersArr.append(fold)
+    }
+    print(completeFoldersArr[0])
+    
+    for i in 0..<projects.count{
+        completeFoldersArr[i] = completeFoldersArr[i].sorted()
+        
+    }
+    for i in 0..<projects.count{
+          print("project \(i) folders \(completeFoldersArr[i])" )
+           
+       }
     //var i = 0
     for  i in wireData {
         //let searchTerm = wireData[0].name
