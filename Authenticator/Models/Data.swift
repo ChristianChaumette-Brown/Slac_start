@@ -21,7 +21,7 @@ let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
 
-let wireData: [Wire] = loader("csvjson.json")
+//let wireData: [Wire] = loader("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
 var folders : [String:Int]=[:]
@@ -390,6 +390,7 @@ func folderBuild(){
            
        }
     //var i = 0
+    /*
     for  i in wireData {
         //let searchTerm = wireData[0].name
       //  let category = i.category
@@ -415,6 +416,7 @@ func folderBuild(){
     folderArr = folderArr.sorted()
     
     print(folderArr)
+ */
 }
 
 

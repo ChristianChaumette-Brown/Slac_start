@@ -18,6 +18,7 @@ struct WireRow: View {
             .resizable()
                 .frame(width: 50, height: 50)
             */
+            //Text(projects[projnumb].cables![wire].Cablenum)
             Text(wire.Cablenum ?? "test")
             //Text(String(wire.id))
             Text("Group: ")
@@ -26,13 +27,14 @@ struct WireRow: View {
         }
     }
 }
-
+/*
 struct WireRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WireRow(wire:wireData[0], projnumb: 0)
-            WireRow(wire:wireData[1], projnumb: 0)
+            WireRow(wire:"test", projnumb: 0)
+            WireRow(wire:"test 2", projnumb: 0)
         }
         .previewLayout(.fixed(width: 300, height: 70))
     }
 }
+*/

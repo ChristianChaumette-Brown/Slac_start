@@ -174,8 +174,10 @@ struct WireDetail: View {
     }
     //}
 }
+/*
 struct WireDetail_Previews: PreviewProvider {
     static var previews: some View {
         WireDetail(wire:wireData[0])
     }
 }
+*/
