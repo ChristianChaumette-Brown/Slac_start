@@ -11,10 +11,27 @@ import SwiftUI
 struct WireDetail: View {
     var wire: Wire
     var projn: Int
+    var rci: rci
    // @State var cablenumber : String
     
-    var rci: rci
+         @State var tog1 : Bool = false
+         @State var tog2 : Bool = false
+         @State var tog3 : Bool = false
+         @State var tog4 : Bool = false
+         @State var tog5 : Bool = false
+         @State var tog6 : Bool = false
+         @State var tog7 : Bool = false
+         @State var tog8 : Bool = false
+         @State var tog9 : Bool = false
+         @State var tog10 : Bool = false
+         @State var tog11 : Bool = false
+    
+    var changedCount: Int = 0
+    var changed : Bool = false
+    var saved : Bool = false
+    
     var body: some View {
+        
         ScrollView{
         //VStack{
             
@@ -25,15 +42,15 @@ struct WireDetail: View {
                    // Text(wire.name)
                 //}
                 Group{
-                    Text(String((wire.Cablenum)))
+                   // Text(String((wire.Cablenum)))
                // .font(.title)
                     
 
                 HStack() {
-                    Text((wire.Area_Code))
+                    Text("Area Code: \(wire.Area_Code)")
                         .font(.subheadline)
                     Spacer()
-                    Text("Wire Group: ")
+                    Text("Wire Jobnum: ")
                     Text(wire.Jobnum)
                        // .font(.subheadline)
                     
@@ -71,7 +88,7 @@ struct WireDetail: View {
                         else{
                             Text("No")
                         }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog1) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -87,7 +104,7 @@ struct WireDetail: View {
                                 else{
                             Text("No")
                                                }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog2) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -102,7 +119,7 @@ struct WireDetail: View {
                                                        else{
                                                    Text("No")
                                                                       }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog3) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -117,7 +134,7 @@ struct WireDetail: View {
                                                        else{
                                                    Text("No")
                                                                       }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog4) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -132,7 +149,7 @@ struct WireDetail: View {
                             else{
                         Text("No")
                                            }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog5) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -146,7 +163,7 @@ struct WireDetail: View {
                             else{
                         Text("No")
                                            }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog6) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -160,7 +177,7 @@ struct WireDetail: View {
                else{
            Text("No")
                               }
-                        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                        Toggle(isOn: $tog7) {
                         /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                         }
                         .padding(.trailing, 20.0)
@@ -183,7 +200,7 @@ struct WireDetail: View {
                               else{
                           Text("No")
                                              }
-                                       Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                                       Toggle(isOn: $tog8) {
                                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                                        }
                                        .padding(.trailing, 20.0)
@@ -197,7 +214,7 @@ struct WireDetail: View {
                               else{
                           Text("No")
                                              }
-                                       Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                                       Toggle(isOn: $tog9) {
                                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                                        }
                                        .padding(.trailing, 20.0)
@@ -211,7 +228,7 @@ struct WireDetail: View {
                     else{
                 Text("No")
                                    }
-                             Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                             Toggle(isOn: $tog10) {
                              /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                              }
                              .padding(.trailing, 20.0)
@@ -225,7 +242,7 @@ struct WireDetail: View {
                     else{
                 Text("No")
                                    }
-                             Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+                             Toggle(isOn: $tog11) {
                              /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
                              }
                              .padding(.trailing, 20.0)
@@ -251,9 +268,32 @@ struct WireDetail: View {
            // Spacer()
         }.onAppear(){
             print("Wiredetail appear")
-           
+            self.tog1 = self.rci.INSTALL_STATUS ?? false
+           self.tog2 = self.rci.VERIFY_SOURCE ?? false
+            self.tog3 = self.rci.VERIFY_DEST ?? false
+            self.tog4 = self.rci.ORIGIN_TERM ?? false
+            self.tog5 = self.rci.DEST_TERM ?? false
+            self.tog6 = self.rci.VERIFY_CONN_ORIGIN ?? false
+            self.tog7 = self.rci.VERIFY_CONN_DEST ?? false
+            self.tog8 = self.rci.TESTED ?? false
+            self.tog9 = self.rci.CONN_ORIGIN ?? false
+            self.tog10 = self.rci.CONN_DEST ?? false
+            self.tog11 = self.rci.RELEASED ?? false
+            
         }.onDisappear(){
             print("Wiredetail disappear")
+            projects[self.projn].rOfInstall!["L2D04268"]?.INSTALL_STATUS = self.tog1
+            projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_SOURCE = self.tog2
+            projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_DEST = self.tog3
+            projects[self.projn].rOfInstall!["L2D04268"]?.ORIGIN_TERM = self.tog4
+            projects[self.projn].rOfInstall!["L2D04268"]?.DEST_TERM = self.tog5
+            projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_CONN_ORIGIN = self.tog6
+            projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_CONN_DEST = self.tog7
+            projects[self.projn].rOfInstall!["L2D04268"]?.TESTED = self.tog8
+            projects[self.projn].rOfInstall!["L2D04268"]?.CONN_ORIGIN = self.tog9
+            projects[self.projn].rOfInstall!["L2D04268"]?.CONN_DEST = self.tog10
+            projects[self.projn].rOfInstall!["L2D04268"]?.RELEASED = self.tog11
+            
             }
            
         .navigationBarTitle(Text(wire.Cablenum ))
