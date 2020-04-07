@@ -117,7 +117,7 @@ class ViewController: UIViewController {
         func checkWebsite() {
            // completion: @escaping (Bool) -> Void
             print("Webcheck")
-            guard let url = URL(string: "http://10.0.0.237:5000/ws/projects") else { return }
+            guard let url = URL(string: "\(server):5000/ws/projects") else { return }
 
             var request = URLRequest(url: url)
             request.timeoutInterval = 1.0
