@@ -120,6 +120,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         output=code
         print(output)
         searchData[0]=output
+        folderData[0]="query"
         //WireList().refresh()
         navigationController?.popViewController(animated: true)
     }
