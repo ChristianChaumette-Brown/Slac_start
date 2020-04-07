@@ -26,7 +26,7 @@ let server = "http://10.0.0.237"
 var searchData = [""]
 var folderData: [String] = [""]
 var folders : [String:Int]=[:]
-
+var userID: String = ""
 var completeFolders = [[String:Int]]()
 var completeFoldersArr = [[String]]()
 /*

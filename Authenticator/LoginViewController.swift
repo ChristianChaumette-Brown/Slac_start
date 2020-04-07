@@ -26,7 +26,8 @@ class LoginViewController: UIViewController{
         super.viewDidLoad()
        // WireList().delegate=self
         
-        // Do any additional setup after loading the view.
+       
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
         folderBuild()
         addData()
         //qrShow()
@@ -113,6 +114,15 @@ class LoginViewController: UIViewController{
                ])
     }
     
-    
+    @objc func backToRootVCAction() {
+        userID=""
+               print("userID \(userID)")
+        logTest()
+               _ = self.navigationController?.popToRootViewController(animated: true)
+       
+           }
+    func logTest(){
+        print("loggedout")
+    }
 }
 

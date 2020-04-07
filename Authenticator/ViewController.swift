@@ -80,7 +80,7 @@ class ViewController: UIViewController {
             defaults.set(true, forKey:  "First Launch")
         }
         
-        
+        print("init view")
         
         // Do any additional setup after loading the view, typically from a nib.
         // Create UITextField
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         }
         
         checkWebsite()
-
+ navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()
@@ -191,6 +191,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @objc func backToRootVCAction() {
+        logtest()
+        userID=""
+        print("userID \(userID)")
+           _ = self.navigationController?.popToRootViewController(animated: true)
+    
+       }
+    func logtest(){
+        print("loggedout")
+    }
 }
 

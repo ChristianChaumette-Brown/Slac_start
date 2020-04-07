@@ -63,15 +63,7 @@ struct WireDetail: View {
                     Text("Wire Jobnum: ")
                     Text(wire.Jobnum)
                        // .font(.subheadline)
-                    Button(action: {
-                        self.sheetBool.toggle()
-                        
-                    }){
-                        
-                        Text("Save Changes")
-                    } .actionSheet(isPresented: $sheetBool) {
-                        ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Check tracking of variables with tog1: \(String(tog1))")),.cancel()])
-                           }
+                   
                 }
                 Group{
             HStack{
@@ -79,12 +71,7 @@ struct WireDetail: View {
                 
                 Text(String(wire.Cabletype)).font(.title)
                 
-                Button(action:{self.infoBool.toggle()}){
-                    Text("Display Info")
-                }.sheet(isPresented: $infoBool){
-                    Text("Begining of info display")
-                
-                }
+               
             
                 
                 }
@@ -441,7 +428,30 @@ struct WireDetail: View {
            
         .navigationBarTitle(Text(wire.Cablenum ))
         
+        .navigationBarItems(trailing:
+            HStack{
+                
+                Button(action:{self.infoBool.toggle()}){
+                                   Text("Display Info")
+                               }.sheet(isPresented: $infoBool){
+                                   Text("Begining of info display")
+                               
+                               }
+                Button(action: {
+                                       self.sheetBool.toggle()
+                                       
+                                   }){
+                                       
+                                       Text("Save Changes")
+                                   } .actionSheet(isPresented: $sheetBool) {
+                                       ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Check tracking of variables with tog1: \(String(tog1))")),.cancel()])
+                                          }
+                
+                
+                
+            }
         
+        )
     }
     //}
     func updater(){
