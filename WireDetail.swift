@@ -434,8 +434,13 @@ struct WireDetail: View {
                 Button(action:{self.infoBool.toggle()}){
                                    Text("Display Info")
                                }.sheet(isPresented: $infoBool){
+                                VStack{
+                                Button(action:{self.infoBool.toggle()}){
+                                    Text("Exit info View")
+                                }
                                    Text("Begining of info display")
-                               
+                                    Text("Cable Number \(self.wire.Cablenum)\n Cable Jobnum \(self.wire.Jobnum)\n Cable Area Code \(self.wire.Area_Code)\n Cable System \(self.wire.System)\nCable Function \(self.wire.Func)\nCable CableType \(self.wire.Cabletype)")
+                                }
                                }
                 Button(action: {
                                        self.sheetBool.toggle()
