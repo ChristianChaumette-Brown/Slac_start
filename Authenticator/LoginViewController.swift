@@ -26,6 +26,7 @@ class LoginViewController: UIViewController{
         super.viewWillDisappear(animated)
         print("Left LoginViewController")
         userID=""
+        print("UserID \(userID)")
     }
 
     override func viewDidLoad() {
