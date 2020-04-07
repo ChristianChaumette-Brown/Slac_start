@@ -141,7 +141,8 @@ class ViewController: UIViewController {
         }
         
         checkWebsite()
- navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
+       // navigationItem.backBarButtonItem?.setValue("help", forKey: userID)
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()
@@ -173,6 +174,10 @@ class ViewController: UIViewController {
     @objc func onButtonPressed(_ sender: UIButton) {
         if sender == loginButton && loginData[0].name==myLogin.text&&loginData[0].password==myPass.text{
             
+            userID=myLogin.text!
+            print("Userid: \(userID)")
+            myPass.text=""
+            myLogin.text=""
             let loginVC = LoginViewController()
             self.navigationController?.pushViewController(loginVC, animated: true)
         }
@@ -193,7 +198,7 @@ class ViewController: UIViewController {
 
     @objc func backToRootVCAction() {
         logtest()
-        userID=""
+       // userID=""
         print("userID \(userID)")
            _ = self.navigationController?.popToRootViewController(animated: true)
     

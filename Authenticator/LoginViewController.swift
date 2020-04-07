@@ -21,12 +21,18 @@ class LoginViewController: UIViewController{
            button.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
            return button
        }()
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("Left LoginViewController")
+        userID=""
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
        // WireList().delegate=self
         
-       
+       print("Entered Login ViewController")
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
         folderBuild()
         addData()
