@@ -27,7 +27,7 @@ struct WireDetail: View {
          @State var tog11 : Bool = false
     
         @State var sheetBool = false
-        
+        @State var infoBool = false
     var changedCount: Int = 0
     var changed : Bool = false
     var saved : Bool = false
@@ -78,6 +78,15 @@ struct WireDetail: View {
                 Text("Wire CableType: ")
                 
                 Text(String(wire.Cabletype)).font(.title)
+                
+                Button(action:{self.infoBool.toggle()}){
+                    Text("Display Info")
+                }.sheet(isPresented: $infoBool){
+                    Text("Begining of info display")
+                
+                }
+            
+                
                 }
            
            
