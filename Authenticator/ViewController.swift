@@ -111,10 +111,12 @@ class ViewController: UIViewController {
         */
         //view.backgroundColor = UIColor.white
         start()
+                
         
         
-        
-        func checkWebsite(completion: @escaping (Bool) -> Void ) {
+        func checkWebsite() {
+           // completion: @escaping (Bool) -> Void
+            print("Webcheck")
             guard let url = URL(string: "http://10.0.0.237:5000/ws/projects") else { return }
 
             var request = URLRequest(url: url)
@@ -123,20 +125,23 @@ class ViewController: UIViewController {
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     print("\(error.localizedDescription)")
-                    completion(false)
+                    //completion(false)
+                    print("Did not reach server")
                 }
                 if let httpResponse = response as? HTTPURLResponse {
                     print("statusCode: \(httpResponse.statusCode)")
                     // do your logic here
                     // if statusCode == 200 ...
                     fetchProjects()
-                    completion(true)
+                   // completion(true)
 
                 }
             }
             task.resume()
         }
         
+        checkWebsite()
+
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()
