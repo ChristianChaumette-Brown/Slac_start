@@ -24,7 +24,7 @@ class ViewController: UIViewController {
    
     lazy var registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Web Portal", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor(red: 142.0/255.0, green: 68.0/255.0, blue: 173.0/255.0, alpha: 1.0)
         button.layer.cornerRadius = 25
@@ -146,10 +146,23 @@ class ViewController: UIViewController {
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()
+        let imageV = UIImageView(frame: CGRect(x: -1, y: 90, width: 390, height: 150))
+        //imageV.center = view.center
+       
+        imageV.layer.cornerRadius = 10
+        imageV.clipsToBounds = true
+        imageV.layer.borderWidth = 2.0
+        imageV.layer.borderColor = UIColor.red.cgColor
+        imageV.image = UIImage(named: "SLAC_logo", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        view.addSubview(imageV)
         view.addSubview(myLogin)
         view.addSubview(myPass)
         view.addSubview(loginButton)
         view.addSubview(registerButton)
+        
+        imageV.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40).isActive = true
+        imageV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         myLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         myLogin.widthAnchor.constraint(equalToConstant: 300).isActive = true
