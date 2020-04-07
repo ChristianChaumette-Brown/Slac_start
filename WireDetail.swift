@@ -26,6 +26,8 @@ struct WireDetail: View {
          @State var tog10 : Bool = false
          @State var tog11 : Bool = false
     
+        @State var sheetBool = false
+        
     var changedCount: Int = 0
     var changed : Bool = false
     var saved : Bool = false
@@ -61,7 +63,15 @@ struct WireDetail: View {
                     Text("Wire Jobnum: ")
                     Text(wire.Jobnum)
                        // .font(.subheadline)
-                    
+                    Button(action: {
+                        self.sheetBool.toggle()
+                        
+                    }){
+                        
+                        Text("Save Changes")
+                    } .actionSheet(isPresented: $sheetBool) {
+                        ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Check tracking of variables with tog1: \(String(tog1))")),.cancel()])
+                           }
                 }
                 Group{
             HStack{
@@ -330,7 +340,7 @@ struct WireDetail: View {
                 Text("Termination verified by user \(rci.CONN_DEST_user ?? "default_user")\n Verified on \(rci.CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
-                Text("No")
+                        Text("No").onAppear(){self.tog11=false}
                                    }
                              Toggle(isOn: $tog10) {
                              /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
@@ -403,6 +413,7 @@ struct WireDetail: View {
             
         }.onDisappear(){
             print("Wiredetail disappear")
+            
             projects[self.projn].rOfInstall!["L2D04268"]?.INSTALL_STATUS = self.tog1
             projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_SOURCE = self.tog2
             projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_DEST = self.tog3
@@ -414,6 +425,8 @@ struct WireDetail: View {
             projects[self.projn].rOfInstall!["L2D04268"]?.CONN_ORIGIN = self.tog9
             projects[self.projn].rOfInstall!["L2D04268"]?.CONN_DEST = self.tog10
             projects[self.projn].rOfInstall!["L2D04268"]?.RELEASED = self.tog11
+            
+           // self.sheetBool.toggle()
             
             }
            
