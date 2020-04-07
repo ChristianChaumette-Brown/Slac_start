@@ -30,6 +30,8 @@ struct WireDetail: View {
     var changed : Bool = false
     var saved : Bool = false
     
+    
+    @State var installField : String = ""
    
     
     var body: some View {
@@ -93,7 +95,11 @@ struct WireDetail: View {
                             
                         }
                         else{
-                            Text("No").onAppear(){self.tog2=false}
+                            
+                            Text("No").onAppear(){self.tog2=false
+                               
+                                
+                            }
                             //tog2 = false
                             
                         }
@@ -108,6 +114,9 @@ struct WireDetail: View {
                             self.tog2=false
                         }
                     }
+                    if self.rci.INSTALL_STATUS != self.tog1&&self.tog1==false{
+                                                       TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                                                   }
                     if tog1 == true{
                         
                         HStack{
@@ -135,7 +144,9 @@ struct WireDetail: View {
                                 self.tog3=false
                             }
                         }
-                        
+                        if self.rci.VERIFY_SOURCE != self.tog2&&self.tog2==false{
+                            TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
                     }
                     
                     if tog1 == true && tog2 == true{
@@ -157,6 +168,9 @@ struct WireDetail: View {
                                                    self.tog4=false
                                                }
                                            }
+                        if self.rci.VERIFY_DEST != self.tog3&&self.tog3==false{
+                            TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
                         
                     }
                    
@@ -179,6 +193,10 @@ struct WireDetail: View {
                             self.tog5=false
                         }
                     }
+                        
+                        if self.rci.ORIGIN_TERM != self.tog4&&self.tog4==false{
+                            TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
                     }
                     if tog1&&tog2&&tog3&&tog4{
                     HStack{
@@ -199,6 +217,9 @@ struct WireDetail: View {
                             self.tog6=false
                         }
                     }
+                        if self.rci.DEST_TERM != self.tog5&&self.tog5==false{
+                            TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
                 }
                     if tog1&&tog2&&tog3&&tog4&&tog5{
                     HStack{
@@ -219,6 +240,9 @@ struct WireDetail: View {
                             self.tog7=false
                         }
                     }
+                        if self.rci.VERIFY_CONN_ORIGIN != self.tog6&&self.tog6==false{
+                            TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
                 }
                   if tog1&&tog2&&tog3&&tog4&&tog5&&tog6  {
                     HStack{
@@ -238,6 +262,10 @@ struct WireDetail: View {
                         if self.tog7==false{
                             self.tog8=false
                         }
+                    }
+                    
+                    if self.rci.VERIFY_CONN_DEST != self.tog7&&self.tog7==false{
+                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
                     
@@ -266,6 +294,10 @@ struct WireDetail: View {
                                            self.tog9=false
                                        }
                                    }
+                
+                if self.rci.TESTED != self.tog8&&self.tog8==false{
+                    TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                }
             }
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8{
                 HStack{
@@ -286,6 +318,10 @@ struct WireDetail: View {
                                            self.tog10=false
                                        }
                                    }
+                    
+                    if self.rci.CONN_ORIGIN != self.tog9&&self.tog9==false{
+                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
             }
                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9     {
                 HStack{
@@ -306,6 +342,10 @@ struct WireDetail: View {
                                  self.tog11=false
                              }
                          }
+                if self.rci.CONN_DEST != self.tog10&&self.tog10==false{
+                    TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+                
             }
                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10  {
                 HStack{
@@ -322,6 +362,9 @@ struct WireDetail: View {
                              .padding(.trailing, 20.0)
                              .frame(width: 60.0)
                          }
+                if self.rci.RELEASED != self.tog11&&self.tog11==false{
+                    TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                }
             }
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10&&tog11 {
                 Text("Source Comments \(rci.COMMENT_SOURCE ?? "Default Source Comment")")
