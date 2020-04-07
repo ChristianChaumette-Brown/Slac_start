@@ -68,7 +68,16 @@ struct WireList: View {
 					){
 						Text("Refresh")
 					}
-					TextField("Search", text : $searchText)
+					TextField("Search", text : $searchText, onEditingChanged:  {(changed) in
+						if changed != true{
+							self.folderText=folderData[0]
+						}
+						else{
+							self.folderText="query"
+						}
+							})
+						
+					
 					Button(action:{
 						self.showingQr.toggle()
 					}){
@@ -81,13 +90,13 @@ struct WireList: View {
 					
 				}
 				//when more rci are available from server "L2D04268" will be replace with the name of the wire
-				List(projects[projNum].cables!.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum == folderText||folderText == "query")}) {wire in
+				List(projects[projNum].cables!.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum == folderText||folderText == "query")},id:\.self) {wire in
 					
 					NavigationLink(destination: WireDetail(wire: wire, projn: self.projNum, rci: projects[self.projNum].rOfInstall!["L2D04268"]!)) {
 						WireRow(wire:wire, projnumb: self.projNum)
 						
 	}
-	}
+					}.id(UUID())
 				.navigationBarTitle(Text("Cables"))
 				//FolderView().navigationBarHidden(true)
 		}.onDisappear(){
