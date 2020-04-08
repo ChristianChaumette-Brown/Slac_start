@@ -424,7 +424,7 @@ struct WireDetail: View {
             //for saving of rci if no rci exists append, if does exist update value
             //use create initfiles as guide
             //discard changes reassign values from below
-            print(projects[self.projn].rOfInstall![index])
+           // print(projects[self.projn].rOfInstall![index])
             self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS!
             self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE ?? false
             self.tog3 = projects[self.projn].rOfInstall![index].VERIFY_DEST ?? false
@@ -493,7 +493,45 @@ struct WireDetail: View {
                                        
                                        Text("Save Changes")
                                    } .actionSheet(isPresented: $sheetBool) {
-                                       ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Save Changes")),.default(Text("Discard Changes")),.cancel()])
+                                    ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Discard Changes")){
+                                       self.tog1 = projects[self.projn].rOfInstall![self.index].INSTALL_STATUS!
+                                       self.tog2 = projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE!
+                                       self.tog3 = projects[self.projn].rOfInstall![self.index].VERIFY_DEST!
+                                       self.tog4 = projects[self.projn].rOfInstall![self.index].ORIGIN_TERM!
+                                       self.tog5 = projects[self.projn].rOfInstall![self.index].DEST_TERM!
+                                       self.tog6 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN!
+                                       self.tog7 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST!
+                                       self.tog8 = projects[self.projn].rOfInstall![self.index].TESTED!
+                                       self.tog9 = projects[self.projn].rOfInstall![self.index].CONN_ORIGIN!
+                                       self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST!
+                                       self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED!
+                                        },.default(Text("Save Changes")){
+                                            projects[self.projn].rOfInstall![self.index].INSTALL_STATUS! = self.tog1
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE! = self.tog2
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_DEST! = self.tog3
+                                            projects[self.projn].rOfInstall![self.index].ORIGIN_TERM! = self.tog4
+                                            projects[self.projn].rOfInstall![self.index].DEST_TERM! = self.tog5
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN! = self.tog6
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST! = self.tog7
+                                            projects[self.projn].rOfInstall![self.index].TESTED! = self.tog8
+                                            projects[self.projn].rOfInstall![self.index].CONN_ORIGIN! = self.tog9
+                                            projects[self.projn].rOfInstall![self.index].CONN_DEST! = self.tog10
+                                            projects[self.projn].rOfInstall![self.index].RELEASED! = self.tog11
+                                            print(projects[self.projn].rOfInstall!)
+                                            var str = projects[self.projn].rOfInstall!.description
+                                           // str = str.flatMap{$0}
+                                            if let stra = projects[self.projn].rOfInstall{
+                                            print(stra)
+                                            }
+                                            print("Save Changes")
+                                            /*
+                                            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[self.projn].area_code+file1)
+                                            do {
+                                                              try str.write(to: url, atomically: true, encoding: .utf8)
+                                                          } catch {
+                                                              print(error.localizedDescription)
+                                                          }*/
+                                        },.cancel()])
                                           }
                 
                 
@@ -512,3 +550,15 @@ struct WireDetail_Previews: PreviewProvider {
     }
 }
 */
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

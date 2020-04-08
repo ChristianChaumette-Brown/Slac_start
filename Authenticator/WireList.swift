@@ -103,8 +103,8 @@ struct WireList: View {
 		}.onDisappear(){
 			print("Moved out of Wirelist")
 			searchData[0]=""
-			self.index = projects[self.projNum].rOfInstall!.firstIndex( where: {$0.Cablenum == "L2D04268"})!
-			print(self.index)
+			//self.index = projects[self.projNum].rOfInstall!.firstIndex( where: {$0.Cablenum == "L2D04268"})!
+			//print(self.index)
 			//print(projects[self.projNum].rOfInstall?.lastIndex(of: projects[self.projNum].rOfInstall[))
 		}.onAppear(){
 			print("Wirelist appear")

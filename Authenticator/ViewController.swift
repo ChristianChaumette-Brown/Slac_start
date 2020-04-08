@@ -188,7 +188,7 @@ class ViewController: UIViewController {
     @objc func onButtonPressed(_ sender: UIButton) {
         if sender == loginButton && loginData[0].name==myLogin.text&&loginData[0].password==myPass.text{
             
-            userID=myLogin.text!
+            userID="uid:\(myLogin.text!)"
             print("Userid: \(userID)")
             myPass.text=""
             myLogin.text=""
