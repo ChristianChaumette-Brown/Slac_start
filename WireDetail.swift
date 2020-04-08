@@ -40,9 +40,10 @@ struct WireDetail: View {
         self.wire = wire
         self.projn = projn
         let today = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
                    let formatter = DateFormatter()
                    formatter.dateFormat = "yyyy-MM-d'T'HH:mm:ss'Z'"
-                   let dateOut = formatter.string(from: today)
+                   let dateOut = formatter.string(from: modifiedDate)
                    print(dateOut)
                 self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? -1
         if index == -1 {
