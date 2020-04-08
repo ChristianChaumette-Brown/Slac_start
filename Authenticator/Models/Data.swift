@@ -20,8 +20,8 @@ struct MyStruct {
 let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
-//let server = "http://10.0.0.237:5000"
-let server = "http://5b2bfb30.ngrok.io"
+let server = "http://10.0.0.237:5000"
+//let server = "http://5b2bfb30.ngrok.io"
 //let wireData: [Wire] = loader("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
@@ -46,7 +46,7 @@ func start(){
         print("Initializer called")
         
         //check for initial app launch
-    let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
+    let successfulLogins = UserDefaults.standard.bool(forKey: "FirstLaunch")
         if(successfulLogins != true){
             print("Initial launch data load")
             createInitFiles()
@@ -105,7 +105,7 @@ func loadFiles(){
             }
         }
         print(projects[0].rOfInstall)
-    print(projects[0].rOfInstall!["L2D04268"])
+    print(projects[0].rOfInstall![0])
     }
     func loadProjectFiles(i: Int,file: Int){
         

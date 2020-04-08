@@ -394,6 +394,7 @@ struct WireDetail: View {
            // Spacer()
         }.onAppear(){
             print("Wiredetail appear")
+            //self.rci = projects[0].rOfInstall![0]
             self.tog1 = self.rci.INSTALL_STATUS ?? false
            self.tog2 = self.rci.VERIFY_SOURCE ?? false
             self.tog3 = self.rci.VERIFY_DEST ?? false
@@ -409,7 +410,7 @@ struct WireDetail: View {
             
         }.onDisappear(){
             print("Wiredetail disappear")
-            
+            /*
             projects[self.projn].rOfInstall!["L2D04268"]?.INSTALL_STATUS = self.tog1
             projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_SOURCE = self.tog2
             projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_DEST = self.tog3
@@ -421,7 +422,7 @@ struct WireDetail: View {
             projects[self.projn].rOfInstall!["L2D04268"]?.CONN_ORIGIN = self.tog9
             projects[self.projn].rOfInstall!["L2D04268"]?.CONN_DEST = self.tog10
             projects[self.projn].rOfInstall!["L2D04268"]?.RELEASED = self.tog11
-            
+            */
            // self.sheetBool.toggle()
             
             }

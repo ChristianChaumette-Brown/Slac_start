@@ -73,14 +73,14 @@ extension Wire {
 struct project:Hashable, Codable{
     //var id = UUID()
     var area_code:String
-    var rOfInstall: [String:rci]? = [:]
+    var rOfInstall: [rci]? = []
     var cables: [Wire]? = []
     //var folders : [String:Int]=[:]
    // var folderArr = [String]()
 }
 
-struct rci: Hashable, Codable{
-   // var id = UUID()
+struct rci: Hashable, Codable, Identifiable{
+    var id = UUID()
     var Cablenum : String?
     var project: String?
     var INSTALL_STATUS: Bool?
@@ -119,5 +119,9 @@ struct rci: Hashable, Codable{
     var COMMENT_SOURCE: String?
     var COMMENT_DEST: String?
 
+    enum CodingKeys:String, CodingKey{
+        case Cablenum, project, COMMENT_DEST, COMMENT_SOURCE,RELEASED_date,RELEASED_user,CONN_DEST_date,CONN_DEST_user,CONN_ORIGIN_date,CONN_ORIGIN_user,TESTED_date, TESTED_user,VERIFY_CONN_DEST_date,VERIFY_CONN_DEST_user,VERIFY_CONN_ORIGIN_date,VERIFY_CONN_ORIGIN_user,DEST_TERM_date,DEST_TERM_user,ORIGIN_TERM_date,ORIGIN_TERM_user,VERIFY_DEST_date,VERIFY_DEST_user,VERIFY_SOURCE_date,VERIFY_SOURCE_user,INSTALL_STATUS_date,INSTALL_STATUS_user
+    }
+   
 
 }
