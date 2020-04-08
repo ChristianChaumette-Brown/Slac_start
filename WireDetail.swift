@@ -11,10 +11,10 @@ import SwiftUI
 struct WireDetail: View {
     var wire: Wire
     var projn: Int
-    var rci: rci
+    //var rci: rci
    // @State var cablenumber : String
     
-         @State var tog1 : Bool = false
+         @State var tog1 : Bool = true
          @State var tog2 : Bool = false
          @State var tog3 : Bool = false
          @State var tog4 : Bool = false
@@ -31,10 +31,27 @@ struct WireDetail: View {
     var changedCount: Int = 0
     var changed : Bool = false
     var saved : Bool = false
-    
+    var index = -1
     
     @State var installField : String = ""
-   
+    
+    init(wire: Wire, projn:Int){
+        self.wire = wire
+        self.projn = projn
+                self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? 0
+                print(projects[projn].rOfInstall![self.index].Cablenum)
+                self.tog1 = projects[projn].rOfInstall![self.index].INSTALL_STATUS ?? false
+                 self.tog2 = projects[projn].rOfInstall![index].VERIFY_SOURCE ?? false
+                  self.tog3 = projects[projn].rOfInstall![index].VERIFY_DEST ?? false
+                  self.tog4 = projects[projn].rOfInstall![index].ORIGIN_TERM ?? false
+                  self.tog5 = projects[projn].rOfInstall![index].DEST_TERM ?? false
+                  self.tog6 = projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN ?? false
+                  self.tog7 = projects[projn].rOfInstall![index].VERIFY_CONN_DEST ?? false
+                  self.tog8 = projects[projn].rOfInstall![index].TESTED ?? false
+                  self.tog9 = projects[projn].rOfInstall![index].CONN_ORIGIN ?? false
+                  self.tog10 = projects[projn].rOfInstall![index].CONN_DEST ?? false
+                  self.tog11 = projects[projn].rOfInstall![index].RELEASED ?? false
+    }
     
     var body: some View {
         
@@ -57,7 +74,7 @@ struct WireDetail: View {
                    // Text(String((wire.Cablenum)))
                // .font(.title)
                 HStack() {
-                    Text("Area Code: \(wire.Area_Code)")
+                    Text("Area Code: \(wire.Area_Code) ")
                         .font(.subheadline)
                     Spacer()
                     Text("Wire Jobnum: ")
@@ -97,7 +114,7 @@ struct WireDetail: View {
             Text("Installation: ")
                         
                         if (tog1) {
-                            Text("Installed by user \(rci.INSTALL_STATUS_user ?? "default_user")\n Installed on \(rci.INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
+                            Text("Installed by user \(projects[projn].rOfInstall![index].INSTALL_STATUS_user ?? "default_user")\n Installed on \(projects[projn].rOfInstall![index].INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
                             
                         }
                         else{
@@ -120,7 +137,7 @@ struct WireDetail: View {
                             self.tog2=false
                         }
                     }
-                    if self.rci.INSTALL_STATUS != self.tog1&&self.tog1==false{
+                    if projects[projn].rOfInstall![index].INSTALL_STATUS != self.tog1&&self.tog1==false{
                                                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                                                    }
                     if tog1 == true{
@@ -129,7 +146,7 @@ struct WireDetail: View {
                         Text("Source Verification: ")
                                     
                                     if (tog2){
-                                        Text("Verified by user \(rci.VERIFY_SOURCE_user ?? "default_user")\n Verified on \(rci.VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
+                                        Text("Verified by user \(projects[projn].rOfInstall![index].VERIFY_SOURCE_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
                                         
                                                 }
                                             else{
@@ -150,7 +167,7 @@ struct WireDetail: View {
                                 self.tog3=false
                             }
                         }
-                        if self.rci.VERIFY_SOURCE != self.tog2&&self.tog2==false{
+                        if projects[projn].rOfInstall![index].VERIFY_SOURCE != self.tog2&&self.tog2==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                     }
@@ -159,7 +176,7 @@ struct WireDetail: View {
                         HStack{
                                    Text("Verified Destination: ")
                                                if (tog3){
-                                               Text("Verified by user \(rci.VERIFY_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
+                                               Text("Verified by user \(projects[projn].rOfInstall![index].VERIFY_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
                                                                                   }
                                                                               else{
                                                                           Text("No").onAppear(){self.tog4=false}
@@ -174,7 +191,7 @@ struct WireDetail: View {
                                                    self.tog4=false
                                                }
                                            }
-                        if self.rci.VERIFY_DEST != self.tog3&&self.tog3==false{
+                        if projects[projn].rOfInstall![index].VERIFY_DEST != self.tog3&&self.tog3==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                         
@@ -184,7 +201,7 @@ struct WireDetail: View {
                     HStack{
             Text("Origin Termination: ")
                         if (tog4){
-                                                   Text("Termination verified by user \(rci.ORIGIN_TERM_user ?? "default_user")\n Verified on \(rci.ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
+                                                   Text("Termination verified by user \(projects[projn].rOfInstall![index].ORIGIN_TERM_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
                                                            }
                                                        else{
                                                    Text("No").onAppear(){self.tog5=false}
@@ -200,7 +217,7 @@ struct WireDetail: View {
                         }
                     }
                         
-                        if self.rci.ORIGIN_TERM != self.tog4&&self.tog4==false{
+                        if projects[projn].rOfInstall![index].ORIGIN_TERM != self.tog4&&self.tog4==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                     }
@@ -208,7 +225,7 @@ struct WireDetail: View {
                     HStack{
             Text("Destination Termination: ")
                         if (tog5){
-                        Text("Termination verified by user \(rci.DEST_TERM_user ?? "default_user")\n Verified on \(rci.DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
+                        Text("Termination verified by user \(projects[projn].rOfInstall![index].DEST_TERM_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
                         Text("No").onAppear(){self.tog6=false}
@@ -223,7 +240,7 @@ struct WireDetail: View {
                             self.tog6=false
                         }
                     }
-                        if self.rci.DEST_TERM != self.tog5&&self.tog5==false{
+                        if projects[projn].rOfInstall![index].DEST_TERM != self.tog5&&self.tog5==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                 }
@@ -231,7 +248,7 @@ struct WireDetail: View {
                     HStack{
             Text("Origin Connection Verification: ")
                         if (tog6){
-                        Text("Termination verified by user \(rci.VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
+                        Text("Termination verified by user \(projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
                         Text("No").onAppear(){self.tog7=false}
@@ -246,7 +263,7 @@ struct WireDetail: View {
                             self.tog7=false
                         }
                     }
-                        if self.rci.VERIFY_CONN_ORIGIN != self.tog6&&self.tog6==false{
+                        if projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN != self.tog6&&self.tog6==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                 }
@@ -254,7 +271,7 @@ struct WireDetail: View {
                     HStack{
             Text("Destination Connection Verification: ")
            if (tog7){
-           Text("Termination verified by user \(rci.VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
+           Text("Termination verified by user \(projects[projn].rOfInstall![index].VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                    }
                else{
            Text("No").onAppear(){self.tog8=false}
@@ -270,7 +287,7 @@ struct WireDetail: View {
                         }
                     }
                     
-                    if self.rci.VERIFY_CONN_DEST != self.tog7&&self.tog7==false{
+                    if projects[projn].rOfInstall![index].VERIFY_CONN_DEST != self.tog7&&self.tog7==false{
                         TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
@@ -285,7 +302,7 @@ struct WireDetail: View {
                 HStack{
                            Text("Cable Testing: ")
                           if (tog8){
-                          Text("Tested by user \(rci.TESTED_user ?? "default_user")\n Verified on \(rci.TESTED_date ?? "2020-04-06T05:49:07Z")")
+                          Text("Tested by user \(projects[projn].rOfInstall![index].TESTED_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].TESTED_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
                           Text("No").onAppear(){self.tog9=false}
@@ -301,7 +318,7 @@ struct WireDetail: View {
                                        }
                                    }
                 
-                if self.rci.TESTED != self.tog8&&self.tog8==false{
+                if projects[projn].rOfInstall![index].TESTED != self.tog8&&self.tog8==false{
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
@@ -309,7 +326,7 @@ struct WireDetail: View {
                 HStack{
                            Text("Connection Origin: ")
                           if (tog9){
-                          Text("Termination verified by user \(rci.CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
+                          Text("Termination verified by user \(projects[projn].rOfInstall![index].CONN_ORIGIN_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
                           Text("No").onAppear(){self.tog10=false}
@@ -325,7 +342,7 @@ struct WireDetail: View {
                                        }
                                    }
                     
-                    if self.rci.CONN_ORIGIN != self.tog9&&self.tog9==false{
+                    if projects[projn].rOfInstall![index].CONN_ORIGIN != self.tog9&&self.tog9==false{
                         TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                     }
             }
@@ -333,7 +350,7 @@ struct WireDetail: View {
                 HStack{
                  Text("Connection Destination: ")
                     if (tog10){
-                Text("Termination verified by user \(rci.CONN_DEST_user ?? "default_user")\n Verified on \(rci.CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
+                Text("Termination verified by user \(projects[projn].rOfInstall![index].CONN_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
                         Text("No").onAppear(){self.tog11=false}
@@ -348,7 +365,7 @@ struct WireDetail: View {
                                  self.tog11=false
                              }
                          }
-                if self.rci.CONN_DEST != self.tog10&&self.tog10==false{
+                if projects[projn].rOfInstall![index].CONN_DEST != self.tog10&&self.tog10==false{
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
@@ -357,7 +374,7 @@ struct WireDetail: View {
                 HStack{
                  Text("Cable Released: ")
                 if (tog11){
-                Text("Termination verified by user \(rci.RELEASED_user ?? "default_user")\n Verified on \(rci.RELEASED_date ?? "2020-04-06T05:49:07Z")")
+                Text("Termination verified by user \(projects[projn].rOfInstall![index].RELEASED_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].RELEASED_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
                 Text("No")
@@ -368,13 +385,13 @@ struct WireDetail: View {
                              .padding(.trailing, 20.0)
                              .frame(width: 60.0)
                          }
-                if self.rci.RELEASED != self.tog11&&self.tog11==false{
+                if projects[projn].rOfInstall![index].RELEASED != self.tog11&&self.tog11==false{
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10&&tog11 {
-                Text("Source Comments \(rci.COMMENT_SOURCE ?? "Default Source Comment")")
-                Text("Destination Comments \(rci.COMMENT_DEST ?? "Default Destination Comment")")
+                Text("Source Comments \(projects[projn].rOfInstall![index].COMMENT_SOURCE ?? "Default Source Comment")")
+                Text("Destination Comments \(projects[projn].rOfInstall![index].COMMENT_DEST ?? "Default Destination Comment")")
                     
             }
                 
@@ -394,7 +411,21 @@ struct WireDetail: View {
            // Spacer()
         }.onAppear(){
             print("Wiredetail appear")
+            let index = projects[self.projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? 0
+            print(projects[self.projn].rOfInstall![index])
+            self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS!
+            self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE ?? false
+            self.tog3 = projects[self.projn].rOfInstall![index].VERIFY_DEST ?? false
+            self.tog4 = projects[self.projn].rOfInstall![index].ORIGIN_TERM ?? false
+            self.tog5 = projects[self.projn].rOfInstall![index].DEST_TERM ?? false
+            self.tog6 = projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN ?? false
+            self.tog7 = projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST ?? false
+            self.tog8 = projects[self.projn].rOfInstall![index].TESTED ?? false
+            self.tog9 = projects[self.projn].rOfInstall![index].CONN_ORIGIN ?? false
+            self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST ?? false
+            self.tog11 = projects[self.projn].rOfInstall![index].RELEASED ?? false
             //self.rci = projects[0].rOfInstall![0]
+           /*
             self.tog1 = self.rci.INSTALL_STATUS ?? false
            self.tog2 = self.rci.VERIFY_SOURCE ?? false
             self.tog3 = self.rci.VERIFY_DEST ?? false
@@ -407,7 +438,7 @@ struct WireDetail: View {
             self.tog10 = self.rci.CONN_DEST ?? false
             self.tog11 = self.rci.RELEASED ?? false
             //self.updater()
-            
+            */
         }.onDisappear(){
             print("Wiredetail disappear")
             /*
