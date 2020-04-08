@@ -11,7 +11,8 @@ import SwiftUI
 struct WireDetail: View {
     var wire: Wire
     var projn: Int
-    //var rci: rci
+   // var rci: rci=(Cablenum:wire.Cablenum,project:wire.project,INSTALL_STATUS:false,INSTALL_STATUS_user:userID,INSTALL_STATUS_date:"2020-04-08T02:42:40Z")
+   // {"Cablenum": "L2D04268", "project": "LCLSII", "INSTALL_STATUS": true, "INSTALL_STATUS_user": "uid:mshankar", "INSTALL_STATUS_date": "2020-04-08T02:42:40Z", "VERIFY_SOURCE": true, "VERIFY_SOURCE_user": "uid:mshankar", "VERIFY_SOURCE_date": "2020-04-08T02:42:40Z", "VERIFY_DEST": true, "VERIFY_DEST_user": "uid:mshankar", "VERIFY_DEST_date": "2020-04-08T02:42:40Z", "ORIGIN_TERM": true, "ORIGIN_TERM_user": "uid:mshankar", "ORIGIN_TERM_date": "2020-04-08T02:42:40Z", "DEST_TERM": true, "DEST_TERM_user": "uid:mshankar", "DEST_TERM_date": "2020-04-08T02:42:40Z", "VERIFY_CONN_ORIGIN": true, "VERIFY_CONN_ORIGIN_user": "uid:mshankar", "VERIFY_CONN_ORIGIN_date": "2020-04-08T02:42:40Z", "VERIFY_CONN_DEST": true, "VERIFY_CONN_DEST_user": "uid:mshankar", "VERIFY_CONN_DEST_date": "2020-04-08T02:42:40Z", "TESTED": true, "TESTED_user": "uid:mshankar", "TESTED_date": "2020-04-08T02:42:40Z", "CONN_ORIGIN": true, "CONN_ORIGIN_user": "uid:mshankar", "CONN_ORIGIN_date": "2020-04-08T02:42:40Z", "CONN_DEST": true, "CONN_DEST_user": "uid:mshankar", "CONN_DEST_date": "2020-04-08T02:42:40Z", "RELEASED": true, "RELEASED_user": "uid:mshankar", "RELEASED_date": "2020-04-08T02:42:40Z", "COMMENT_SOURCE": "Source comment first line", "COMMENT_DEST": "Dest comment first line"}
    // @State var cablenumber : String
     
          @State var tog1 : Bool = true
@@ -38,7 +39,14 @@ struct WireDetail: View {
     init(wire: Wire, projn:Int){
         self.wire = wire
         self.projn = projn
-                self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? 0
+                self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? -1
+        if index == -1 {
+            var rc = rci (Cablenum:wire.Cablenum,project:projects[projn].area_code,INSTALL_STATUS:false,INSTALL_STATUS_user:userID,INSTALL_STATUS_date:"2020-04-08T02:42:40Z",VERIFY_SOURCE:false,VERIFY_SOURCE_user:userID,VERIFY_SOURCE_date:"2020-04-08T02:42:40Z",VERIFY_DEST:false,VERIFY_DEST_user:userID,VERIFY_DEST_date:"2020-04-08T02:42:40Z",ORIGIN_TERM:false,ORIGIN_TERM_user:userID,ORIGIN_TERM_date:"2020-04-08T02:42:40Z",DEST_TERM:false,DEST_TERM_user:userID,DEST_TERM_date:"2020-04-08T02:42:40Z",VERIFY_CONN_ORIGIN:false,VERIFY_CONN_ORIGIN_user: userID,VERIFY_CONN_ORIGIN_date:"2020-04-08T02:42:40Z", VERIFY_CONN_DEST:false,VERIFY_CONN_DEST_user: userID,VERIFY_CONN_DEST_date:"2020-04-08T02:42:40Z",TESTED:false,TESTED_user: userID,TESTED_date:"2020-04-08T02:42:40Z",CONN_ORIGIN:false,CONN_ORIGIN_user: userID,CONN_ORIGIN_date:"2020-04-08T02:42:40Z",CONN_DEST:false,CONN_DEST_user: userID,CONN_DEST_date:"2020-04-08T02:42:40Z", RELEASED:false,RELEASED_user: userID,RELEASED_date: "2020-04-08T02:42:40Z", COMMENT_SOURCE: "Default Source Comment", COMMENT_DEST: "Default Destination Comment"  )
+            
+            projects[projn].rOfInstall?.append(rc)
+            index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum})!
+            print(projects[projn].rOfInstall)
+        }
                 print(projects[projn].rOfInstall![self.index].Cablenum)
                 self.tog1 = projects[projn].rOfInstall![self.index].INSTALL_STATUS ?? false
                  self.tog2 = projects[projn].rOfInstall![index].VERIFY_SOURCE ?? false
@@ -412,6 +420,10 @@ struct WireDetail: View {
         }.onAppear(){
             print("Wiredetail appear")
             let index = projects[self.projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? 0
+            //if no cable rci found create falsed out rci and append to rofinstall array, then write to json
+            //for saving of rci if no rci exists append, if does exist update value
+            //use create initfiles as guide
+            //discard changes reassign values from below
             print(projects[self.projn].rOfInstall![index])
             self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS!
             self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE ?? false
@@ -481,7 +493,7 @@ struct WireDetail: View {
                                        
                                        Text("Save Changes")
                                    } .actionSheet(isPresented: $sheetBool) {
-                                       ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Save Changes")),.cancel()])
+                                       ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Save Changes")),.default(Text("Discard Changes")),.cancel()])
                                           }
                 
                 
@@ -491,39 +503,7 @@ struct WireDetail: View {
         )
     }
     //}
-    func updater(){
-           if tog1 != true{
-               tog2 = false
-           }
-           if tog2 != true{
-                      tog3 = false
-                  }
-           if tog3 != true{
-                      tog4 = false
-                  }
-           if tog4 != true{
-                      tog5 = false
-                  }
-           if tog5 != true{
-                      tog6 = false
-                  }
-           if tog6 != true{
-                      tog7 = false
-                  }
-           if tog7 != true{
-                      tog8 = false
-                  }
-           if tog8 != true{
-                      tog9 = false
-                  }
-           if tog9 != true{
-                      tog10 = false
-                  }
-           if tog10 != true{
-                      tog11 = false
-                  }
-           
-       }
+ 
 }
 /*
 struct WireDetail_Previews: PreviewProvider {
