@@ -33,6 +33,7 @@ struct WireDetail: View {
     var changed : Bool = false
     var saved : Bool = false
     var index = -1
+    //var chang=changes[0]
     
     @State var installField : String = ""
     
@@ -46,11 +47,13 @@ struct WireDetail: View {
                    let dateOut = formatter.string(from: modifiedDate)
                    print(dateOut)
                 self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? -1
+         
         if index == -1 {
            
             var rc = rci (Cablenum:wire.Cablenum,project:projects[projn].area_code,INSTALL_STATUS:false,INSTALL_STATUS_user:userID,INSTALL_STATUS_date:dateOut,VERIFY_SOURCE:false,VERIFY_SOURCE_user:userID,VERIFY_SOURCE_date:dateOut,VERIFY_DEST:false,VERIFY_DEST_user:userID,VERIFY_DEST_date:dateOut,ORIGIN_TERM:false,ORIGIN_TERM_user:userID,ORIGIN_TERM_date:dateOut,DEST_TERM:false,DEST_TERM_user:userID,DEST_TERM_date:dateOut,VERIFY_CONN_ORIGIN:false,VERIFY_CONN_ORIGIN_user: userID,VERIFY_CONN_ORIGIN_date:dateOut, VERIFY_CONN_DEST:false,VERIFY_CONN_DEST_user: userID,VERIFY_CONN_DEST_date:dateOut,TESTED:false,TESTED_user: userID,TESTED_date:dateOut,CONN_ORIGIN:false,CONN_ORIGIN_user: userID,CONN_ORIGIN_date:dateOut,CONN_DEST:false,CONN_DEST_user: userID,CONN_DEST_date:dateOut, RELEASED:false,RELEASED_user: userID,RELEASED_date: dateOut, COMMENT_SOURCE: "Default Source Comment", COMMENT_DEST: "Default Destination Comment"  )
             
             projects[projn].rOfInstall?.append(rc)
+            
             index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum})!
             print(projects[projn].rOfInstall)
         }
@@ -67,7 +70,8 @@ struct WireDetail: View {
                   self.tog10 = projects[projn].rOfInstall![index].CONN_DEST ?? false
                   self.tog11 = projects[projn].rOfInstall![index].RELEASED ?? false
     }
-    
+   
+
     var body: some View {
         
         //toggle cleaning
@@ -530,7 +534,9 @@ struct WireDetail: View {
                                             
                                             print(str)
                                             //str.
+                                            
                                             var cleaned = str.replacingOccurrences(of: "Authenticator.rci(" , with: "{")
+                                            
                                             cleaned = cleaned.replacingOccurrences(of: "(", with: "{")
                                             cleaned = cleaned.replacingOccurrences(of: ")", with: "}")
                                             cleaned = cleaned.replacingOccurrences(of: "Cablenum:", with: "\"Cablenum\":")
@@ -596,13 +602,28 @@ cleaned = cleaned.replacingOccurrences(of: "COMMENT_DEST:", with: "\"COMMENT_DES
                                             print(stra)
                                             } */
                                             print("Save Changes")
+                                            let today = Date()
                                             
+                                                   let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+                                                              let formatter = DateFormatter()
+                                                              formatter.dateFormat = "yyyy-MM-d'T'HH:mm:ss'Z'"
+                                                              let dateOut = formatter.string(from: modifiedDate)
                                             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[self.projn].area_code+file1)
                                             do {
                                                               try cleaned.write(to: url, atomically: true, encoding: .utf8)
                                                           } catch {
                                                               print(error.localizedDescription)
                                                           }
+                                            var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"INSTALL_STATUS",value:self.tog1,user:userID, date:dateOut)
+                                            changes.append(chang)
+                                            
+                                            print(changes.description)
+                                            
+                                            var outchange = changes.description
+                                            
+                                            outchange = outchange.replacingOccurrences(of: "Authenticator.Changes", with: "")
+                                            print(outchange)
+                                            uploader=outchange
                                         },.cancel()])
                                           }
                 

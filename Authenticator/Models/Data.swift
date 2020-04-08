@@ -29,6 +29,8 @@ var folders : [String:Int]=[:]
 var userID: String = ""
 var completeFolders = [[String:Int]]()
 var completeFoldersArr = [[String]]()
+var changes : [Changes] = []
+var uploader: String = ""
 /*
 var successfulLogins = UserDefaults.standard.integer(forKey: "logins"){
     didSet { UserDefaults.standard.set(successfulLogins, forKey: "logins") }
@@ -47,7 +49,7 @@ func start(){
         
         //check for initial app launch
     let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
-        if(successfulLogins != true){
+        if(successfulLogins == true){
             print("Initial launch data load")
             createInitFiles()
         }

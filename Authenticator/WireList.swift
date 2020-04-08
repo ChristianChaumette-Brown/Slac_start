@@ -155,7 +155,7 @@ struct WireList: View {
 		}
 	}
 	func postChanges(){
-		guard let encoded = try? JSONEncoder().encode(projects[projNum].rOfInstall) else {
+		guard let encoded = try? JSONEncoder().encode(changes) else {
 			print("Failed to encode order")
 			return
 		}
