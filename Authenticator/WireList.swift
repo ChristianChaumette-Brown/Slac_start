@@ -64,6 +64,7 @@ struct WireList: View {
 					Button(action:{
 						self.refresh()
 						self.delegate?.didTapButton()
+						
 					}
 					){
 						Text("Refresh")
