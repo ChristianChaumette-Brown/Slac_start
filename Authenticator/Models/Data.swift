@@ -20,8 +20,8 @@ struct MyStruct {
 let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
-let server = "http://10.0.0.237"
-
+//let server = "http://10.0.0.237:5000"
+let server = "http://5b2bfb30.ngrok.io"
 //let wireData: [Wire] = loader("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
@@ -124,7 +124,8 @@ func loadFiles(){
     func fetchProjects(){
            print("Fetching projects...")
            let session = URLSession.shared
-           let url = URL(string: "\(server):5000/ws/projects")!
+        //:5000
+           let url = URL(string: "\(server)/ws/projects/")!
            let task = session.dataTask(with: url) { data, response, error in
            
                let str = String(decoding: data!, as: UTF8.self)
@@ -156,7 +157,8 @@ func loadFiles(){
            if(projects.capacity != 0){
                for i in 0...projects.capacity-1{
                    let session = URLSession.shared
-                   let url = URL(string: "\(server):5000/ws/\(projects[i].area_code)/cables")!
+                //:5000
+                   let url = URL(string: "\(server)/ws/\(projects[i].area_code)/cables/")!
                    let task = session.dataTask(with: url) { data, response, error in
                            let str = String(decoding: data!, as: UTF8.self)
                            print("Fetched")
@@ -173,7 +175,8 @@ func loadFiles(){
                    task.resume()
 //currently contains my local ip address for testing
                    let session2 = URLSession.shared
-                   let url2 = URL(string: "\(server):5000/ws/\(projects[i].area_code)/rci")!
+                //:5000
+                   let url2 = URL(string: "\(server)/ws/\(projects[i].area_code)/rci/")!
                    let task2 = session2.dataTask(with: url2) { data, response, error in
                            let str2 = String(decoding: data!, as: UTF8.self)
                            let url1 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[i].area_code+file1)
@@ -281,7 +284,8 @@ class DataAssignment: ObservableObject{
     func fetchProjects(){
            print("Fetching projects...")
            let session = URLSession.shared
-           let url = URL(string: "\(server):5000/ws/projects")!
+        //:5000
+           let url = URL(string: "\(server)/ws/projects/")!
            let task = session.dataTask(with: url) { data, response, error in
            
                let str = String(decoding: data!, as: UTF8.self)
@@ -311,7 +315,8 @@ class DataAssignment: ObservableObject{
            if(self.projects.capacity != 0){
                for i in 0...projects.capacity-1{
                    let session = URLSession.shared
-                   let url = URL(string: "\(server):5000/ws/\(projects[i].area_code)/cables")!
+                //:5000
+                   let url = URL(string: "\(server)/ws/\(projects[i].area_code)/cables/")!
                    let task = session.dataTask(with: url) { data, response, error in
                            let str = String(decoding: data!, as: UTF8.self)
                            print("Fetched")
@@ -328,7 +333,8 @@ class DataAssignment: ObservableObject{
                    task.resume()
 //currently contains my local ip address for testing
                    let session2 = URLSession.shared
-                   let url2 = URL(string: "\(server):5000/ws/\(self.projects[i].area_code)/rci")!
+                //:5000
+                   let url2 = URL(string: "\(server)/ws/\(self.projects[i].area_code)/rci/")!
                    let task2 = session2.dataTask(with: url2) { data, response, error in
                            let str2 = String(decoding: data!, as: UTF8.self)
                            let url1 = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(self.projects[i].area_code+file1)
