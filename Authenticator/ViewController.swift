@@ -141,7 +141,7 @@ class ViewController: UIViewController {
             task.resume()
         }
         
-        checkWebsite()
+        //checkWebsite()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
        // navigationItem.backBarButtonItem?.setValue("help", forKey: userID)
        // fetchFiles()

@@ -425,7 +425,7 @@ struct WireDetail: View {
             //use create initfiles as guide
             //discard changes reassign values from below
            // print(projects[self.projn].rOfInstall![index])
-            self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS!
+            self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS
             self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE ?? false
             self.tog3 = projects[self.projn].rOfInstall![index].VERIFY_DEST ?? false
             self.tog4 = projects[self.projn].rOfInstall![index].ORIGIN_TERM ?? false
@@ -494,43 +494,108 @@ struct WireDetail: View {
                                        Text("Save Changes")
                                    } .actionSheet(isPresented: $sheetBool) {
                                     ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Discard Changes")){
-                                       self.tog1 = projects[self.projn].rOfInstall![self.index].INSTALL_STATUS!
-                                       self.tog2 = projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE!
-                                       self.tog3 = projects[self.projn].rOfInstall![self.index].VERIFY_DEST!
-                                       self.tog4 = projects[self.projn].rOfInstall![self.index].ORIGIN_TERM!
-                                       self.tog5 = projects[self.projn].rOfInstall![self.index].DEST_TERM!
-                                       self.tog6 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN!
-                                       self.tog7 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST!
-                                       self.tog8 = projects[self.projn].rOfInstall![self.index].TESTED!
-                                       self.tog9 = projects[self.projn].rOfInstall![self.index].CONN_ORIGIN!
-                                       self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST!
-                                       self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED!
+                                       self.tog1 = projects[self.projn].rOfInstall![self.index].INSTALL_STATUS
+                                       self.tog2 = projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE
+                                       self.tog3 = projects[self.projn].rOfInstall![self.index].VERIFY_DEST
+                                       self.tog4 = projects[self.projn].rOfInstall![self.index].ORIGIN_TERM
+                                       self.tog5 = projects[self.projn].rOfInstall![self.index].DEST_TERM
+                                       self.tog6 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN
+                                       self.tog7 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST
+                                       self.tog8 = projects[self.projn].rOfInstall![self.index].TESTED
+                                       self.tog9 = projects[self.projn].rOfInstall![self.index].CONN_ORIGIN
+                                       self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST
+                                       self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED
                                         },.default(Text("Save Changes")){
-                                            projects[self.projn].rOfInstall![self.index].INSTALL_STATUS! = self.tog1
-                                            projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE! = self.tog2
-                                            projects[self.projn].rOfInstall![self.index].VERIFY_DEST! = self.tog3
-                                            projects[self.projn].rOfInstall![self.index].ORIGIN_TERM! = self.tog4
-                                            projects[self.projn].rOfInstall![self.index].DEST_TERM! = self.tog5
-                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN! = self.tog6
-                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST! = self.tog7
-                                            projects[self.projn].rOfInstall![self.index].TESTED! = self.tog8
-                                            projects[self.projn].rOfInstall![self.index].CONN_ORIGIN! = self.tog9
-                                            projects[self.projn].rOfInstall![self.index].CONN_DEST! = self.tog10
-                                            projects[self.projn].rOfInstall![self.index].RELEASED! = self.tog11
+                                            projects[self.projn].rOfInstall![self.index].INSTALL_STATUS = self.tog1
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE = self.tog2
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_DEST = self.tog3
+                                            projects[self.projn].rOfInstall![self.index].ORIGIN_TERM = self.tog4
+                                            projects[self.projn].rOfInstall![self.index].DEST_TERM = self.tog5
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN = self.tog6
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST = self.tog7
+                                            projects[self.projn].rOfInstall![self.index].TESTED = self.tog8
+                                            projects[self.projn].rOfInstall![self.index].CONN_ORIGIN = self.tog9
+                                            projects[self.projn].rOfInstall![self.index].CONN_DEST = self.tog10
+                                            projects[self.projn].rOfInstall![self.index].RELEASED = self.tog11
                                             print(projects[self.projn].rOfInstall!)
                                             var str = projects[self.projn].rOfInstall!.description
                                            // str = str.flatMap{$0}
+                                            
+                                            print(str)
+                                            //str.
+                                            var cleaned = str.replacingOccurrences(of: "Authenticator.rci(" , with: "{")
+                                            cleaned = cleaned.replacingOccurrences(of: "(", with: "{")
+                                            cleaned = cleaned.replacingOccurrences(of: ")", with: "}")
+                                            cleaned = cleaned.replacingOccurrences(of: "Cablenum:", with: "\"Cablenum\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "project:", with: "\"project\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_DEST:", with: "\"VERIFY_CONN_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_DEST_date:", with: "\"VERIFY_CONN_DEST_date\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_DEST_user:", with: "\"VERIFY_CONN_DEST_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_ORIGIN:", with: "\"VERIFY_CONN_ORIGIN\":")
+                                             cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_ORIGIN_user:", with: "\"VERIFY_CONN_ORIGIN_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_ORIGIN_date:", with: "\"VERIFY_CONN_ORIGIN_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_ORIGIN:", with: "\"CONN_ORIGIN\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_ORIGIN_user:", with: "\"CONN_ORIGIN_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_ORIGIN_date:", with: "\"CONN_ORIGIN_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "INSTALL_STATUS:", with: "\"INSTALL_STATUS\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "INSTALL_STATUS_user:", with: "\"INSTALL_STATUS_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "INSTALL_STATUS_date:", with: "\"INSTALL_STATUS_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_SOURCE:", with: "\"VERIFY_SOURCE\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_SOURCE_user:", with: "\"VERIFY_SOURCE_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_SOURCE_date:", with: "\"VERIFY_SOURCE_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_DEST:", with: "\"VERIFY_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_DEST_user:", with: "\"VERIFY_DEST_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_DEST_date:", with: "\"VERIFY_DEST_date\":")
+
+                                            cleaned = cleaned.replacingOccurrences(of: "ORIGIN_TERM:", with: "\"ORIGIN_TERM\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "ORIGIN_TERM_user:", with: "\"ORIGIN_TERM_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "ORIGIN_TERM_date:", with: "\"ORIGIN_TERM_date\":")
+                                            
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "DEST_TERM:", with: "\"DEST_TERM\":")
+                                             cleaned = cleaned.replacingOccurrences(of: "DEST_TERM_user:", with: "\"DEST_TERM_user\":")
+                                             cleaned = cleaned.replacingOccurrences(of: "DEST_TERM_date:", with: "\"DEST_TERM_date\":")
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_DEST:", with: "\"CONN_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_DEST_user:", with: "\"CONN_DEST_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_DEST_date:", with: "\"CONN_DEST_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "TESTED:", with: "\"TESTED\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "TESTED_user:", with: "\"TESTED_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "TESTED_date:", with: "\"TESTED_date\":")
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "RELEASED:", with: "\"RELEASED\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "RELEASED_user:", with: "\"RELEASED_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "RELEASED_date:", with: "\"RELEASED_date\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "COMMENT_SOURCE:", with: "\"COMMENT_SOURCE\":")
+cleaned = cleaned.replacingOccurrences(of: "COMMENT_DEST:", with: "\"COMMENT_DEST\":")
+                                            print(cleaned)
+                                            /*
                                             if let stra = projects[self.projn].rOfInstall{
                                             print(stra)
-                                            }
+                                            } */
                                             print("Save Changes")
-                                            /*
+                                            
                                             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[self.projn].area_code+file1)
                                             do {
-                                                              try str.write(to: url, atomically: true, encoding: .utf8)
+                                                              try cleaned.write(to: url, atomically: true, encoding: .utf8)
                                                           } catch {
                                                               print(error.localizedDescription)
-                                                          }*/
+                                                          }
                                         },.cancel()])
                                           }
                 
