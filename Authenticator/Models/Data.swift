@@ -46,7 +46,7 @@ func start(){
         print("Initializer called")
         
         //check for initial app launch
-    let successfulLogins = UserDefaults.standard.bool(forKey: "FirstLaunch")
+    let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
         if(successfulLogins != true){
             print("Initial launch data load")
             createInitFiles()
