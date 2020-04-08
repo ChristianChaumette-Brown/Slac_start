@@ -436,10 +436,10 @@ struct WireDetail: View {
                                }.sheet(isPresented: $infoBool){
                                 VStack{
                                 Button(action:{self.infoBool.toggle()}){
-                                    Text("Exit info View")
+                                    Text("Exit Information View")
                                 }
-                                   Text("Begining of info display")
-                                    Text("Cable Number \(self.wire.Cablenum)\n Cable Jobnum \(self.wire.Jobnum)\n Cable Area Code \(self.wire.Area_Code)\n Cable System \(self.wire.System)\nCable Function \(self.wire.Func)\nCable CableType \(self.wire.Cabletype)")
+                                    Text("Info display").bold()
+                                    Text("Cable Number:  \(self.wire.Cablenum)\nCable Jobnum:  \(self.wire.Jobnum)\nCable Area Code: \(self.wire.Area_Code)\nCable System:  \(self.wire.System)\nCable Function:  \(self.wire.Func)\nCable CableType:  \(self.wire.Cabletype)\nCable Origin Location:  \(self.wire.Origin_Location)\nCable Origin Station:  \(self.wire.Origin_Station)\nCable Origin ConnectionType:  \(self.wire.Origin_Conntype)\nCable Origin Instructions:  \(self.wire.Origin_Instr)\nCable Destination Location:  \(self.wire.Destination_Location)\nCable Destination Station:  \(self.wire.Destination_Station)\nCable Destination ConnectionType:  \(self.wire.Destination_Conntype)\nCable Destination Instructions:  \(self.wire.Destination_Instr ?? "1")\nCable Length:  \(self.wire.Length ?? "unknown")\nCable Routing:  \(self.wire.Routing ?? "Routing information unavailable")\nCable Newrev:  \(self.wire.Newrev ?? "NewRev unlisted")\nCable Project:  \(self.wire.project ?? "No project listed")")
                                 }
                                }
                 Button(action: {
@@ -449,7 +449,7 @@ struct WireDetail: View {
                                        
                                        Text("Save Changes")
                                    } .actionSheet(isPresented: $sheetBool) {
-                                       ActionSheet(title: Text("What do you want to do?"), message: Text("There's only one choice..."), buttons: [.default(Text("Check tracking of variables with tog1: \(String(tog1))")),.cancel()])
+                                       ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Save Changes")),.cancel()])
                                           }
                 
                 
