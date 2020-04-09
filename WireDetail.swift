@@ -57,6 +57,8 @@ struct WireDetail: View {
             index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum})!
             print(projects[projn].rOfInstall)
         }
+        
+        
                 print(projects[projn].rOfInstall![self.index].Cablenum)
                 self.tog1 = projects[projn].rOfInstall![self.index].INSTALL_STATUS ?? false
                  self.tog2 = projects[projn].rOfInstall![index].VERIFY_SOURCE ?? false

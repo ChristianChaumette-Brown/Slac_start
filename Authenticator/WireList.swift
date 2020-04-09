@@ -174,6 +174,7 @@ struct WireList: View {
 			self.showingConfirmation = true
 			print(data)
 		}.resume()
+		changes.removeAll()
 	}
 }
 //}
