@@ -25,6 +25,19 @@ class WebView: UIViewController, WKNavigationDelegate {
         button.addTarget(self, action: #selector(onButtonPressed(_:)), for: .touchUpInside)
         return button
     }()
+    lazy var myLogin: UITextField = {
+          let text = UITextField()
+          text.frame = CGRect(x: 0, y: 0, width: 300.00, height: 30.00);
+          text.text=""
+          text.placeholder="Username"
+          text.borderStyle=UITextField.BorderStyle.bezel
+          text.backgroundColor=UIColor.blue
+          text.textColor=UIColor.black
+          text.translatesAutoresizingMaskIntoConstraints = false
+          text.layer.cornerRadius = 25
+          text.textAlignment = .center
+          return text
+      }()
     override func loadView() {
         webView=WKWebView()
         
@@ -36,27 +49,40 @@ class WebView: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         //let url=URL(string: "https://www6.slac.stanford.edu/slac-staff")!
         let url = URL(string: "https://intranet.slac.stanford.edu/")!
-        webView.frame = CGRect(x: 0, y: 200, width: 100, height: 200)
+        //webView.frame = CGRect(x: 0, y: 200, width: 100, height: 200)
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
+        
         view.addSubview(loginButton)
+        view.addSubview(myLogin)
         loginButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 160).isActive = true
+        
+        myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 110).isActive = true
+        myLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        myLogin.widthAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
     
     @IBAction func onButtonPressed(_ sender: UIButton){
         switch counter{
         case 0:
-            webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
-                print("Inner HTML: \(value)")
+            let output = myLogin.text!
+            webView.evaluateJavaScript("document.getElementsByName('username')[0].value='\(output)'", completionHandler: {(value,error) in
+          // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
+                print("Inner HTML: \(output)")
                 print("Error \(error)")
                 
                 
             })
-        case 1: break
+        case 1:
+            webView.evaluateJavaScript("document.getElementsByName('login')[0].submit();", completionHandler: {(value,error) in
+                print("Value \(value)")
+                
+                print("Error \(error)")
+            })
         case 2: break
         case 3: break
         case 4: break
