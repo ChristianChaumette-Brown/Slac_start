@@ -38,6 +38,20 @@ class WebView: UIViewController, WKNavigationDelegate {
           text.textAlignment = .center
           return text
       }()
+    lazy var myPass: UITextField = {
+             let text = UITextField()
+             text.frame = CGRect(x: 0, y: 0, width: 300.00, height: 30.00);
+             text.text=""
+             text.placeholder="Password"
+             text.borderStyle=UITextField.BorderStyle.bezel
+             text.backgroundColor=UIColor.blue
+             text.textColor=UIColor.black
+             text.translatesAutoresizingMaskIntoConstraints = false
+             text.layer.cornerRadius = 25
+             text.textAlignment = .center
+             text.isSecureTextEntry = true
+             return text
+         }()
     override func loadView() {
         webView=WKWebView()
         
@@ -55,48 +69,62 @@ class WebView: UIViewController, WKNavigationDelegate {
         
         view.addSubview(loginButton)
         view.addSubview(myLogin)
-        loginButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        view.addSubview(myPass)
+        loginButton.widthAnchor.constraint(equalToConstant: 190).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 160).isActive = true
+        loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200).isActive = true
         
         myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 110).isActive = true
         myLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         myLogin.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        
+        myPass.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150).isActive = true
+        myPass.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        myPass.widthAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
     
     @IBAction func onButtonPressed(_ sender: UIButton){
-        switch counter{
-        case 0:
+       // switch counter{
+        //case 0:
             let output = myLogin.text!
+            var output1 = myPass.text!
             webView.evaluateJavaScript("document.getElementsByName('username')[0].value='\(output)'", completionHandler: {(value,error) in
           // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
-                print("Inner HTML: \(output)")
+                print("Inner HTML: \(value) \(output)")
                 print("Error \(error)")
                 
                 
             })
-        case 1:
+            webView.evaluateJavaScript("document.getElementsByName('password')[0].value='\(output1)'", completionHandler: {(value,error)in
+                
+                print("Password submission: \(value)")
+                print("Error \(error) \(output1)")
+                output1 = ""
+                self.myPass.text = ""
+            })
+            userID = self.myLogin.text!
+       // case 1:
             webView.evaluateJavaScript("document.getElementsByName('login')[0].submit();", completionHandler: {(value,error) in
                 print("Value \(value)")
                 
                 print("Error \(error)")
             })
-        case 2: break
-        case 3: break
-        case 4: break
+      //  case 2: break
+        //case 3: break
+       // case 4: break
        // case 5: break
-        default:break
+       // default:break
             
             
             
-        }
+        //}
         
         
         
         
-        counter += 1
+      //  counter += 1
     }
     
     
