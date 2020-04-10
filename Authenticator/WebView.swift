@@ -16,6 +16,8 @@ class WebView: UIViewController, WKNavigationDelegate {
     //let webView = WKWebView()
    var counter = 0
     var vertOffs = 0
+    var offsetX : CGFloat = 0
+    var offsetY : CGFloat = 0
     lazy var loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
@@ -45,12 +47,13 @@ class WebView: UIViewController, WKNavigationDelegate {
              text.frame = CGRect(x: 0, y: 0, width: 300.00, height: 20.00);
              text.text=""
              text.placeholder="Password"
-             text.borderStyle=UITextField.BorderStyle.bezel
-             text.backgroundColor=UIColor.blue
+             //text.borderStyle=UITextField.BorderStyle.bezel
+             text.backgroundColor=UIColor.clear
              text.textColor=UIColor.black
+        text.layer.borderColor = UIColor.clear.cgColor
              text.translatesAutoresizingMaskIntoConstraints = false
              text.layer.cornerRadius = 25
-             text.textAlignment = .center
+             text.textAlignment = .left
              text.isSecureTextEntry = true
              return text
          }()
@@ -69,28 +72,38 @@ class WebView: UIViewController, WKNavigationDelegate {
         let url = URL(string: "https://intranet.slac.stanford.edu/")!
         //webView.frame = CGRect(x: 0, y: 200, width: 100, height: 200)
        // view.frame.size
+        
         webView.sizeThatFits(view.frame.size)
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
-        webView.scrollView.isScrollEnabled = false
-        webView.scrollView.bounces = false
-        webView.scrollView.canCancelContentTouches = true
-        
+       // webView.scrollView.isScrollEnabled = false
+        //webView.scrollView.bounces = false
+       // webView.scrollView.canCancelContentTouches = true
+        //webView.scrollView.bouncesZoom = false
+        offsetX = webView.scrollView.contentOffset.x
+        offsetY = webView.scrollView.contentOffset.y
+        // Add observer
+        webView.addObserver(self, forKeyPath: "URL", options: .new, context: nil)
+
+        // Observe value
+       /*
+        print("\(offsetX) : \(offsetY)")
         view.addSubview(loginButton)
-        view.addSubview(myLogin)
+        //view.addSubview(myLogin)
         view.addSubview(myPass)
         loginButton.widthAnchor.constraint(equalToConstant: 190).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 200).isActive = true
         
-        myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true
-        myLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 138).isActive = true
-        myLogin.widthAnchor.constraint(equalToConstant: 300).isActive = true
+       // myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80).isActive = true
+       // myLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 138).isActive = true
+       // myLogin.widthAnchor.constraint(equalToConstant: 300).isActive = true
         
-        myPass.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 150).isActive = true
-        myPass.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        myPass.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -13).isActive = true
+        myPass.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 138).isActive = true
         myPass.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        */
     }
     /*
     @objc func timerAction(){
@@ -106,39 +119,86 @@ class WebView: UIViewController, WKNavigationDelegate {
     }
         )}
     */
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+               if let key = change?[NSKeyValueChangeKey.newKey] {
+                print("observeValue \(key)") // url value
+                let keyString : String = ((key as AnyObject).absoluteString)!.description
+                print(keyString)
+                if keyString == "https://webauth.slac.stanford.edu/login-simple" {
+                    print("Registered login movement")
+                    webView.evaluateJavaScript("document.getElementsByName('username')[0].value", completionHandler: {(value,error) in
+                         // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
+                               print("Inner HTML Value check: \(value) ")
+                               print("Error \(error)")
+                               
+                    userID = value.unsafelyUnwrapped as! String
+                    print(userID)
+                           })
+                }
+               }
+           }
     
     @IBAction func onButtonPressed(_ sender: UIButton){
        // switch counter{
         //case 0:
-            let output = myLogin.text!
+           // let output = myLogin.text!
             var output1 = myPass.text!
         var vertOffset = 0
-            webView.evaluateJavaScript("document.getElementsByName('username')[0].value='\(output)'", completionHandler: {(value,error) in
+        
+        webView.evaluateJavaScript("document.getElementsByName('username')[0].value", completionHandler: {(value,error) in
+                 // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
+                       print("Inner HTML Value check: \(value) ")
+                       print("Error \(error)")
+                       
+            userID = value.unsafelyUnwrapped as! String
+            print(userID)
+                   })
+        print(userID)
+          /*  webView.evaluateJavaScript("document.getElementsByName('username')[0].value='\(output)'", completionHandler: {(value,error) in
           // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
                 print("Inner HTML: \(value) \(output)")
                 print("Error \(error)")
                 
                 
             })
+        */
             webView.evaluateJavaScript("document.getElementsByName('password')[0].value='\(output1)'", completionHandler: {(value,error)in
-                
+                print(userID)
                 print("Password submission: \(value)")
                 print("Error \(error) \(output1)")
                 output1 = ""
                 self.myPass.text = ""
             })
-            userID = output
+        webView.evaluateJavaScript("document.getElementsByName('username')[0].value", completionHandler: {(value,error) in
+                 // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
+                       print("Inner HTML Value check: \(value) ")
+                       print("Error \(error)")
+                       
+                       
+                   })
+
+           // userID = output
        // case 1:
             webView.evaluateJavaScript("document.getElementsByName('login')[0].submit();", completionHandler: {(value,error) in
                 print("Value \(value)")
                 
                 print("Error \(error)")
-           
+                self.webView.evaluateJavaScript("document.getElementsByName('username')[0].value", completionHandler: {(value,error) in
+                    // webView.evaluateJavaScript("document.getElementsByTagName('html')[0].innerHTML", completionHandler: {(value,error) in
+                          print("Inner HTML Value check: \(value) ")
+                          print("Error \(error)")
+                          
+                          
+                      })
+
                 self.webView.evaluateJavaScript("document.getElementsByName('username')[0].offsetTop;", completionHandler: {(value,error) in
                     
                     print("Vertical offset value \(value)")
                     print("Error grabbing offset \(error)")
                     vertOffset = value! as! Int
+                    
+                    
+                    
                 })
             })
       //  case 2: break
@@ -147,10 +207,13 @@ class WebView: UIViewController, WKNavigationDelegate {
        // case 5: break
        // default:break
             
-        myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(vertOffset+8)).isActive = true
+       // myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(vertOffset+8)).isActive = true
             
         //}
-        
+        offsetX = webView.scrollView.contentOffset.x
+               offsetY = webView.scrollView.contentOffset.y
+               
+               print("\(offsetX) : \(offsetY)")
         
         
         
