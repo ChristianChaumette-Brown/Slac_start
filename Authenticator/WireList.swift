@@ -25,8 +25,9 @@ struct WireList: View {
 	var delegate: WirelistDelegate?
 	var folderInput: String
 	var projNum : Int
-	
-	
+	@State var index: Int = 0
+	@State private var confirmationMessage = ""
+	@State private var showingConfirmation = false
 	//  var viewState:Bool = true
 	//@EnvironmentObject var searcher:searchInfo
 	//  let control = UIViewController(nibName: "QRSViewController", bundle: nil)
@@ -64,6 +65,7 @@ struct WireList: View {
 					Button(action:{
 						self.refresh()
 						self.delegate?.didTapButton()
+						
 					}
 					){
 						Text("Refresh")
@@ -76,7 +78,9 @@ struct WireList: View {
 							self.folderText="query"
 						}
 							})
-						
+					Button(action:{
+						self.postChanges()
+					}){Text("Upload Changes")}
 					
 					Button(action:{
 						self.showingQr.toggle()
@@ -90,18 +94,24 @@ struct WireList: View {
 					
 				}
 				//when more rci are available from server "L2D04268" will be replace with the name of the wire
-				List(projects[projNum].cables!.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum == folderText||folderText == "query")},id:\.self) {wire in 
+				List(projects[projNum].cables!.filter{($0.Cablenum.lowercased().contains(searchText.lowercased())||searchText=="")&&($0.Jobnum == folderText||folderText == "query")},id:\.self) {wire in
 					
-					NavigationLink(destination: WireDetail(wire: wire, projn: self.projNum, rci: (projects[self.projNum].rOfInstall?[0])!)) {
+					NavigationLink(destination: WireDetail(wire: wire, projn: self.projNum)) {
 						WireRow(wire:wire, projnumb: self.projNum)
 						
 	}
 					}.id(UUID())
 				.navigationBarTitle(Text("Cables"))
+					.alert(isPresented: $showingConfirmation){
+						Alert(title: Text("Push Success"), message: Text(confirmationMessage), dismissButton: .default(Text("OK")))
+				}
 				//FolderView().navigationBarHidden(true)
 		}.onDisappear(){
 			print("Moved out of Wirelist")
 			searchData[0]=""
+			//self.index = projects[self.projNum].rOfInstall!.firstIndex( where: {$0.Cablenum == "L2D04268"})!
+			//print(self.index)
+			//print(projects[self.projNum].rOfInstall?.lastIndex(of: projects[self.projNum].rOfInstall[))
 		}.onAppear(){
 			print("Wirelist appear")
 			//if let index = completeFoldersArr[self.projNum][self.folderInput.firstIndex(of: " ")]
@@ -144,7 +154,28 @@ struct WireList: View {
 			
 		}
 	}
-		
+	func postChanges(){
+		guard let encoded = try? JSONEncoder().encode(changes) else {
+			print("Failed to encode order")
+			return
+		}
+		let url = URL(string:"\(server)/ws/\(projects[projNum].area_code)/rci_updates/" )!
+		var request = URLRequest(url: url)
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.httpMethod = "POST"
+		request.httpBody = encoded
+		URLSession.shared.dataTask(with: request){ data, response, error in
+			// handle the result here.
+			guard let data = data else {
+				print("No data in response: \(error?.localizedDescription ?? "Unknown error").")
+				return
+			}
+			print("Server Push Success")
+			self.showingConfirmation = true
+			print(data)
+		}.resume()
+		changes.removeAll()
+	}
 }
 //}
 

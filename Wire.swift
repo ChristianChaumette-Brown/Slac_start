@@ -70,57 +70,93 @@ extension Wire {
 
 
 */
+struct Changes: Hashable, Codable{
+    var Cablenum: String
+       var project: String
+       var key: String
+       var value: Bool
+       var user: String
+       var date: String
+       // var comment: String?
+       /*
+          init(c:String,p:String,k:String,v:Bool,u:String,d:String){
+              self.Cablenum = c
+              self.project = p
+              self.key = k
+              self.value = v
+              self.user = u
+              self.date = d
+          } */
+    /*
+          init(c:String,p:String,k:String,u:String,d:String){
+              self.Cablenum = c
+              self.project = p
+              self.key = k
+             // self.comment = co
+              self.user = u
+              self.date = d
+          }
+    */
+    
+}
+
 struct project:Hashable, Codable{
     //var id = UUID()
     var area_code:String
     var rOfInstall: [rci]? = []
     var cables: [Wire]? = []
+    //var changes: [Changes]? = [Changes]()
+    enum codingKeys:String, CodingKey{
+        case area_code
+    }
     //var folders : [String:Int]=[:]
    // var folderArr = [String]()
 }
 
-struct rci: Hashable, Codable, Identifiable{
-    var id = UUID()
-    var Cablenum : String?
-    var project: String?
-    var INSTALL_STATUS: Bool?
+struct rci: Hashable, Codable{
+   // var id = UUID()
+    
+    var Cablenum : String
+    var project: String
+    var INSTALL_STATUS: Bool
     var INSTALL_STATUS_user: String?
     var INSTALL_STATUS_date: String?
-    var VERIFY_SOURCE: Bool?
+    var VERIFY_SOURCE: Bool
     var VERIFY_SOURCE_user: String?
     var VERIFY_SOURCE_date: String?
-    var VERIFY_DEST: Bool?
+    var VERIFY_DEST: Bool
     var VERIFY_DEST_user: String?
     var VERIFY_DEST_date: String?
-    var ORIGIN_TERM: Bool?
+    var ORIGIN_TERM: Bool
     var ORIGIN_TERM_user: String?
     var ORIGIN_TERM_date: String?
-    var DEST_TERM: Bool?
+    var DEST_TERM: Bool
     var DEST_TERM_user: String?
     var DEST_TERM_date: String?
-    var VERIFY_CONN_ORIGIN: Bool?
+    var VERIFY_CONN_ORIGIN: Bool
     var VERIFY_CONN_ORIGIN_user: String?
     var VERIFY_CONN_ORIGIN_date: String?
-    var VERIFY_CONN_DEST: Bool?
+    var VERIFY_CONN_DEST: Bool
     var VERIFY_CONN_DEST_user: String?
     var VERIFY_CONN_DEST_date: String?
-    var TESTED: Bool?
+    var TESTED: Bool
     var TESTED_user: String?
     var TESTED_date: String?
-    var CONN_ORIGIN: Bool?
+    var CONN_ORIGIN: Bool
     var CONN_ORIGIN_user: String?
     var CONN_ORIGIN_date: String?
-    var CONN_DEST: Bool?
+    var CONN_DEST: Bool
     var CONN_DEST_user: String?
-    var CONN_DEST_date: String
-    var RELEASED: Bool?
+    var CONN_DEST_date: String?
+    var RELEASED: Bool
     var RELEASED_user: String?
     var RELEASED_date: String?
     var COMMENT_SOURCE: String?
     var COMMENT_DEST: String?
+    
 
     enum CodingKeys:String, CodingKey{
-        case Cablenum, project, COMMENT_DEST, COMMENT_SOURCE,RELEASED_date,RELEASED_user,CONN_DEST_date,CONN_DEST_user,CONN_ORIGIN_date,CONN_ORIGIN_user,TESTED_date, TESTED_user,VERIFY_CONN_DEST_date,VERIFY_CONN_DEST_user,VERIFY_CONN_ORIGIN_date,VERIFY_CONN_ORIGIN_user,DEST_TERM_date,DEST_TERM_user,ORIGIN_TERM_date,ORIGIN_TERM_user,VERIFY_DEST_date,VERIFY_DEST_user,VERIFY_SOURCE_date,VERIFY_SOURCE_user,INSTALL_STATUS_date,INSTALL_STATUS_user
+        case Cablenum, project, COMMENT_DEST, COMMENT_SOURCE,RELEASED_date,RELEASED_user,CONN_DEST_date,CONN_DEST_user,CONN_ORIGIN_date,CONN_ORIGIN_user,TESTED_date, TESTED_user,VERIFY_CONN_DEST_date,VERIFY_CONN_DEST_user,VERIFY_CONN_ORIGIN_date,VERIFY_CONN_ORIGIN_user,DEST_TERM_date,DEST_TERM_user,ORIGIN_TERM_date,ORIGIN_TERM_user,VERIFY_DEST_date,VERIFY_DEST_user,VERIFY_SOURCE_date,VERIFY_SOURCE_user,INSTALL_STATUS_date,INSTALL_STATUS_user, RELEASED, CONN_DEST, TESTED, CONN_ORIGIN,VERIFY_CONN_DEST, VERIFY_CONN_ORIGIN,DEST_TERM,ORIGIN_TERM,VERIFY_DEST,VERIFY_SOURCE,INSTALL_STATUS
     }
    
 

@@ -11,10 +11,11 @@ import SwiftUI
 struct WireDetail: View {
     var wire: Wire
     var projn: Int
-    var rci: rci
+   // var rci: rci=(Cablenum:wire.Cablenum,project:wire.project,INSTALL_STATUS:false,INSTALL_STATUS_user:userID,INSTALL_STATUS_date:dateOut)
+   // {"Cablenum": "L2D04268", "project": "LCLSII", "INSTALL_STATUS": true, "INSTALL_STATUS_user": "uid:mshankar", "INSTALL_STATUS_date": dateOut, "VERIFY_SOURCE": true, "VERIFY_SOURCE_user": "uid:mshankar", "VERIFY_SOURCE_date": dateOut, "VERIFY_DEST": true, "VERIFY_DEST_user": "uid:mshankar", "VERIFY_DEST_date": dateOut, "ORIGIN_TERM": true, "ORIGIN_TERM_user": "uid:mshankar", "ORIGIN_TERM_date": dateOut, "DEST_TERM": true, "DEST_TERM_user": "uid:mshankar", "DEST_TERM_date": dateOut, "VERIFY_CONN_ORIGIN": true, "VERIFY_CONN_ORIGIN_user": "uid:mshankar", "VERIFY_CONN_ORIGIN_date": dateOut, "VERIFY_CONN_DEST": true, "VERIFY_CONN_DEST_user": "uid:mshankar", "VERIFY_CONN_DEST_date": dateOut, "TESTED": true, "TESTED_user": "uid:mshankar", "TESTED_date": dateOut, "CONN_ORIGIN": true, "CONN_ORIGIN_user": "uid:mshankar", "CONN_ORIGIN_date": dateOut, "CONN_DEST": true, "CONN_DEST_user": "uid:mshankar", "CONN_DEST_date": dateOut, "RELEASED": true, "RELEASED_user": "uid:mshankar", "RELEASED_date": dateOut, "COMMENT_SOURCE": "Source comment first line", "COMMENT_DEST": "Dest comment first line"}
    // @State var cablenumber : String
     
-         @State var tog1 : Bool = false
+         @State var tog1 : Bool = true
          @State var tog2 : Bool = false
          @State var tog3 : Bool = false
          @State var tog4 : Bool = false
@@ -31,11 +32,48 @@ struct WireDetail: View {
     var changedCount: Int = 0
     var changed : Bool = false
     var saved : Bool = false
-    
+    var index = -1
+    //var chang=changes[0]
     
     @State var installField : String = ""
-   
     
+    init(wire: Wire, projn:Int){
+        self.wire = wire
+        self.projn = projn
+        let today = Date()
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+                   let formatter = DateFormatter()
+                   formatter.dateFormat = "yyyy-MM-d'T'HH:mm:ss'Z'"
+                   let dateOut = formatter.string(from: modifiedDate)
+                   print(dateOut)
+                self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? -1
+         
+        if index == -1 {
+           
+            var rc = rci (Cablenum:wire.Cablenum,project:projects[projn].area_code,INSTALL_STATUS:false,INSTALL_STATUS_user:userID,INSTALL_STATUS_date:dateOut,VERIFY_SOURCE:false,VERIFY_SOURCE_user:userID,VERIFY_SOURCE_date:dateOut,VERIFY_DEST:false,VERIFY_DEST_user:userID,VERIFY_DEST_date:dateOut,ORIGIN_TERM:false,ORIGIN_TERM_user:userID,ORIGIN_TERM_date:dateOut,DEST_TERM:false,DEST_TERM_user:userID,DEST_TERM_date:dateOut,VERIFY_CONN_ORIGIN:false,VERIFY_CONN_ORIGIN_user: userID,VERIFY_CONN_ORIGIN_date:dateOut, VERIFY_CONN_DEST:false,VERIFY_CONN_DEST_user: userID,VERIFY_CONN_DEST_date:dateOut,TESTED:false,TESTED_user: userID,TESTED_date:dateOut,CONN_ORIGIN:false,CONN_ORIGIN_user: userID,CONN_ORIGIN_date:dateOut,CONN_DEST:false,CONN_DEST_user: userID,CONN_DEST_date:dateOut, RELEASED:false,RELEASED_user: userID,RELEASED_date: dateOut, COMMENT_SOURCE: "Default Source Comment", COMMENT_DEST: "Default Destination Comment"  )
+            
+            projects[projn].rOfInstall?.append(rc)
+            
+            index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum})!
+            print(projects[projn].rOfInstall)
+        }
+        
+        
+                print(projects[projn].rOfInstall![self.index].Cablenum)
+                self.tog1 = projects[projn].rOfInstall![self.index].INSTALL_STATUS ?? false
+                 self.tog2 = projects[projn].rOfInstall![index].VERIFY_SOURCE ?? false
+                  self.tog3 = projects[projn].rOfInstall![index].VERIFY_DEST ?? false
+                  self.tog4 = projects[projn].rOfInstall![index].ORIGIN_TERM ?? false
+                  self.tog5 = projects[projn].rOfInstall![index].DEST_TERM ?? false
+                  self.tog6 = projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN ?? false
+                  self.tog7 = projects[projn].rOfInstall![index].VERIFY_CONN_DEST ?? false
+                  self.tog8 = projects[projn].rOfInstall![index].TESTED ?? false
+                  self.tog9 = projects[projn].rOfInstall![index].CONN_ORIGIN ?? false
+                  self.tog10 = projects[projn].rOfInstall![index].CONN_DEST ?? false
+                  self.tog11 = projects[projn].rOfInstall![index].RELEASED ?? false
+    }
+   
+
     var body: some View {
         
         //toggle cleaning
@@ -57,7 +95,7 @@ struct WireDetail: View {
                    // Text(String((wire.Cablenum)))
                // .font(.title)
                 HStack() {
-                    Text("Area Code: \(wire.Area_Code)")
+                    Text("Area Code: \(wire.Area_Code) ")
                         .font(.subheadline)
                     Spacer()
                     Text("Wire Jobnum: ")
@@ -97,7 +135,7 @@ struct WireDetail: View {
             Text("Installation: ")
                         
                         if (tog1) {
-                            Text("Installed by user \(rci.INSTALL_STATUS_user ?? "default_user")\n Installed on \(rci.INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
+                            Text("Installed by user \(projects[projn].rOfInstall![index].INSTALL_STATUS_user ?? "default_user")\n Installed on \(projects[projn].rOfInstall![index].INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
                             
                         }
                         else{
@@ -120,7 +158,7 @@ struct WireDetail: View {
                             self.tog2=false
                         }
                     }
-                    if self.rci.INSTALL_STATUS != self.tog1&&self.tog1==false{
+                    if projects[projn].rOfInstall![index].INSTALL_STATUS != self.tog1&&self.tog1==false{
                                                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                                                    }
                     if tog1 == true{
@@ -129,7 +167,7 @@ struct WireDetail: View {
                         Text("Source Verification: ")
                                     
                                     if (tog2){
-                                        Text("Verified by user \(rci.VERIFY_SOURCE_user ?? "default_user")\n Verified on \(rci.VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
+                                        Text("Verified by user \(projects[projn].rOfInstall![index].VERIFY_SOURCE_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
                                         
                                                 }
                                             else{
@@ -150,7 +188,7 @@ struct WireDetail: View {
                                 self.tog3=false
                             }
                         }
-                        if self.rci.VERIFY_SOURCE != self.tog2&&self.tog2==false{
+                        if projects[projn].rOfInstall![index].VERIFY_SOURCE != self.tog2&&self.tog2==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                     }
@@ -159,7 +197,7 @@ struct WireDetail: View {
                         HStack{
                                    Text("Verified Destination: ")
                                                if (tog3){
-                                               Text("Verified by user \(rci.VERIFY_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
+                                               Text("Verified by user \(projects[projn].rOfInstall![index].VERIFY_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
                                                                                   }
                                                                               else{
                                                                           Text("No").onAppear(){self.tog4=false}
@@ -174,7 +212,7 @@ struct WireDetail: View {
                                                    self.tog4=false
                                                }
                                            }
-                        if self.rci.VERIFY_DEST != self.tog3&&self.tog3==false{
+                        if projects[projn].rOfInstall![index].VERIFY_DEST != self.tog3&&self.tog3==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                         
@@ -184,7 +222,7 @@ struct WireDetail: View {
                     HStack{
             Text("Origin Termination: ")
                         if (tog4){
-                                                   Text("Termination verified by user \(rci.ORIGIN_TERM_user ?? "default_user")\n Verified on \(rci.ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
+                                                   Text("Termination verified by user \(projects[projn].rOfInstall![index].ORIGIN_TERM_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].ORIGIN_TERM_date ?? "2020-04-06T05:49:07Z")")
                                                            }
                                                        else{
                                                    Text("No").onAppear(){self.tog5=false}
@@ -200,7 +238,7 @@ struct WireDetail: View {
                         }
                     }
                         
-                        if self.rci.ORIGIN_TERM != self.tog4&&self.tog4==false{
+                        if projects[projn].rOfInstall![index].ORIGIN_TERM != self.tog4&&self.tog4==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                     }
@@ -208,7 +246,7 @@ struct WireDetail: View {
                     HStack{
             Text("Destination Termination: ")
                         if (tog5){
-                        Text("Termination verified by user \(rci.DEST_TERM_user ?? "default_user")\n Verified on \(rci.DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
+                        Text("Termination verified by user \(projects[projn].rOfInstall![index].DEST_TERM_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].DEST_TERM_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
                         Text("No").onAppear(){self.tog6=false}
@@ -223,7 +261,7 @@ struct WireDetail: View {
                             self.tog6=false
                         }
                     }
-                        if self.rci.DEST_TERM != self.tog5&&self.tog5==false{
+                        if projects[projn].rOfInstall![index].DEST_TERM != self.tog5&&self.tog5==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                 }
@@ -231,7 +269,7 @@ struct WireDetail: View {
                     HStack{
             Text("Origin Connection Verification: ")
                         if (tog6){
-                        Text("Termination verified by user \(rci.VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
+                        Text("Termination verified by user \(projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                 }
                             else{
                         Text("No").onAppear(){self.tog7=false}
@@ -246,7 +284,7 @@ struct WireDetail: View {
                             self.tog7=false
                         }
                     }
-                        if self.rci.VERIFY_CONN_ORIGIN != self.tog6&&self.tog6==false{
+                        if projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN != self.tog6&&self.tog6==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
                 }
@@ -254,7 +292,7 @@ struct WireDetail: View {
                     HStack{
             Text("Destination Connection Verification: ")
            if (tog7){
-           Text("Termination verified by user \(rci.VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(rci.VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
+           Text("Termination verified by user \(projects[projn].rOfInstall![index].VERIFY_CONN_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                    }
                else{
            Text("No").onAppear(){self.tog8=false}
@@ -270,7 +308,7 @@ struct WireDetail: View {
                         }
                     }
                     
-                    if self.rci.VERIFY_CONN_DEST != self.tog7&&self.tog7==false{
+                    if projects[projn].rOfInstall![index].VERIFY_CONN_DEST != self.tog7&&self.tog7==false{
                         TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                     }
                 }
@@ -285,7 +323,7 @@ struct WireDetail: View {
                 HStack{
                            Text("Cable Testing: ")
                           if (tog8){
-                          Text("Tested by user \(rci.TESTED_user ?? "default_user")\n Verified on \(rci.TESTED_date ?? "2020-04-06T05:49:07Z")")
+                          Text("Tested by user \(projects[projn].rOfInstall![index].TESTED_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].TESTED_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
                           Text("No").onAppear(){self.tog9=false}
@@ -301,7 +339,7 @@ struct WireDetail: View {
                                        }
                                    }
                 
-                if self.rci.TESTED != self.tog8&&self.tog8==false{
+                if projects[projn].rOfInstall![index].TESTED != self.tog8&&self.tog8==false{
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
@@ -309,7 +347,7 @@ struct WireDetail: View {
                 HStack{
                            Text("Connection Origin: ")
                           if (tog9){
-                          Text("Termination verified by user \(rci.CONN_ORIGIN_user ?? "default_user")\n Verified on \(rci.CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
+                          Text("Termination verified by user \(projects[projn].rOfInstall![index].CONN_ORIGIN_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].CONN_ORIGIN_date ?? "2020-04-06T05:49:07Z")")
                                   }
                               else{
                           Text("No").onAppear(){self.tog10=false}
@@ -325,7 +363,7 @@ struct WireDetail: View {
                                        }
                                    }
                     
-                    if self.rci.CONN_ORIGIN != self.tog9&&self.tog9==false{
+                    if projects[projn].rOfInstall![index].CONN_ORIGIN != self.tog9&&self.tog9==false{
                         TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                     }
             }
@@ -333,7 +371,7 @@ struct WireDetail: View {
                 HStack{
                  Text("Connection Destination: ")
                     if (tog10){
-                Text("Termination verified by user \(rci.CONN_DEST_user ?? "default_user")\n Verified on \(rci.CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
+                Text("Termination verified by user \(projects[projn].rOfInstall![index].CONN_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].CONN_DEST_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
                         Text("No").onAppear(){self.tog11=false}
@@ -348,7 +386,7 @@ struct WireDetail: View {
                                  self.tog11=false
                              }
                          }
-                if self.rci.CONN_DEST != self.tog10&&self.tog10==false{
+                if projects[projn].rOfInstall![index].CONN_DEST != self.tog10&&self.tog10==false{
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
@@ -357,7 +395,7 @@ struct WireDetail: View {
                 HStack{
                  Text("Cable Released: ")
                 if (tog11){
-                Text("Termination verified by user \(rci.RELEASED_user ?? "default_user")\n Verified on \(rci.RELEASED_date ?? "2020-04-06T05:49:07Z")")
+                Text("Termination verified by user \(projects[projn].rOfInstall![index].RELEASED_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].RELEASED_date ?? "2020-04-06T05:49:07Z")")
                         }
                     else{
                 Text("No")
@@ -368,13 +406,13 @@ struct WireDetail: View {
                              .padding(.trailing, 20.0)
                              .frame(width: 60.0)
                          }
-                if self.rci.RELEASED != self.tog11&&self.tog11==false{
+                if projects[projn].rOfInstall![index].RELEASED != self.tog11&&self.tog11==false{
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10&&tog11 {
-                Text("Source Comments \(rci.COMMENT_SOURCE ?? "Default Source Comment")")
-                Text("Destination Comments \(rci.COMMENT_DEST ?? "Default Destination Comment")")
+                Text("Source Comments \(projects[projn].rOfInstall![index].COMMENT_SOURCE ?? "Default Source Comment")")
+                Text("Destination Comments \(projects[projn].rOfInstall![index].COMMENT_DEST ?? "Default Destination Comment")")
                     
             }
                 
@@ -394,7 +432,25 @@ struct WireDetail: View {
            // Spacer()
         }.onAppear(){
             print("Wiredetail appear")
+            let index = projects[self.projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? 0
+            //if no cable rci found create falsed out rci and append to rofinstall array, then write to json
+            //for saving of rci if no rci exists append, if does exist update value
+            //use create initfiles as guide
+            //discard changes reassign values from below
+           // print(projects[self.projn].rOfInstall![index])
+            self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS
+            self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE ?? false
+            self.tog3 = projects[self.projn].rOfInstall![index].VERIFY_DEST ?? false
+            self.tog4 = projects[self.projn].rOfInstall![index].ORIGIN_TERM ?? false
+            self.tog5 = projects[self.projn].rOfInstall![index].DEST_TERM ?? false
+            self.tog6 = projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN ?? false
+            self.tog7 = projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST ?? false
+            self.tog8 = projects[self.projn].rOfInstall![index].TESTED ?? false
+            self.tog9 = projects[self.projn].rOfInstall![index].CONN_ORIGIN ?? false
+            self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST ?? false
+            self.tog11 = projects[self.projn].rOfInstall![index].RELEASED ?? false
             //self.rci = projects[0].rOfInstall![0]
+           /*
             self.tog1 = self.rci.INSTALL_STATUS ?? false
            self.tog2 = self.rci.VERIFY_SOURCE ?? false
             self.tog3 = self.rci.VERIFY_DEST ?? false
@@ -407,7 +463,7 @@ struct WireDetail: View {
             self.tog10 = self.rci.CONN_DEST ?? false
             self.tog11 = self.rci.RELEASED ?? false
             //self.updater()
-            
+            */
         }.onDisappear(){
             print("Wiredetail disappear")
             /*
@@ -450,7 +506,127 @@ struct WireDetail: View {
                                        
                                        Text("Save Changes")
                                    } .actionSheet(isPresented: $sheetBool) {
-                                       ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Save Changes")),.cancel()])
+                                    ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Discard Changes")){
+                                       self.tog1 = projects[self.projn].rOfInstall![self.index].INSTALL_STATUS
+                                       self.tog2 = projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE
+                                       self.tog3 = projects[self.projn].rOfInstall![self.index].VERIFY_DEST
+                                       self.tog4 = projects[self.projn].rOfInstall![self.index].ORIGIN_TERM
+                                       self.tog5 = projects[self.projn].rOfInstall![self.index].DEST_TERM
+                                       self.tog6 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN
+                                       self.tog7 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST
+                                       self.tog8 = projects[self.projn].rOfInstall![self.index].TESTED
+                                       self.tog9 = projects[self.projn].rOfInstall![self.index].CONN_ORIGIN
+                                       self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST
+                                       self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED
+                                        },.default(Text("Save Changes")){
+                                            projects[self.projn].rOfInstall![self.index].INSTALL_STATUS = self.tog1
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE = self.tog2
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_DEST = self.tog3
+                                            projects[self.projn].rOfInstall![self.index].ORIGIN_TERM = self.tog4
+                                            projects[self.projn].rOfInstall![self.index].DEST_TERM = self.tog5
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN = self.tog6
+                                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST = self.tog7
+                                            projects[self.projn].rOfInstall![self.index].TESTED = self.tog8
+                                            projects[self.projn].rOfInstall![self.index].CONN_ORIGIN = self.tog9
+                                            projects[self.projn].rOfInstall![self.index].CONN_DEST = self.tog10
+                                            projects[self.projn].rOfInstall![self.index].RELEASED = self.tog11
+                                            print(projects[self.projn].rOfInstall!)
+                                            var str = projects[self.projn].rOfInstall!.description
+                                           // str = str.flatMap{$0}
+                                            
+                                            print(str)
+                                            //str.
+                                            
+                                            var cleaned = str.replacingOccurrences(of: "Authenticator.rci(" , with: "{")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "(", with: "{")
+                                            cleaned = cleaned.replacingOccurrences(of: ")", with: "}")
+                                            cleaned = cleaned.replacingOccurrences(of: "Cablenum:", with: "\"Cablenum\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "project:", with: "\"project\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_DEST:", with: "\"VERIFY_CONN_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_DEST_date:", with: "\"VERIFY_CONN_DEST_date\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_DEST_user:", with: "\"VERIFY_CONN_DEST_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_ORIGIN:", with: "\"VERIFY_CONN_ORIGIN\":")
+                                             cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_ORIGIN_user:", with: "\"VERIFY_CONN_ORIGIN_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_CONN_ORIGIN_date:", with: "\"VERIFY_CONN_ORIGIN_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_ORIGIN:", with: "\"CONN_ORIGIN\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_ORIGIN_user:", with: "\"CONN_ORIGIN_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_ORIGIN_date:", with: "\"CONN_ORIGIN_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "INSTALL_STATUS:", with: "\"INSTALL_STATUS\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "INSTALL_STATUS_user:", with: "\"INSTALL_STATUS_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "INSTALL_STATUS_date:", with: "\"INSTALL_STATUS_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_SOURCE:", with: "\"VERIFY_SOURCE\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_SOURCE_user:", with: "\"VERIFY_SOURCE_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_SOURCE_date:", with: "\"VERIFY_SOURCE_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_DEST:", with: "\"VERIFY_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_DEST_user:", with: "\"VERIFY_DEST_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "VERIFY_DEST_date:", with: "\"VERIFY_DEST_date\":")
+
+                                            cleaned = cleaned.replacingOccurrences(of: "ORIGIN_TERM:", with: "\"ORIGIN_TERM\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "ORIGIN_TERM_user:", with: "\"ORIGIN_TERM_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "ORIGIN_TERM_date:", with: "\"ORIGIN_TERM_date\":")
+                                            
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "DEST_TERM:", with: "\"DEST_TERM\":")
+                                             cleaned = cleaned.replacingOccurrences(of: "DEST_TERM_user:", with: "\"DEST_TERM_user\":")
+                                             cleaned = cleaned.replacingOccurrences(of: "DEST_TERM_date:", with: "\"DEST_TERM_date\":")
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_DEST:", with: "\"CONN_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_DEST_user:", with: "\"CONN_DEST_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "CONN_DEST_date:", with: "\"CONN_DEST_date\":")
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "TESTED:", with: "\"TESTED\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "TESTED_user:", with: "\"TESTED_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "TESTED_date:", with: "\"TESTED_date\":")
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            cleaned = cleaned.replacingOccurrences(of: "RELEASED:", with: "\"RELEASED\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "RELEASED_user:", with: "\"RELEASED_user\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "RELEASED_date:", with: "\"RELEASED_date\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "COMMENT_SOURCE:", with: "\"COMMENT_SOURCE\":")
+cleaned = cleaned.replacingOccurrences(of: "COMMENT_DEST:", with: "\"COMMENT_DEST\":")
+                                            print(cleaned)
+                                            /*
+                                            if let stra = projects[self.projn].rOfInstall{
+                                            print(stra)
+                                            } */
+                                            print("Save Changes")
+                                            let today = Date()
+                                            
+                                                   let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+                                                              let formatter = DateFormatter()
+                                                              formatter.dateFormat = "yyyy-MM-d'T'HH:mm:ss'Z'"
+                                                              let dateOut = formatter.string(from: modifiedDate)
+                                            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[self.projn].area_code+file1)
+                                            do {
+                                                              try cleaned.write(to: url, atomically: true, encoding: .utf8)
+                                                          } catch {
+                                                              print(error.localizedDescription)
+                                                          }
+                                            var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"INSTALL_STATUS",value:self.tog1,user:userID, date:dateOut)
+                                            changes.append(chang)
+                                            
+                                            print(changes.description)
+                                            
+                                            var outchange = changes.description
+                                            
+                                            outchange = outchange.replacingOccurrences(of: "Authenticator.Changes", with: "")
+                                            print(outchange)
+                                            uploader=outchange
+                                        },.cancel()])
                                           }
                 
                 
@@ -460,39 +636,7 @@ struct WireDetail: View {
         )
     }
     //}
-    func updater(){
-           if tog1 != true{
-               tog2 = false
-           }
-           if tog2 != true{
-                      tog3 = false
-                  }
-           if tog3 != true{
-                      tog4 = false
-                  }
-           if tog4 != true{
-                      tog5 = false
-                  }
-           if tog5 != true{
-                      tog6 = false
-                  }
-           if tog6 != true{
-                      tog7 = false
-                  }
-           if tog7 != true{
-                      tog8 = false
-                  }
-           if tog8 != true{
-                      tog9 = false
-                  }
-           if tog9 != true{
-                      tog10 = false
-                  }
-           if tog10 != true{
-                      tog11 = false
-                  }
-           
-       }
+ 
 }
 /*
 struct WireDetail_Previews: PreviewProvider {
@@ -501,3 +645,15 @@ struct WireDetail_Previews: PreviewProvider {
     }
 }
 */
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

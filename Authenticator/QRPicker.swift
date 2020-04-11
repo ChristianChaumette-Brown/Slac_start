@@ -12,6 +12,7 @@ struct QRPicker: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> RegisterViewController {
         //let picker = UIViewController()
         //return picker
+        
         return RegisterViewController()
     }
     

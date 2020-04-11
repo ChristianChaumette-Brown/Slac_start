@@ -20,8 +20,8 @@ struct MyStruct {
 let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
-let server = "http://10.0.0.237:5000"
-//let server = "http://5b2bfb30.ngrok.io"
+let server = "http://10.0.0.236:5000"
+//let server = "http://09b2ac36.ngrok.io"
 //let wireData: [Wire] = loader("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
@@ -29,6 +29,8 @@ var folders : [String:Int]=[:]
 var userID: String = ""
 var completeFolders = [[String:Int]]()
 var completeFoldersArr = [[String]]()
+var changes : [Changes] = []
+var uploader: String = ""
 /*
 var successfulLogins = UserDefaults.standard.integer(forKey: "logins"){
     didSet { UserDefaults.standard.set(successfulLogins, forKey: "logins") }
@@ -47,7 +49,7 @@ func start(){
         
         //check for initial app launch
     let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
-        if(successfulLogins != true){
+        if(successfulLogins == true){
             print("Initial launch data load")
             createInitFiles()
         }
