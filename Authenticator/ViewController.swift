@@ -114,32 +114,7 @@ class ViewController: UIViewController {
                 
         
         
-        func checkWebsite() {
-           // completion: @escaping (Bool) -> Void
-            print("Webcheck")
-            //:5000
-            guard let url = URL(string: "\(server)/ws/projects/") else { return }
-
-            var request = URLRequest(url: url)
-            request.timeoutInterval = 1.0
-
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("\(error.localizedDescription)")
-                    //completion(false)
-                    print("Did not reach server")
-                }
-                if let httpResponse = response as? HTTPURLResponse {
-                    print("statusCode: \(httpResponse.statusCode)")
-                    // do your logic here
-                    // if statusCode == 200 ...
-                    fetchProjects()
-                   // completion(true)
-
-                }
-            }
-            task.resume()
-        }
+       
         
         checkWebsite()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: #selector(backToRootVCAction))
@@ -222,3 +197,29 @@ class ViewController: UIViewController {
     }
 }
 
+func checkWebsite() {
+          // completion: @escaping (Bool) -> Void
+           print("Webcheck")
+           //:5000
+           guard let url = URL(string: "\(server)/ws/projects/") else { return }
+
+           var request = URLRequest(url: url)
+           request.timeoutInterval = 1.0
+
+           let task = URLSession.shared.dataTask(with: request) { data, response, error in
+               if let error = error {
+                   print("\(error.localizedDescription)")
+                   //completion(false)
+                   print("Did not reach server")
+               }
+               if let httpResponse = response as? HTTPURLResponse {
+                   print("statusCode: \(httpResponse.statusCode)")
+                   // do your logic here
+                   // if statusCode == 200 ...
+                   fetchProjects()
+                  // completion(true)
+
+               }
+           }
+           task.resume()
+       }

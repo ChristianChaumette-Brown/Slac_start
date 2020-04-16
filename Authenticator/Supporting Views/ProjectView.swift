@@ -38,6 +38,7 @@ struct ProjectView: View {
         }
             
         .navigationBarTitle("Projects")
+        .navigationBarItems(trailing: Button(action: {checkWebsite()}){Text("Fetch Cables")})
         
         }.onAppear(){
             searchData[0]=""

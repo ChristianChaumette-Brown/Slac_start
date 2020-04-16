@@ -531,10 +531,10 @@ struct WireDetail: View {
                                             projects[self.projn].rOfInstall![self.index].CONN_DEST = self.tog10
                                             projects[self.projn].rOfInstall![self.index].RELEASED = self.tog11
                                             print(projects[self.projn].rOfInstall!)
-                                            var str = projects[self.projn].rOfInstall!.description
+                                            var str = String(projects[self.projn].rOfInstall!.description)
                                            // str = str.flatMap{$0}
                                             
-                                            print(str)
+                                            print(str as String)
                                             //str.
                                             
                                             var cleaned = str.replacingOccurrences(of: "Authenticator.rci(" , with: "{")
@@ -598,6 +598,11 @@ struct WireDetail: View {
                                             cleaned = cleaned.replacingOccurrences(of: "RELEASED_date:", with: "\"RELEASED_date\":")
                                             cleaned = cleaned.replacingOccurrences(of: "COMMENT_SOURCE:", with: "\"COMMENT_SOURCE\":")
 cleaned = cleaned.replacingOccurrences(of: "COMMENT_DEST:", with: "\"COMMENT_DEST\":")
+                                            cleaned = cleaned.replacingOccurrences(of: "Optional{", with: "")
+                                            cleaned = cleaned.replacingOccurrences(of: "}, \"", with: ", \"")
+                                            cleaned = cleaned.replacingOccurrences(of: "}}", with: "}")
+                                            cleaned = cleaned.replacingOccurrences(of: "nil", with: "null")
+                                           //var output =  cleaned?
                                             print(cleaned)
                                             /*
                                             if let stra = projects[self.projn].rOfInstall{
@@ -619,12 +624,12 @@ cleaned = cleaned.replacingOccurrences(of: "COMMENT_DEST:", with: "\"COMMENT_DES
                                             var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"INSTALL_STATUS",value:self.tog1,user:userID, date:dateOut)
                                             changes.append(chang)
                                             
-                                            print(changes.description)
+                                           // print(changes.description)
                                             
                                             var outchange = changes.description
                                             
                                             outchange = outchange.replacingOccurrences(of: "Authenticator.Changes", with: "")
-                                            print(outchange)
+                                           // print(outchange)
                                             uploader=outchange
                                         },.cancel()])
                                           }

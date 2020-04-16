@@ -102,6 +102,7 @@ struct WireList: View {
 	}
 					}.id(UUID())
 				.navigationBarTitle(Text("Cables"))
+					//.navigationBarItems(trailing: Button(action: {checkWebsite()}){Text("Fetch Cables")})
 					.alert(isPresented: $showingConfirmation){
 						Alert(title: Text("Push Success"), message: Text(confirmationMessage), dismissButton: .default(Text("OK")))
 				}

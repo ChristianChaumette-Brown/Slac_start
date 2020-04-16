@@ -42,7 +42,7 @@ struct FolderView: View {
              }
             
         .navigationBarTitle("Cable Groups")
-        
+        .navigationBarItems(trailing: Button(action: {checkWebsite()}){Text("Fetch Cables")})
         //}
     }
 }
