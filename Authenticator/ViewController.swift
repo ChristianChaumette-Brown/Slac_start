@@ -122,14 +122,14 @@ class ViewController: UIViewController {
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()
-        let imageV = UIImageView(frame: CGRect(x: -1, y: 90, width: 390, height: 150))
+        let imageV = UIImageView(frame: CGRect(x: -1, y: 90, width: 420, height: 200))
         //imageV.center = view.center
        
         imageV.layer.cornerRadius = 10
         imageV.clipsToBounds = true
         imageV.layer.borderWidth = 2.0
-        imageV.layer.borderColor = UIColor.red.cgColor
-        imageV.image = UIImage(named: "SLAC_logo", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        //imageV.layer.borderColor = UIColor.red.cgColor
+        imageV.image = UIImage(named: "SLAC-logo", in: Bundle(for: type(of: self)), compatibleWith: nil)
         view.addSubview(imageV)
         view.addSubview(myLogin)
         view.addSubview(myPass)

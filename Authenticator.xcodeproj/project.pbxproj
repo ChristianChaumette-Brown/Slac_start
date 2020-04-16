@@ -28,6 +28,7 @@
 		7667645124079A060067241F /* ServerRec2.json in Resources */ = {isa = PBXBuildFile; fileRef = 7667645024079A050067241F /* ServerRec2.json */; };
 		7667645324079E170067241F /* SLAC_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7667645224079E170067241F /* SLAC_logo.png */; };
 		76676455240841E20067241F /* JSONContainerCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76676454240841E20067241F /* JSONContainerCodable.swift */; };
+		767D7FD724483CCC005CD9F2 /* SLAC-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 767D7FD624483CCC005CD9F2 /* SLAC-logo.png */; };
 		76861082243A605900622CAF /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76861081243A605900622CAF /* ProjectView.swift */; };
 		7691565D240F819100284852 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565C240F819100284852 /* LoginViewController.swift */; };
 		7691565F240F81AB00284852 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7691565E240F81AB00284852 /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 		7667645024079A050067241F /* ServerRec2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ServerRec2.json; sourceTree = "<group>"; };
 		7667645224079E170067241F /* SLAC_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SLAC_logo.png; sourceTree = "<group>"; };
 		76676454240841E20067241F /* JSONContainerCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONContainerCodable.swift; sourceTree = "<group>"; };
+		767D7FD624483CCC005CD9F2 /* SLAC-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SLAC-logo.png"; sourceTree = "<group>"; };
 		76861081243A605900622CAF /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		7691565C240F819100284852 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7691565E240F81AB00284852 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		7667640D2405C5200067241F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				767D7FD624483CCC005CD9F2 /* SLAC-logo.png */,
 				7624EE1F24369633009F5FC8 /* LCLSII.json */,
 				76676446240766250067241F /* ServerRec.json */,
 				7667645224079E170067241F /* SLAC_logo.png */,
@@ -264,6 +267,7 @@
 				7667645324079E170067241F /* SLAC_logo.png in Resources */,
 				76B33B2124044B0E00CB7438 /* Assets.xcassets in Resources */,
 				7624EE2024369633009F5FC8 /* LCLSII.json in Resources */,
+				767D7FD724483CCC005CD9F2 /* SLAC-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
