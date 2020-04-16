@@ -122,7 +122,7 @@ class ViewController: UIViewController {
        // fetchFiles()
        // print(projects[0].area_code)
        // folderBuild()
-        let imageV = UIImageView(frame: CGRect(x: -1, y: 90, width: 420, height: 200))
+        let imageV = UIImageView(frame: CGRect(x: 300, y: 250, width: 100, height: 50))
         //imageV.center = view.center
        
         imageV.layer.cornerRadius = 10
@@ -130,7 +130,17 @@ class ViewController: UIViewController {
         imageV.layer.borderWidth = 2.0
         //imageV.layer.borderColor = UIColor.red.cgColor
         imageV.image = UIImage(named: "SLAC-logo", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        
+        let imageLog = UIImageView(frame: CGRect(x: -40, y: 90, width: 480, height: 240))
+         //imageV.center = view.center
+        
+         imageLog.layer.cornerRadius = 10
+         imageLog.clipsToBounds = true
+         imageLog.layer.borderWidth = 2.0
+         //imageV.layer.borderColor = UIColor.red.cgColor
+         imageLog.image = UIImage(named: "Slacable_2", in: Bundle(for: type(of: self)), compatibleWith: nil)
         view.addSubview(imageV)
+        view.addSubview(imageLog)
         view.addSubview(myLogin)
         view.addSubview(myPass)
         view.addSubview(loginButton)
@@ -138,6 +148,9 @@ class ViewController: UIViewController {
         
         imageV.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -40).isActive = true
         imageV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        imageLog.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 100).isActive = true
+        imageLog.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         myLogin.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         myLogin.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

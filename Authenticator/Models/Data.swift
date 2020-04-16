@@ -20,8 +20,9 @@ struct MyStruct {
 let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
-let server = "http://10.0.0.236:5000"
+//let server = "http://10.0.0.236:5000"
 //let server = "http://e6ea27fd.ngrok.io"
+let server = "http://slacable.serverless.social"
 //let wireData: [Wire] = loader("csvjson.json")
 var searchData = [""]
 var folderData: [String] = [""]
