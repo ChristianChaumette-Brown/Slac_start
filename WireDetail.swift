@@ -127,32 +127,22 @@ struct WireDetail: View {
                 
             }
                     }
-            
+            if projects[projn].rOfInstall![index].VERIFY_DEST != self.tog3&&self.tog3==false{
+                                       TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                                   }
         //.padding()
+                    
                     
                     HStack{
                         
-            Text("Installation: ")
-                        
-                        if (tog1) {
-                            Text("Installed by user \(projects[projn].rOfInstall![index].INSTALL_STATUS_user ?? "default_user")\n Installed on \(projects[projn].rOfInstall![index].INSTALL_STATUS_date ?? "2020-04-06T05:49:07Z")")
-                            
-                        }
-                        else{
-                            
-                            Text("No").onAppear(){self.tog2=false
-                               
-                                
-                            }
-                            //tog2 = false
-                            
-                        }
+                       
+                      
                         Toggle(isOn: $tog1) {
-                        /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                        Text("Installation: ")
                             
                         }
-                        .padding(.trailing, 20.0)
-                        .frame(width: 60.0)
+                        //.padding(.trailing, 5.0)
+                        .frame(width: 200.0)
                     }.onAppear(){
                         if self.tog1==false{
                             self.tog2=false
@@ -161,62 +151,123 @@ struct WireDetail: View {
                     if projects[projn].rOfInstall![index].INSTALL_STATUS != self.tog1&&self.tog1==false{
                                                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                                                    }
-                    if tog1 == true{
+                  //  if tog1 == true{
                         
                         HStack{
-                        Text("Source Verification: ")
-                                    
-                                    if (tog2){
-                                        Text("Verified by user \(projects[projn].rOfInstall![index].VERIFY_SOURCE_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_SOURCE_date ?? "2020-04-06T05:49:07Z")")
-                                        
-                                                }
-                                            else{
-                                        Text("No").onAppear(){
-                                            self.tog3=false
-                                        }
-                                        
-                            }
-                                    Toggle(isOn: $tog2) {
-                                    /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                        
+                            
+                            Toggle(isOn: $tog2) {
+                                    Text("Source Verification: ")
                                     }
-                                    .padding(.trailing, 20.0)
-                                    .frame(width: 60.0)
+                                    .padding(.trailing, 10.0)
+                                   // .frame(width: 30.0)
+                            .disabled( tog1 == false)
+                            
+                            Toggle(isOn: $tog3) {
+                            Text("Verified Destination: ")
+                            }
+                            .padding(.trailing, 10.0)
+                            .disabled(tog1==false)
+                            //.frame(width: 30.0)
                         }.onDisappear(){
-                            self.tog3=false
+                            self.tog4=false
                         }.onAppear(){
                             if self.tog2==false{
-                                self.tog3=false
+                                self.tog4=false
                             }
                         }
                         if projects[projn].rOfInstall![index].VERIFY_SOURCE != self.tog2&&self.tog2==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
-                    }
+                    //}
                     
-                    if tog1 == true && tog2 == true{
+                   // if tog1 == true && tog2 == true{
                         HStack{
-                                   Text("Verified Destination: ")
-                                               if (tog3){
-                                               Text("Verified by user \(projects[projn].rOfInstall![index].VERIFY_DEST_user ?? "default_user")\n Verified on \(projects[projn].rOfInstall![index].VERIFY_DEST_date ?? "2020-04-06T05:49:07Z")")
-                                                                                  }
-                                                                              else{
-                                                                          Text("No").onAppear(){self.tog4=false}
-                                                                                             }
-                                               Toggle(isOn: $tog3) {
-                                               /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+                                   
+                      
+                                               Toggle(isOn: $tog4) {
+                                               Text("Origin Termination: ")
                                                }
-                                               .padding(.trailing, 20.0)
-                                               .frame(width: 60.0)
-                                           }.onAppear(){
+                                               .padding(.trailing, 10.0)
+                                               //.frame(width: 60.0)
+                                               .disabled(tog2==false)
+                                        
+                            Toggle(isOn: $tog5) {
+                                                                          Text("Destination Termination: ")
+                                                                          }
+                                                                          .padding(.trailing, 10.0)
+                                                                          //.frame(width: 60.0)
+                                                                          .disabled(tog3==false)
+                            
+                                           }
+                        
+                        .onAppear(){
                                                if self.tog3==false{
-                                                   self.tog4=false
+                                                   self.tog5=false
                                                }
                                            }
-                        if projects[projn].rOfInstall![index].VERIFY_DEST != self.tog3&&self.tog3==false{
-                            TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
-                        
-                    }
+                    HStack{
+                                 
+                    
+                                             Toggle(isOn: $tog6) {
+                                             Text("VERIFY Connection ORIGIN : ")
+                                             }
+                                             .padding(.trailing, 5.0)
+                                             //.frame(width: 60.0)
+                                             .disabled(tog4==false)
+                                      
+                          Toggle(isOn: $tog7) {
+                                                                        Text("VERIFY Connection DEST: ")
+                                                                        }
+                                                                        .padding(.trailing, 5.0)
+                                                                        //.frame(width: 60.0)
+                                                                        .disabled(tog5==false)
+                          
+                                         }
+                     
+                      
+                    
+                       
+                }
+                
+                                                                               Toggle(isOn: $tog8) {
+                                                                                                                             HStack{ Text("Tested: ")
+                                                                                                                             }
+                                                                                                                             .padding(.trailing, 5.0)
+                                                                                                                             
+                                                                                                                             }.frame(width: 200.0)
+                .disabled(tog6==false||tog7==false)
+                
+                HStack{
+                                                  
+                                     
+                                                              Toggle(isOn: $tog9) {
+                                                              Text("Connection Origin: ")
+                                                              }
+                                                              .padding(.trailing, 5.0)
+                                                              //.frame(width: 60.0)
+                                                              .disabled(tog8==false)
+                                                     
+                                           Toggle(isOn: $tog10) {
+                                                                                           Text("Connection Destination: ")
+                                                                                         }
+                                                                                        .padding(.trailing, 5.0)
+                                                                                         //.frame(width: 60.0)
+                                                                                         .disabled(tog8==false)
+                                           
+                                                          }
+               
+                                                                                              Toggle(isOn: $tog11) {
+                                                                                                                                             HStack{ Text("Released: ")
+                                                                                                                                            }
+                                                                                                                                            .padding(.trailing, 5.0)
+                                                                                                                                            .frame(width: 100.0)
+                                                                                                                                            }.disabled(tog9==false||tog10==false)
+                                                                                                .frame(width: 200)
+                
+               
+                   // }
+                    /*
                    
                     if tog1&&tog2&&tog3 {
                     HStack{
@@ -343,6 +394,9 @@ struct WireDetail: View {
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
             }
+                */
+                
+                /*
                 if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8{
                 HStack{
                            Text("Connection Origin: ")
@@ -390,7 +444,8 @@ struct WireDetail: View {
                     TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 
-            }
+            } */
+                /*
                if tog1&&tog2&&tog3&&tog4&&tog5&&tog6&&tog7&&tog8&&tog9&&tog10  {
                 HStack{
                  Text("Cable Released: ")
@@ -415,7 +470,7 @@ struct WireDetail: View {
                 Text("Destination Comments \(projects[projn].rOfInstall![index].COMMENT_DEST ?? "Default Destination Comment")")
                     
             }
-                
+              */
                 
             }
             
