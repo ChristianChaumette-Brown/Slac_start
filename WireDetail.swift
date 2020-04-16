@@ -129,6 +129,7 @@ struct WireDetail: View {
                     }
             if projects[projn].rOfInstall![index].VERIFY_DEST != self.tog3&&self.tog3==false{
                                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                
                                    }
         //.padding()
                     
@@ -143,6 +144,7 @@ struct WireDetail: View {
                         }
                         //.padding(.trailing, 5.0)
                         .frame(width: 200.0)
+                       
                     }.onAppear(){
                         if self.tog1==false{
                             self.tog2=false
@@ -161,13 +163,14 @@ struct WireDetail: View {
                                     }
                                     .padding(.trailing, 10.0)
                                    // .frame(width: 30.0)
-                            .disabled( tog1 == false)
+                                .disabled( tog1 == false )
                             
                             Toggle(isOn: $tog3) {
                             Text("Verified Destination: ")
                             }
                             .padding(.trailing, 10.0)
                             .disabled(tog1==false)
+                        
                             //.frame(width: 30.0)
                         }.onDisappear(){
                             self.tog4=false
@@ -176,6 +179,7 @@ struct WireDetail: View {
                                 self.tog4=false
                             }
                         }
+                        
                         if projects[projn].rOfInstall![index].VERIFY_SOURCE != self.tog2&&self.tog2==false{
                             TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         }
@@ -237,20 +241,21 @@ struct WireDetail: View {
                                                                                                                              
                                                                                                                              }.frame(width: 200.0)
                 .disabled(tog6==false||tog7==false)
+                                                                                
                 
                 HStack{
                                                   
                                      
                                                               Toggle(isOn: $tog9) {
                                                               Text("Connection Origin: ")
-                                                              }
+                    }
                                                               .padding(.trailing, 5.0)
                                                               //.frame(width: 60.0)
                                                               .disabled(tog8==false)
                                                      
-                                           Toggle(isOn: $tog10) {
+                    Toggle(isOn: $tog10) {
                                                                                            Text("Connection Destination: ")
-                                                                                         }
+                        }
                                                                                         .padding(.trailing, 5.0)
                                                                                          //.frame(width: 60.0)
                                                                                          .disabled(tog8==false)
@@ -262,7 +267,8 @@ struct WireDetail: View {
                                                                                                                                             }
                                                                                                                                             .padding(.trailing, 5.0)
                                                                                                                                             .frame(width: 100.0)
-                                                                                                                                            }.disabled(tog9==false||tog10==false)
+                                                                                                                                            }
+                                                                                              .disabled(tog9==false||tog10==false)
                                                                                                 .frame(width: 200)
                 
                
@@ -519,6 +525,22 @@ struct WireDetail: View {
             self.tog11 = self.rci.RELEASED ?? false
             //self.updater()
             */
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){timer in
+                if self.tog1 == false{
+                    self.tog2=false
+                    self.tog3=false
+                }
+                if self.tog2 == false{self.tog4=false}
+                 if self.tog4 == false{self.tog6=false}
+                 if self.tog3 == false{self.tog5=false}
+                 if self.tog5 == false{self.tog7=false}
+                if (self.tog6) == false{self.tog8=false}
+                 if (self.tog7) == false{self.tog8=false}
+                if self.tog8 == false{
+                                   self.tog9=false
+                                   self.tog10=false
+                               }
+            }
         }.onDisappear(){
             print("Wiredetail disappear")
             /*
@@ -536,11 +558,11 @@ struct WireDetail: View {
             */
            // self.sheetBool.toggle()
             
-            }
-           
+        }
         .navigationBarTitle(Text(wire.Cablenum ))
         
         .navigationBarItems(trailing:
+        
             HStack{
                 
                 Button(action:{self.infoBool.toggle()}){
