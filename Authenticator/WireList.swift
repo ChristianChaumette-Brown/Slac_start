@@ -28,6 +28,8 @@ struct WireList: View {
 	@State var index: Int = 0
 	@State private var confirmationMessage = ""
 	@State private var showingConfirmation = false
+	@State private var showingFailed = false
+	@State var message : String = ""
 	//  var viewState:Bool = true
 	//@EnvironmentObject var searcher:searchInfo
 	//  let control = UIViewController(nibName: "QRSViewController", bundle: nil)
@@ -106,6 +108,9 @@ struct WireList: View {
 					.alert(isPresented: $showingConfirmation){
 						Alert(title: Text("Push Success"), message: Text(confirmationMessage), dismissButton: .default(Text("OK")))
 				}
+				.alert(isPresented: $showingFailed){
+					Alert(title: Text("Push Failed"), message: Text(message),dismissButton: .default(Text("OK")))
+				}
 				//FolderView().navigationBarHidden(true)
 		}.onDisappear(){
 			print("Moved out of Wirelist")
@@ -169,6 +174,8 @@ struct WireList: View {
 			// handle the result here.
 			guard let data = data else {
 				print("No data in response: \(error?.localizedDescription ?? "Unknown error").")
+				self.showingFailed=true
+				self.message = error?.localizedDescription ?? "Unknown error"
 				return
 			}
 			print("Server Push Success")
