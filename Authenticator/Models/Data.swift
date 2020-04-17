@@ -51,7 +51,7 @@ func start(){
         
         //check for initial app launch
     let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
-        if(successfulLogins == true){
+        if(successfulLogins != true){
             print("Initial launch data load")
             createInitFiles()
         }
@@ -467,6 +467,11 @@ func load<T: Decodable>(_ filename: String) -> T {
     do {
         data = try Data(contentsOf: file)
     } catch {
+        if defaults.bool(forKey: "First Launch")==true{
+            print("Reseting install")
+            
+            defaults.set(false, forKey: "First Launch")
+        }
         fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
     }
     

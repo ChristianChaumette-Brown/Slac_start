@@ -29,6 +29,18 @@ struct WireDetail: View {
     
         @State var sheetBool = false
         @State var infoBool = false
+   @State var changed1 = false
+     @State var changed2 = false
+    @State var changed3 = false
+    @State var changed4 = false
+     @State var changed5 = false
+     @State var changed6 = false
+    @State var changed7 = false
+    @State var changed8 = false
+   @State  var changed9 = false
+   @State  var changed10 = false
+  @State   var changed11 = false
+    
     var changedCount: Int = 0
     var changed : Bool = false
     var saved : Bool = false
@@ -540,6 +552,17 @@ struct WireDetail: View {
                                    self.tog9=false
                                    self.tog10=false
                                }
+                if self.tog1 != projects[self.projn].rOfInstall![self.index].INSTALL_STATUS {self.changed1=true}
+                 if self.tog2 != projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE  {self.changed2=true}
+               if  self.tog3 != projects[self.projn].rOfInstall![self.index].VERIFY_DEST {self.changed3=true}
+                if self.tog4 != projects[self.projn].rOfInstall![self.index].ORIGIN_TERM {self.changed4=true}
+                if self.tog5 != projects[self.projn].rOfInstall![self.index].DEST_TERM {self.changed5=true}
+                if self.tog6 != projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN {self.changed6=true}
+                if self.tog7 != projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST {self.changed7=true}
+                if self.tog8 != projects[self.projn].rOfInstall![self.index].TESTED {self.changed8=true}
+                if self.tog9 != projects[self.projn].rOfInstall![self.index].CONN_ORIGIN {self.changed9=true}
+                if self.tog10 !=  projects[self.projn].rOfInstall![self.index].CONN_DEST {self.changed10=true}
+                if self.tog11 !=  projects[self.projn].rOfInstall![self.index].RELEASED {self.changed11=true}
             }
         }.onDisappear(){
             print("Wiredetail disappear")
@@ -698,8 +721,40 @@ cleaned = cleaned.replacingOccurrences(of: "COMMENT_DEST:", with: "\"COMMENT_DES
                                                           } catch {
                                                               print(error.localizedDescription)
                                                           }
-                                            var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"INSTALL_STATUS",value:self.tog1,user:userID, date:dateOut)
-                                            changes.append(chang)
+                                           
+                                            if self.changed1 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"INSTALL_STATUS",value:self.tog1,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed2 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"VERIFY_SOURCE",value:self.tog2,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed3 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"VERIFY_DEST",value:self.tog3,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed4 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"ORIGIN_TERM",value:self.tog4,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed5 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"DEST_TERM",value:self.tog5,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed6 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"VERIFY_CONN_ORIGIN",value:self.tog6,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed7 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"VERIFY_CONN_DEST",value:self.tog7,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed8 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"TESTED",value:self.tog8,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed9 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"CONN_ORIGIN",value:self.tog9,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed10 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"CONN_DEST",value:self.tog10,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
+                                            if self.changed11 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"RELEASED",value:self.tog11,user:userID, date:dateOut)
+                                                                                           changes.append(chang)
+                                                                                       }
                                             
                                            // print(changes.description)
                                             

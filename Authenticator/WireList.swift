@@ -166,6 +166,7 @@ struct WireList: View {
 		print(changes)
 		print(changes.count)
 		print(changes.capacity)
+		self.confirmationMessage=""
 		guard let encoded = try? JSONEncoder().encode(changes) else {
 			print("Failed to encode order")
 			
@@ -192,9 +193,13 @@ struct WireList: View {
 			self.showingConfirmation = true
 			print("Server Push Success")
 			
+			
+			
 			print(data)
 		}.resume()
-		changes.removeAll()
+		if self.confirmationMessage=="Server Push Success"{changes.removeAll()}
+		
+		
 	}
 }
 //}
