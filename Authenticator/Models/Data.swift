@@ -475,12 +475,13 @@ func load<T: Decodable>(_ filename: String) -> T {
     }
         
     catch {
+        if defaults.bool(forKey: "First Launch")==true{
+            print("Reseting install")
+            
+            defaults.set(false, forKey: "First Launch")
+        }
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
-          if defaults.bool(forKey: "First Launch")==true{
-                  print("Reseting install")
-                  
-                  defaults.set(false, forKey: "First Launch")
-              }
+          
     }
     
 }
