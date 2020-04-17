@@ -6,7 +6,7 @@ class ViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
-    
+    var message : String = ""
     
     
     lazy var loginButton: UIButton = {
@@ -223,16 +223,21 @@ func checkWebsite() {
                if let error = error {
                    print("\(error.localizedDescription)")
                    //completion(false)
+                pushMessage=error.localizedDescription
+                print(pushMessage)
                    print("Did not reach server")
                }
                if let httpResponse = response as? HTTPURLResponse {
                    print("statusCode: \(httpResponse.statusCode)")
                    // do your logic here
                    // if statusCode == 200 ...
+                pushMessage=httpResponse.statusCode.description
+                print(pushMessage)
                    fetchProjects()
                   // completion(true)
 
                }
            }
+    
            task.resume()
        }

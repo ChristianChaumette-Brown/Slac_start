@@ -32,6 +32,7 @@ var completeFolders = [[String:Int]]()
 var completeFoldersArr = [[String]]()
 var changes : [Changes] = []
 var uploader: String = ""
+var pushMessage: String = ""
 /*
 var successfulLogins = UserDefaults.standard.integer(forKey: "logins"){
     didSet { UserDefaults.standard.set(successfulLogins, forKey: "logins") }

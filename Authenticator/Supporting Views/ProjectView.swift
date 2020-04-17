@@ -9,6 +9,7 @@
 import SwiftUI
 import UIKit
 struct ProjectView: View {
+    @State private var showingConfirmation = false
    var body: some View {
         
        NavigationView{
@@ -38,8 +39,15 @@ struct ProjectView: View {
         }
             
         .navigationBarTitle("Projects")
-        .navigationBarItems(trailing: Button(action: {checkWebsite()}){Text("Fetch Cables")})
-        
+        .navigationBarItems(trailing: Button(action: {checkWebsite()
+            self.showingConfirmation=true
+        }){Text("Fetch Cables")})
+        .alert(isPresented: $showingConfirmation){
+            if pushMessage == "200"{
+                pushMessage = "Fetch Success"
+            }
+            return Alert(title: Text("Fetch Status"), message: Text(pushMessage), dismissButton: .default(Text("OK")))
+                    }
         }.onAppear(){
             searchData[0]=""
           print("Entered Project View")

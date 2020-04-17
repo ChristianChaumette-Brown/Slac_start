@@ -13,6 +13,7 @@ struct FolderView: View {
     @State private var actionState: Int? = 0
    // var projName:String
   // @EnvironmentObject var ServerData : DataAssignment
+    @State private var showingConfirmation = false
     var proj: Int
     //init(){}
     var body: some View {
@@ -42,8 +43,16 @@ struct FolderView: View {
              }
             
         .navigationBarTitle("Cable Groups")
-        .navigationBarItems(trailing: Button(action: {checkWebsite()}){Text("Fetch Cables")})
+        .navigationBarItems(trailing: Button(action: {checkWebsite()
+            self.showingConfirmation=true
+        }){Text("Fetch Cables")})
         //}
+        .alert(isPresented: $showingConfirmation){
+        if pushMessage == "200"{
+            pushMessage = "Fetch Success"
+        }
+        return Alert(title: Text("Fetch Status"), message: Text(pushMessage), dismissButton: .default(Text("OK")))
+                }
     }
 }
 
