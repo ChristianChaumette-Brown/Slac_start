@@ -16,7 +16,7 @@ struct MyStruct {
 
 
  var folderArr = [String]()
-
+let defaults = UserDefaults.standard
 let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
@@ -476,6 +476,11 @@ func load<T: Decodable>(_ filename: String) -> T {
         
     catch {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+          if defaults.bool(forKey: "First Launch")==true{
+                  print("Reseting install")
+                  
+                  defaults.set(false, forKey: "First Launch")
+              }
     }
     
 }
