@@ -106,11 +106,13 @@ struct WireList: View {
 				.navigationBarTitle(Text("Cables"))
 					//.navigationBarItems(trailing: Button(action: {checkWebsite()}){Text("Fetch Cables")})
 					.alert(isPresented: $showingConfirmation){
-						Alert(title: Text("Push Success"), message: Text(confirmationMessage), dismissButton: .default(Text("OK")))
+						Alert(title: Text("Push Status"), message: Text(confirmationMessage), dismissButton: .default(Text("OK")))
 				}
+					/*
 				.alert(isPresented: $showingFailed){
 					Alert(title: Text("Push Failed"), message: Text(message),dismissButton: .default(Text("OK")))
-				}
+				}*/
+				
 				//FolderView().navigationBarHidden(true)
 		}.onDisappear(){
 			print("Moved out of Wirelist")
@@ -161,10 +163,17 @@ struct WireList: View {
 		}
 	}
 	func postChanges(){
+		print(changes)
+		print(changes.count)
+		print(changes.capacity)
 		guard let encoded = try? JSONEncoder().encode(changes) else {
 			print("Failed to encode order")
+			
 			return
 		}
+		print(changes.count)
+		if changes.count==0{self.confirmationMessage="No Changes to Push"}
+		if changes.count>0{self.confirmationMessage="Server Push Success"}
 		let url = URL(string:"\(server)/ws/\(projects[projNum].area_code)/rci_updates/" )!
 		var request = URLRequest(url: url)
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -174,12 +183,15 @@ struct WireList: View {
 			// handle the result here.
 			guard let data = data else {
 				print("No data in response: \(error?.localizedDescription ?? "Unknown error").")
-				self.showingFailed=true
-				self.message = error?.localizedDescription ?? "Unknown error"
+				self.confirmationMessage = error?.localizedDescription ?? "Unknown error"
+				self.showingConfirmation=true
+				
 				return
 			}
-			print("Server Push Success")
+			
 			self.showingConfirmation = true
+			print("Server Push Success")
+			
 			print(data)
 		}.resume()
 		changes.removeAll()
