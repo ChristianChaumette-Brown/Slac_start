@@ -64,14 +64,7 @@ struct WireList: View {
 		
 			VStack{
 				HStack{
-					Button(action:{
-						self.refresh()
-						self.delegate?.didTapButton()
-						
-					}
-					){
-						Text("Refresh")
-					}
+					
 					TextField("Search", text : $searchText, onEditingChanged:  {(changed) in
 						if changed != true{
 							self.folderText=folderData[0]
@@ -79,7 +72,15 @@ struct WireList: View {
 						else{
 							self.folderText="query"
 						}
-							})
+					}).padding(.leading,20)
+					Button(action:{
+						self.searchText = ""
+						
+					}
+					){
+						if searchText != ""{Text("(X)")}
+						else {Text("   ")}
+					}.disabled(self.searchText=="")
 					Button(action:{
 						self.postChanges()
 					}){Text("Upload Changes")}
