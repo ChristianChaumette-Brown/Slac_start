@@ -11,8 +11,9 @@ import SwiftUI
 struct WireDetail: View {
     var wire: Wire
     var projn: Int
-   
+   @Environment(\.presentationMode) var presentationMode
     
+    @State var visable : Bool = true
     @State var tog1 : Bool = true
     @State var tog2 : Bool = false
     @State var tog3 : Bool = false
@@ -139,7 +140,7 @@ struct WireDetail: View {
                             
                         }
                     }
-                    if changed == true && (self.tog1==false||self.tog2==false||self.tog3==false||self.tog4==false||self.tog5==false||self.tog6==false||self.tog7==false||self.tog8==false||self.tog9==false||self.tog10==false||self.tog11==false){
+                    if changed == true && ((self.tog1==false&&self.changed1==true)||(self.tog2==false&&self.changed2==true)||(self.tog3==false&&self.changed3==true)||(self.tog4==false&&self.changed4==true)||(self.tog5==false&&self.changed5==true)||(self.tog6==false&&self.changed6==true)||(self.tog7==false&&self.changed7==true)||(self.tog8==false&&self.changed8==true)||(self.tog9==false&&self.changed9==true)||(self.tog10==false&&self.changed10==true)||(self.tog11==false&&self.changed11==true)){
                         TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
                         
                     }
@@ -156,7 +157,7 @@ struct WireDetail: View {
                         }
                             //.padding(.trailing, 5.0)
                             .frame(width: 200.0)
-                        
+                            
                     }.onAppear(){
                         if self.tog1==false{
                             self.tog2=false
@@ -524,7 +525,7 @@ struct WireDetail: View {
             self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST
             self.tog11 = projects[self.projn].rOfInstall![index].RELEASED
         
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){timer in
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: self.visable){timer in
                 if self.freeChange == false {
                 if self.tog1 == false{
                     self.tog2=false
@@ -542,20 +543,24 @@ struct WireDetail: View {
                 }
                     if self.tog9==false||self.tog10==false{self.tog11=false}
             }
-                if self.tog1 != projects[self.projn].rOfInstall![self.index].INSTALL_STATUS {self.changed1=true;self.changed=true}
-                if self.tog2 != projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE  {self.changed2=true;self.changed=true}
-                if  self.tog3 != projects[self.projn].rOfInstall![self.index].VERIFY_DEST {self.changed3=true;self.changed=true}
-                if self.tog4 != projects[self.projn].rOfInstall![self.index].ORIGIN_TERM {self.changed4=true;self.changed=true}
-                if self.tog5 != projects[self.projn].rOfInstall![self.index].DEST_TERM {self.changed5=true;self.changed=true}
-                if self.tog6 != projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN {self.changed6=true;self.changed=true}
-                if self.tog7 != projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST {self.changed7=true;self.changed=true}
-                if self.tog8 != projects[self.projn].rOfInstall![self.index].TESTED {self.changed8=true;self.changed=true}
-                if self.tog9 != projects[self.projn].rOfInstall![self.index].CONN_ORIGIN {self.changed9=true;self.changed=true}
-                if self.tog10 !=  projects[self.projn].rOfInstall![self.index].CONN_DEST {self.changed10=true;self.changed=true}
-                if self.tog11 !=  projects[self.projn].rOfInstall![self.index].RELEASED {self.changed11=true;self.changed=true}
+                if self.tog1 != projects[self.projn].rOfInstall?[self.index].INSTALL_STATUS {self.changed1=true;self.changed=true}
+                if self.tog2 != projects[self.projn].rOfInstall?[self.index].VERIFY_SOURCE  {self.changed2=true;self.changed=true}
+                if  self.tog3 != projects[self.projn].rOfInstall?[self.index].VERIFY_DEST {self.changed3=true;self.changed=true}
+                if self.tog4 != projects[self.projn].rOfInstall?[self.index].ORIGIN_TERM {self.changed4=true;self.changed=true}
+                if self.tog5 != projects[self.projn].rOfInstall?[self.index].DEST_TERM {self.changed5=true;self.changed=true}
+                if self.tog6 != projects[self.projn].rOfInstall?[self.index].VERIFY_CONN_ORIGIN {self.changed6=true;self.changed=true}
+                if self.tog7 != projects[self.projn].rOfInstall?[self.index].VERIFY_CONN_DEST {self.changed7=true;self.changed=true}
+                if self.tog8 != projects[self.projn].rOfInstall?[self.index].TESTED {self.changed8=true;self.changed=true}
+                if self.tog9 != projects[self.projn].rOfInstall?[self.index].CONN_ORIGIN {self.changed9=true;self.changed=true}
+                if self.tog10 !=  projects[self.projn].rOfInstall?[self.index].CONN_DEST {self.changed10=true;self.changed=true}
+                if self.tog11 !=  projects[self.projn].rOfInstall?[self.index].RELEASED {self.changed11=true;self.changed=true}
             }
         }.onDisappear(){
             print("Wiredetail disappear")
+            self.presentationMode.wrappedValue.dismiss()
+            self.deleteDisabled(false)
+            self.visable=false
+            //self.
             /*
              projects[self.projn].rOfInstall!["L2D04268"]?.INSTALL_STATUS = self.tog1
              projects[self.projn].rOfInstall!["L2D04268"]?.VERIFY_SOURCE = self.tog2
@@ -571,7 +576,7 @@ struct WireDetail: View {
              */
             // self.sheetBool.toggle()
             
-        }
+            }
         .navigationBarTitle(Text(wire.Cablenum ))
             
         .navigationBarItems(trailing:
@@ -609,17 +614,17 @@ struct WireDetail: View {
                         self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST
                         self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED
                         },.default(Text("Save Changes")){
-                            projects[self.projn].rOfInstall![self.index].INSTALL_STATUS = self.tog1
-                            projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE = self.tog2
-                            projects[self.projn].rOfInstall![self.index].VERIFY_DEST = self.tog3
-                            projects[self.projn].rOfInstall![self.index].ORIGIN_TERM = self.tog4
-                            projects[self.projn].rOfInstall![self.index].DEST_TERM = self.tog5
-                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN = self.tog6
-                            projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST = self.tog7
-                            projects[self.projn].rOfInstall![self.index].TESTED = self.tog8
-                            projects[self.projn].rOfInstall![self.index].CONN_ORIGIN = self.tog9
-                            projects[self.projn].rOfInstall![self.index].CONN_DEST = self.tog10
-                            projects[self.projn].rOfInstall![self.index].RELEASED = self.tog11
+                            if self.changed1==true{ projects[self.projn].rOfInstall![self.index].INSTALL_STATUS = self.tog1}
+                            if self.changed2==true{ projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE = self.tog2}
+                                if self.changed3==true{ projects[self.projn].rOfInstall![self.index].VERIFY_DEST = self.tog3}
+                                if self.changed4==true{ projects[self.projn].rOfInstall![self.index].ORIGIN_TERM = self.tog4}
+                                if self.changed5==true{ projects[self.projn].rOfInstall![self.index].DEST_TERM = self.tog5}
+                                if self.changed6==true{ projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN = self.tog6}
+                                if self.changed7==true{ projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST = self.tog7}
+                                if self.changed8==true{ projects[self.projn].rOfInstall![self.index].TESTED = self.tog8}
+                                if self.changed9==true{ projects[self.projn].rOfInstall![self.index].CONN_ORIGIN = self.tog9}
+                                if self.changed10==true{ projects[self.projn].rOfInstall![self.index].CONN_DEST = self.tog10}
+                                if self.changed11==true{ projects[self.projn].rOfInstall![self.index].RELEASED = self.tog11}
                             print(projects[self.projn].rOfInstall!)
                             var str = String(projects[self.projn].rOfInstall!.description)
                             // str = str.flatMap{$0}
