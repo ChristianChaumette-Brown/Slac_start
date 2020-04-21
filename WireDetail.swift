@@ -36,9 +36,9 @@ struct WireDetail: View {
     @State var changed6 = false
     @State var changed7 = false
     @State var changed8 = false
-    @State  var changed9 = false
-    @State  var changed10 = false
-    @State   var changed11 = false
+    @State var changed9 = false
+    @State var changed10 = false
+    @State var changed11 = false
     
     @State var freeChange = false
     
@@ -47,6 +47,18 @@ struct WireDetail: View {
     var saved : Bool = false
     var index = -1
     var setColor = Color(UIColor.gray)
+    
+    @State var toggleColor1 = Color(UIColor.orange)
+    @State var toggleColor2 = Color(UIColor.orange)
+     @State var toggleColor3 = Color(UIColor.orange)
+    @State var toggleColor4 = Color(UIColor.orange)
+    @State var toggleColor5 = Color(UIColor.orange)
+    @State var toggleColor6 = Color(UIColor.orange)
+    @State var toggleColor7 = Color(UIColor.orange)
+   @State  var toggleColor8 = Color(UIColor.orange)
+   @State var toggleColor9 = Color(UIColor.orange)
+   @State var toggleColor10 = Color(UIColor.orange)
+   @State var toggleColor11 = Color(UIColor.orange)
     
     @State var installField : String = ""
     
@@ -161,7 +173,7 @@ struct WireDetail: View {
                             ColoredToggleStyle(label: "Installation: ",
                                            onColor: .green,
                                            offColor: setColor,
-                                           thumbColor: Color(UIColor.systemTeal)))
+                                           thumbColor: toggleColor1))
                             
                     }.onAppear(){
                         if self.tog1==false{
@@ -186,7 +198,7 @@ struct WireDetail: View {
                             ColoredToggleStyle(label: "Source Verification: ",
                                            onColor: .green,
                                            offColor: setColor,
-                                           thumbColor: Color(UIColor.systemTeal)))
+                                           thumbColor: toggleColor2))
                             .disabled( tog1 == false&&freeChange==false )
                         
                         Toggle(isOn: $tog3) {
@@ -196,7 +208,7 @@ struct WireDetail: View {
                             ColoredToggleStyle(label: "Verified Destination: ",
                                            onColor: .green,
                                            offColor: setColor,
-                                           thumbColor: Color(UIColor.systemTeal)))
+                                           thumbColor: toggleColor3))
                         .padding(.trailing, 10.0)
                         .disabled(tog1==false&&freeChange==false)
                         
@@ -227,7 +239,7 @@ struct WireDetail: View {
                                 ColoredToggleStyle(label: "Origin Termination: ",
                                                onColor: .green,
                                                offColor: setColor,
-                                               thumbColor: Color(UIColor.systemTeal)))
+                                               thumbColor: toggleColor4))
                             .padding(.trailing, 10.0)
                             
                             
@@ -242,7 +254,7 @@ struct WireDetail: View {
                                                            ColoredToggleStyle(label: "Destination Termination: ",
                                                                           onColor: .green,
                                                                           offColor: setColor,
-                                                                          thumbColor: Color(UIColor.systemTeal)))
+                                                                          thumbColor: toggleColor5))
                             .disabled(tog3==false&&freeChange==false)
                         
                     }
@@ -264,7 +276,7 @@ struct WireDetail: View {
                             ColoredToggleStyle(label: "VERIFY Connection ORIGIN: ",
                                            onColor: .green,
                                            offColor: setColor,
-                                           thumbColor: Color(UIColor.systemTeal)))
+                                           thumbColor: toggleColor6))
                             .disabled(tog4==false&&freeChange==false)
                         
                         Toggle(isOn: $tog7) {
@@ -276,7 +288,7 @@ struct WireDetail: View {
                             ColoredToggleStyle(label: "VERIFY Connection DEST: ",
                                            onColor: .green,
                                            offColor: setColor,
-                                           thumbColor: Color(UIColor.systemTeal)))
+                                           thumbColor: toggleColor7))
                             .disabled(tog5==false&&freeChange==false)
                         
                     }
@@ -298,7 +310,7 @@ struct WireDetail: View {
                 ColoredToggleStyle(label: "Tested: ",
                                onColor: .green,
                                offColor: setColor,
-                               thumbColor: Color(UIColor.systemTeal)))
+                               thumbColor: toggleColor8))
                 
                 HStack{
                     
@@ -312,7 +324,7 @@ struct WireDetail: View {
                         ColoredToggleStyle(label: "Connection Origin: ",
                                        onColor: .green,
                                        offColor: setColor,
-                                       thumbColor: Color(UIColor.systemTeal)))
+                                       thumbColor: toggleColor9))
                         .disabled(tog8==false&&freeChange==false)
                     
                     Toggle(isOn: $tog10) {
@@ -323,7 +335,7 @@ struct WireDetail: View {
                         ColoredToggleStyle(label: "Connection Destination: ",
                                        onColor: .green,
                                        offColor: setColor,
-                                       thumbColor: Color(UIColor.systemTeal)))
+                                       thumbColor: toggleColor10))
                         //.frame(width: 60.0)
                         .disabled(tog8==false&&freeChange==false)
                     
@@ -339,7 +351,7 @@ struct WireDetail: View {
                 ColoredToggleStyle(label: "Released: ",
                                onColor: .green,
                                offColor: setColor,
-                               thumbColor: Color(UIColor.systemTeal)))
+                               thumbColor: toggleColor11))
                 .disabled((tog9==false||tog10==false)&&freeChange==false)
                 .frame(width: 200)
                 
@@ -555,10 +567,6 @@ struct WireDetail: View {
             
             
             
-            
-            
-            
-            
             //.padding()
             
             
@@ -583,7 +591,7 @@ struct WireDetail: View {
             self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST ?? false
             self.tog11 = projects[self.projn].rOfInstall![index].RELEASED ?? false
         
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: self.visable){timer in
+            Timer.scheduledTimer(withTimeInterval: 0.01, repeats: self.visable){timer in
                 if self.freeChange == false {
                 if self.tog1 == false{
                     self.tog2=false
@@ -604,6 +612,8 @@ struct WireDetail: View {
                 
                // if
                 
+
+                
                 
                 
                 if self.tog1 != projects[self.projn].rOfInstall?[self.index].INSTALL_STATUS ?? false {self.changed1=true;self.changed=true}
@@ -617,6 +627,18 @@ struct WireDetail: View {
                 if self.tog9 != projects[self.projn].rOfInstall?[self.index].CONN_ORIGIN ?? false {self.changed9=true;self.changed=true}
                 if self.tog10 !=  projects[self.projn].rOfInstall?[self.index].CONN_DEST ?? false {self.changed10=true;self.changed=true}
                 if self.tog11 !=  projects[self.projn].rOfInstall?[self.index].RELEASED ?? false {self.changed11=true;self.changed=true}
+                
+                if projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true{self.toggleColor1 = Color(UIColor.green)}
+                 if  projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true{self.toggleColor2 = Color(UIColor.green)}
+                if   projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true{self.toggleColor3 = Color(UIColor.green)}
+                if   projects[self.projn].rOfInstall![index].ORIGIN_TERM != nil || self.changed4==true{self.toggleColor4 = Color(UIColor.green)}
+                if projects[self.projn].rOfInstall![index].DEST_TERM != nil || self.changed5==true{self.toggleColor5 = Color(UIColor.green)}
+                if  projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN != nil || self.changed6==true{self.toggleColor6 = Color(UIColor.green)}
+                 if  projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST != nil || self.changed7==true{self.toggleColor7 = Color(UIColor.green)}
+                 if  projects[self.projn].rOfInstall![index].TESTED != nil || self.changed8==true{self.toggleColor8 = Color(UIColor.green)}
+                 if  projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true{self.toggleColor9 = Color(UIColor.green)}
+                if   projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true{self.toggleColor10 = Color(UIColor.green)}
+                if   projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true{self.toggleColor11 = Color(UIColor.green)}
             }
         }.onDisappear(){
             print("Wiredetail disappear")
