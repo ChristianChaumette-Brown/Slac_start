@@ -46,7 +46,7 @@ struct WireDetail: View {
     @ State var changed : Bool = false
     var saved : Bool = false
     var index = -1
-    //var chang=changes[0]
+    var setColor = Color(UIColor.gray)
     
     @State var installField : String = ""
     
@@ -63,7 +63,7 @@ struct WireDetail: View {
         
         if index == -1 {
             
-            var rc = rci (Cablenum:wire.Cablenum,project:projects[projn].area_code,INSTALL_STATUS:false,INSTALL_STATUS_user:userID,INSTALL_STATUS_date:dateOut,VERIFY_SOURCE:false,VERIFY_SOURCE_user:userID,VERIFY_SOURCE_date:dateOut,VERIFY_DEST:false,VERIFY_DEST_user:userID,VERIFY_DEST_date:dateOut,ORIGIN_TERM:false,ORIGIN_TERM_user:userID,ORIGIN_TERM_date:dateOut,DEST_TERM:false,DEST_TERM_user:userID,DEST_TERM_date:dateOut,VERIFY_CONN_ORIGIN:false,VERIFY_CONN_ORIGIN_user: userID,VERIFY_CONN_ORIGIN_date:dateOut, VERIFY_CONN_DEST:false,VERIFY_CONN_DEST_user: userID,VERIFY_CONN_DEST_date:dateOut,TESTED:false,TESTED_user: userID,TESTED_date:dateOut,CONN_ORIGIN:false,CONN_ORIGIN_user: userID,CONN_ORIGIN_date:dateOut,CONN_DEST:false,CONN_DEST_user: userID,CONN_DEST_date:dateOut, RELEASED:false,RELEASED_user: userID,RELEASED_date: dateOut, COMMENT_SOURCE: "Default Source Comment", COMMENT_DEST: "Default Destination Comment"  )
+            let rc = rci (Cablenum:wire.Cablenum,project:projects[projn].area_code,INSTALL_STATUS:nil,INSTALL_STATUS_user:nil,INSTALL_STATUS_date:nil,VERIFY_SOURCE:nil,VERIFY_SOURCE_user:nil,VERIFY_SOURCE_date:nil,VERIFY_DEST:nil,VERIFY_DEST_user:nil,VERIFY_DEST_date:nil,ORIGIN_TERM:nil,ORIGIN_TERM_user:nil,ORIGIN_TERM_date:nil,DEST_TERM:nil,DEST_TERM_user:nil,DEST_TERM_date:nil,VERIFY_CONN_ORIGIN:nil,VERIFY_CONN_ORIGIN_user: nil,VERIFY_CONN_ORIGIN_date:nil, VERIFY_CONN_DEST:nil,VERIFY_CONN_DEST_user: nil,VERIFY_CONN_DEST_date:nil,TESTED:nil,TESTED_user: nil,TESTED_date:nil,CONN_ORIGIN:nil,CONN_ORIGIN_user: nil,CONN_ORIGIN_date:nil,CONN_DEST:nil,CONN_DEST_user: nil,CONN_DEST_date:nil, RELEASED:nil,RELEASED_user: nil,RELEASED_date: nil, COMMENT_SOURCE: "Default Source Comment", COMMENT_DEST: "Default Destination Comment"  )
             
             projects[projn].rOfInstall?.append(rc)
             
@@ -73,17 +73,17 @@ struct WireDetail: View {
         
         
         print(projects[projn].rOfInstall![self.index].Cablenum)
-        self.tog1 = projects[projn].rOfInstall![self.index].INSTALL_STATUS
-        self.tog2 = projects[projn].rOfInstall![index].VERIFY_SOURCE
-        self.tog3 = projects[projn].rOfInstall![index].VERIFY_DEST
-        self.tog4 = projects[projn].rOfInstall![index].ORIGIN_TERM
-        self.tog5 = projects[projn].rOfInstall![index].DEST_TERM
-        self.tog6 = projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN
-        self.tog7 = projects[projn].rOfInstall![index].VERIFY_CONN_DEST
-        self.tog8 = projects[projn].rOfInstall![index].TESTED
-        self.tog9 = projects[projn].rOfInstall![index].CONN_ORIGIN
-        self.tog10 = projects[projn].rOfInstall![index].CONN_DEST
-        self.tog11 = projects[projn].rOfInstall![index].RELEASED
+        self.tog1 = projects[projn].rOfInstall![self.index].INSTALL_STATUS ?? false
+        self.tog2 = projects[projn].rOfInstall![index].VERIFY_SOURCE ?? false
+        self.tog3 = projects[projn].rOfInstall![index].VERIFY_DEST ?? false
+        self.tog4 = projects[projn].rOfInstall![index].ORIGIN_TERM ?? false
+        self.tog5 = projects[projn].rOfInstall![index].DEST_TERM ?? false
+        self.tog6 = projects[projn].rOfInstall![index].VERIFY_CONN_ORIGIN ?? false
+        self.tog7 = projects[projn].rOfInstall![index].VERIFY_CONN_DEST ?? false
+        self.tog8 = projects[projn].rOfInstall![index].TESTED ?? false
+        self.tog9 = projects[projn].rOfInstall![index].CONN_ORIGIN ?? false
+        self.tog10 = projects[projn].rOfInstall![index].CONN_DEST ?? false
+        self.tog11 = projects[projn].rOfInstall![index].RELEASED ?? false
     }
     
     
@@ -157,6 +157,11 @@ struct WireDetail: View {
                         }
                             //.padding(.trailing, 5.0)
                             .frame(width: 200.0)
+                        .toggleStyle(
+                            ColoredToggleStyle(label: "Installation: ",
+                                           onColor: .green,
+                                           offColor: setColor,
+                                           thumbColor: Color(UIColor.systemTeal)))
                             
                     }.onAppear(){
                         if self.tog1==false{
@@ -177,11 +182,21 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 10.0)
                             // .frame(width: 30.0)
+                            .toggleStyle(
+                            ColoredToggleStyle(label: "Source Verification: ",
+                                           onColor: .green,
+                                           offColor: setColor,
+                                           thumbColor: Color(UIColor.systemTeal)))
                             .disabled( tog1 == false&&freeChange==false )
                         
                         Toggle(isOn: $tog3) {
                             Text("Verified Destination: ")
                         }
+                            .toggleStyle(
+                            ColoredToggleStyle(label: "Verified Destination: ",
+                                           onColor: .green,
+                                           offColor: setColor,
+                                           thumbColor: Color(UIColor.systemTeal)))
                         .padding(.trailing, 10.0)
                         .disabled(tog1==false&&freeChange==false)
                         
@@ -206,8 +221,16 @@ struct WireDetail: View {
                         Toggle(isOn: $tog4) {
                             Text("Origin Termination: ")
                         }
-                        .padding(.trailing, 10.0)
+                       // .padding(.trailing, 10.0)
                             //.frame(width: 60.0)
+                            .toggleStyle(
+                                ColoredToggleStyle(label: "Origin Termination: ",
+                                               onColor: .green,
+                                               offColor: setColor,
+                                               thumbColor: Color(UIColor.systemTeal)))
+                            .padding(.trailing, 10.0)
+                            
+                            
                             .disabled(tog2==false&&freeChange==false)
                         
                         Toggle(isOn: $tog5) {
@@ -215,6 +238,11 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 10.0)
                             //.frame(width: 60.0)
+                            .toggleStyle(
+                                                           ColoredToggleStyle(label: "Destination Termination: ",
+                                                                          onColor: .green,
+                                                                          offColor: setColor,
+                                                                          thumbColor: Color(UIColor.systemTeal)))
                             .disabled(tog3==false&&freeChange==false)
                         
                     }
@@ -228,10 +256,15 @@ struct WireDetail: View {
                         
                         
                         Toggle(isOn: $tog6) {
-                            Text("VERIFY Connection ORIGIN : ")
+                            Text("VERIFY Connection ORIGIN: ")
                         }
                         .padding(.trailing, 5.0)
                             //.frame(width: 60.0)
+                            .toggleStyle(
+                            ColoredToggleStyle(label: "VERIFY Connection ORIGIN: ",
+                                           onColor: .green,
+                                           offColor: setColor,
+                                           thumbColor: Color(UIColor.systemTeal)))
                             .disabled(tog4==false&&freeChange==false)
                         
                         Toggle(isOn: $tog7) {
@@ -239,6 +272,11 @@ struct WireDetail: View {
                         }
                         .padding(.trailing, 5.0)
                             //.frame(width: 60.0)
+                            .toggleStyle(
+                            ColoredToggleStyle(label: "VERIFY Connection DEST: ",
+                                           onColor: .green,
+                                           offColor: setColor,
+                                           thumbColor: Color(UIColor.systemTeal)))
                             .disabled(tog5==false&&freeChange==false)
                         
                     }
@@ -251,11 +289,16 @@ struct WireDetail: View {
                 Toggle(isOn: $tog8) {
                     HStack{ Text("Tested: ")
                     }
-                    .padding(.trailing, 5.0)
+                   // .padding(.trailing, 5.0)
+                    
                     
                 }.frame(width: 200.0)
                     .disabled((tog6==false||tog7==false)&&freeChange==false)
-                
+                .toggleStyle(
+                ColoredToggleStyle(label: "Tested: ",
+                               onColor: .green,
+                               offColor: setColor,
+                               thumbColor: Color(UIColor.systemTeal)))
                 
                 HStack{
                     
@@ -265,12 +308,22 @@ struct WireDetail: View {
                     }
                     .padding(.trailing, 5.0)
                         //.frame(width: 60.0)
+                        .toggleStyle(
+                        ColoredToggleStyle(label: "Connection Origin: ",
+                                       onColor: .green,
+                                       offColor: setColor,
+                                       thumbColor: Color(UIColor.systemTeal)))
                         .disabled(tog8==false&&freeChange==false)
                     
                     Toggle(isOn: $tog10) {
                         Text("Connection Destination: ")
                     }
                     .padding(.trailing, 5.0)
+                        .toggleStyle(
+                        ColoredToggleStyle(label: "Connection Destination: ",
+                                       onColor: .green,
+                                       offColor: setColor,
+                                       thumbColor: Color(UIColor.systemTeal)))
                         //.frame(width: 60.0)
                         .disabled(tog8==false&&freeChange==false)
                     
@@ -279,9 +332,14 @@ struct WireDetail: View {
                 Toggle(isOn: $tog11) {
                     HStack{ Text("Released: ")
                     }
-                    .padding(.trailing, 5.0)
+                   // .padding(.trailing, 5.0)
                     .frame(width: 100.0)
-                }
+                    
+                }.toggleStyle(
+                ColoredToggleStyle(label: "Released: ",
+                               onColor: .green,
+                               offColor: setColor,
+                               thumbColor: Color(UIColor.systemTeal)))
                 .disabled((tog9==false||tog10==false)&&freeChange==false)
                 .frame(width: 200)
                 
@@ -513,17 +571,17 @@ struct WireDetail: View {
             //use create initfiles as guide
             //discard changes reassign values from below
             
-            self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS
-            self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE
-            self.tog3 = projects[self.projn].rOfInstall![index].VERIFY_DEST
-            self.tog4 = projects[self.projn].rOfInstall![index].ORIGIN_TERM
-            self.tog5 = projects[self.projn].rOfInstall![index].DEST_TERM
-            self.tog6 = projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN
-            self.tog7 = projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST
-            self.tog8 = projects[self.projn].rOfInstall![index].TESTED
-            self.tog9 = projects[self.projn].rOfInstall![index].CONN_ORIGIN
-            self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST
-            self.tog11 = projects[self.projn].rOfInstall![index].RELEASED
+            self.tog1 = projects[self.projn].rOfInstall![index].INSTALL_STATUS ?? false
+            self.tog2 = projects[self.projn].rOfInstall![index].VERIFY_SOURCE ?? false
+            self.tog3 = projects[self.projn].rOfInstall![index].VERIFY_DEST ?? false
+            self.tog4 = projects[self.projn].rOfInstall![index].ORIGIN_TERM ?? false
+            self.tog5 = projects[self.projn].rOfInstall![index].DEST_TERM ?? false
+            self.tog6 = projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN ?? false
+            self.tog7 = projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST ?? false
+            self.tog8 = projects[self.projn].rOfInstall![index].TESTED ?? false
+            self.tog9 = projects[self.projn].rOfInstall![index].CONN_ORIGIN ?? false
+            self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST ?? false
+            self.tog11 = projects[self.projn].rOfInstall![index].RELEASED ?? false
         
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: self.visable){timer in
                 if self.freeChange == false {
@@ -543,17 +601,22 @@ struct WireDetail: View {
                 }
                     if self.tog9==false||self.tog10==false{self.tog11=false}
             }
-                if self.tog1 != projects[self.projn].rOfInstall?[self.index].INSTALL_STATUS {self.changed1=true;self.changed=true}
-                if self.tog2 != projects[self.projn].rOfInstall?[self.index].VERIFY_SOURCE  {self.changed2=true;self.changed=true}
-                if  self.tog3 != projects[self.projn].rOfInstall?[self.index].VERIFY_DEST {self.changed3=true;self.changed=true}
-                if self.tog4 != projects[self.projn].rOfInstall?[self.index].ORIGIN_TERM {self.changed4=true;self.changed=true}
-                if self.tog5 != projects[self.projn].rOfInstall?[self.index].DEST_TERM {self.changed5=true;self.changed=true}
-                if self.tog6 != projects[self.projn].rOfInstall?[self.index].VERIFY_CONN_ORIGIN {self.changed6=true;self.changed=true}
-                if self.tog7 != projects[self.projn].rOfInstall?[self.index].VERIFY_CONN_DEST {self.changed7=true;self.changed=true}
-                if self.tog8 != projects[self.projn].rOfInstall?[self.index].TESTED {self.changed8=true;self.changed=true}
-                if self.tog9 != projects[self.projn].rOfInstall?[self.index].CONN_ORIGIN {self.changed9=true;self.changed=true}
-                if self.tog10 !=  projects[self.projn].rOfInstall?[self.index].CONN_DEST {self.changed10=true;self.changed=true}
-                if self.tog11 !=  projects[self.projn].rOfInstall?[self.index].RELEASED {self.changed11=true;self.changed=true}
+                
+               // if
+                
+                
+                
+                if self.tog1 != projects[self.projn].rOfInstall?[self.index].INSTALL_STATUS ?? false {self.changed1=true;self.changed=true}
+                if self.tog2 != projects[self.projn].rOfInstall?[self.index].VERIFY_SOURCE ?? false {self.changed2=true;self.changed=true}
+                if  self.tog3 != projects[self.projn].rOfInstall?[self.index].VERIFY_DEST ?? false {self.changed3=true;self.changed=true}
+                if self.tog4 != projects[self.projn].rOfInstall?[self.index].ORIGIN_TERM ?? false {self.changed4=true;self.changed=true}
+                if self.tog5 != projects[self.projn].rOfInstall?[self.index].DEST_TERM ?? false {self.changed5=true;self.changed=true}
+                if self.tog6 != projects[self.projn].rOfInstall?[self.index].VERIFY_CONN_ORIGIN ?? false {self.changed6=true;self.changed=true}
+                if self.tog7 != projects[self.projn].rOfInstall?[self.index].VERIFY_CONN_DEST ?? false {self.changed7=true;self.changed=true}
+                if self.tog8 != projects[self.projn].rOfInstall?[self.index].TESTED ?? false {self.changed8=true;self.changed=true}
+                if self.tog9 != projects[self.projn].rOfInstall?[self.index].CONN_ORIGIN ?? false {self.changed9=true;self.changed=true}
+                if self.tog10 !=  projects[self.projn].rOfInstall?[self.index].CONN_DEST ?? false {self.changed10=true;self.changed=true}
+                if self.tog11 !=  projects[self.projn].rOfInstall?[self.index].RELEASED ?? false {self.changed11=true;self.changed=true}
             }
         }.onDisappear(){
             print("Wiredetail disappear")
@@ -602,17 +665,29 @@ struct WireDetail: View {
                     Text("Save Changes")
                 } .actionSheet(isPresented: $sheetBool) {
                     ActionSheet(title: Text("Register Changes"), message: Text("Select Action Choice"), buttons: [.default(Text("Discard Changes")){
-                        self.tog1 = projects[self.projn].rOfInstall![self.index].INSTALL_STATUS
-                        self.tog2 = projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE
-                        self.tog3 = projects[self.projn].rOfInstall![self.index].VERIFY_DEST
-                        self.tog4 = projects[self.projn].rOfInstall![self.index].ORIGIN_TERM
-                        self.tog5 = projects[self.projn].rOfInstall![self.index].DEST_TERM
-                        self.tog6 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN
-                        self.tog7 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST
-                        self.tog8 = projects[self.projn].rOfInstall![self.index].TESTED
-                        self.tog9 = projects[self.projn].rOfInstall![self.index].CONN_ORIGIN
-                        self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST
-                        self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED
+                        self.tog1 = projects[self.projn].rOfInstall![self.index].INSTALL_STATUS ?? false
+                        self.tog2 = projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE ?? false
+                        self.tog3 = projects[self.projn].rOfInstall![self.index].VERIFY_DEST ?? false
+                        self.tog4 = projects[self.projn].rOfInstall![self.index].ORIGIN_TERM ?? false
+                        self.tog5 = projects[self.projn].rOfInstall![self.index].DEST_TERM ?? false
+                        self.tog6 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_ORIGIN ?? false
+                        self.tog7 = projects[self.projn].rOfInstall![self.index].VERIFY_CONN_DEST ?? false
+                        self.tog8 = projects[self.projn].rOfInstall![self.index].TESTED ?? false
+                        self.tog9 = projects[self.projn].rOfInstall![self.index].CONN_ORIGIN ?? false
+                        self.tog10 =  projects[self.projn].rOfInstall![self.index].CONN_DEST ?? false
+                        self.tog11 =  projects[self.projn].rOfInstall![self.index].RELEASED ?? false
+                        self.changed=false
+                        self.changed1=false
+                        self.changed2=false
+                        self.changed3=false
+                        self.changed4=false
+                        self.changed5=false
+                        self.changed6=false
+                        self.changed7=false
+                        self.changed8=false
+                        self.changed9=false
+                        self.changed10=false
+                        self.changed11=false
                         },.default(Text("Save Changes")){
                             if self.changed1==true{ projects[self.projn].rOfInstall![self.index].INSTALL_STATUS = self.tog1}
                             if self.changed2==true{ projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE = self.tog2}
@@ -697,7 +772,9 @@ struct WireDetail: View {
                             cleaned = cleaned.replacingOccurrences(of: "}, \"", with: ", \"")
                             cleaned = cleaned.replacingOccurrences(of: "}}", with: "}")
                             cleaned = cleaned.replacingOccurrences(of: "nil", with: "null")
+                            
                             //var output =  cleaned?
+                           
                             print(cleaned)
                             /*
                              if let stra = projects[self.projn].rOfInstall{
@@ -783,7 +860,35 @@ struct WireDetail: View {
 
 
 
-
+struct ColoredToggleStyle: ToggleStyle {
+    var label = ""
+    var onColor = Color(UIColor.green)
+    var offColor = Color(UIColor.systemGray5)
+    var thumbColor = Color.white
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        HStack {
+            Text(label).font(.body)
+           // Spacer()
+           
+            Button(action: { configuration.isOn.toggle() } )
+            {
+                RoundedRectangle(cornerRadius: 16, style: .circular)
+                    .fill(configuration.isOn ? onColor : offColor)
+                    .frame(width: 50, height: 29)
+                    .overlay(
+                        Circle()
+                            .fill(thumbColor)
+                            .shadow(radius: 1, x: 0, y: 1)
+                            .padding(1.5)
+                            .offset(x: configuration.isOn ? 10 : -10))
+                    .animation(Animation.easeInOut(duration: 0.1))
+            }
+        }
+        .font(.title)
+        .padding(.horizontal)
+    }
+}
 
 
 

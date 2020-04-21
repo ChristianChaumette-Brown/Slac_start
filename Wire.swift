@@ -118,37 +118,37 @@ struct rci: Hashable, Codable{
     
     var Cablenum : String
     var project: String
-    var INSTALL_STATUS: Bool
+    var INSTALL_STATUS: Bool?
     var INSTALL_STATUS_user: String?
     var INSTALL_STATUS_date: String?
-    var VERIFY_SOURCE: Bool
+    var VERIFY_SOURCE: Bool?
     var VERIFY_SOURCE_user: String?
     var VERIFY_SOURCE_date: String?
-    var VERIFY_DEST: Bool
+    var VERIFY_DEST: Bool?
     var VERIFY_DEST_user: String?
     var VERIFY_DEST_date: String?
-    var ORIGIN_TERM: Bool
+    var ORIGIN_TERM: Bool?
     var ORIGIN_TERM_user: String?
     var ORIGIN_TERM_date: String?
-    var DEST_TERM: Bool
+    var DEST_TERM: Bool?
     var DEST_TERM_user: String?
     var DEST_TERM_date: String?
-    var VERIFY_CONN_ORIGIN: Bool
+    var VERIFY_CONN_ORIGIN: Bool?
     var VERIFY_CONN_ORIGIN_user: String?
     var VERIFY_CONN_ORIGIN_date: String?
-    var VERIFY_CONN_DEST: Bool
+    var VERIFY_CONN_DEST: Bool?
     var VERIFY_CONN_DEST_user: String?
     var VERIFY_CONN_DEST_date: String?
-    var TESTED: Bool
+    var TESTED: Bool?
     var TESTED_user: String?
     var TESTED_date: String?
-    var CONN_ORIGIN: Bool
+    var CONN_ORIGIN: Bool?
     var CONN_ORIGIN_user: String?
     var CONN_ORIGIN_date: String?
-    var CONN_DEST: Bool
+    var CONN_DEST: Bool?
     var CONN_DEST_user: String?
     var CONN_DEST_date: String?
-    var RELEASED: Bool
+    var RELEASED: Bool?
     var RELEASED_user: String?
     var RELEASED_date: String?
     var COMMENT_SOURCE: String?
