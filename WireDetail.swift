@@ -120,9 +120,10 @@ struct WireDetail: View {
                     // Text(String((wire.Cablenum)))
                     // .font(.title)
                     HStack() {
+                       
                         Text("Area Code: \(wire.Area_Code) ")
-                            .font(.subheadline)
-                        Spacer()
+                            .font(.subheadline).padding(.leading,30)
+                        //Spacer()
                         Text("Wire Jobnum: ")
                         Text(wire.Jobnum)
                         // .font(.subheadline)
@@ -130,7 +131,8 @@ struct WireDetail: View {
                     }
                     Group{
                         HStack{
-                            Text("Wire CableType: ")
+                            
+                            Text("Wire CableType: ").padding(.leading,30)
                             
                             Text(String(wire.Cabletype)).font(.title)
                             
@@ -142,12 +144,12 @@ struct WireDetail: View {
                         
                         
                         HStack{
-                            Text("Destination Connection Type: ")
+                            Text("Destination Connection Type: ").padding(.leading,30)
                             Text(wire.Destination_Conntype)
                             
                         }
                         HStack (){
-                            Text("Wire Designation Instructions: ")
+                            Text("Wire Designation Instructions: ").padding(.leading,30)
                             //Text(wire.Destination_Instr ?? "")
                             
                         }
@@ -193,7 +195,7 @@ struct WireDetail: View {
                             Text("Source Verification: ")
                         }
                         .padding(.trailing, 10.0)
-                            // .frame(width: 30.0)
+                            .frame(width: 200.0)
                             .toggleStyle(
                             ColoredToggleStyle(label: "Source Verification: ",
                                            onColor: .green,
@@ -212,7 +214,7 @@ struct WireDetail: View {
                         .padding(.trailing, 10.0)
                         .disabled(tog1==false&&freeChange==false)
                         
-                        //.frame(width: 30.0)
+                        .frame(width: 200.0)
                     }.onDisappear(){
                         self.tog4=false
                     }.onAppear(){
@@ -234,7 +236,7 @@ struct WireDetail: View {
                             Text("Origin Termination: ")
                         }
                        // .padding(.trailing, 10.0)
-                            //.frame(width: 60.0)
+                            .frame(width: 200.0)
                             .toggleStyle(
                                 ColoredToggleStyle(label: "Origin Termination: ",
                                                onColor: .green,
@@ -249,7 +251,7 @@ struct WireDetail: View {
                             Text("Destination Termination: ")
                         }
                         .padding(.trailing, 10.0)
-                            //.frame(width: 60.0)
+                            .frame(width: 200.0)
                             .toggleStyle(
                                                            ColoredToggleStyle(label: "Destination Termination: ",
                                                                           onColor: .green,
@@ -271,7 +273,7 @@ struct WireDetail: View {
                             Text("VERIFY Connection ORIGIN: ")
                         }
                         .padding(.trailing, 5.0)
-                            //.frame(width: 60.0)
+                            .frame(width: 200.0)
                             .toggleStyle(
                             ColoredToggleStyle(label: "VERIFY Connection ORIGIN: ",
                                            onColor: .green,
@@ -283,7 +285,7 @@ struct WireDetail: View {
                             Text("VERIFY Connection DEST: ")
                         }
                         .padding(.trailing, 5.0)
-                            //.frame(width: 60.0)
+                            .frame(width: 200.0)
                             .toggleStyle(
                             ColoredToggleStyle(label: "VERIFY Connection DEST: ",
                                            onColor: .green,
@@ -319,7 +321,7 @@ struct WireDetail: View {
                         Text("Connection Origin: ")
                     }
                     .padding(.trailing, 5.0)
-                        //.frame(width: 60.0)
+                        .frame(width: 200.0)
                         .toggleStyle(
                         ColoredToggleStyle(label: "Connection Origin: ",
                                        onColor: .green,
@@ -336,7 +338,7 @@ struct WireDetail: View {
                                        onColor: .green,
                                        offColor: setColor,
                                        thumbColor: toggleColor10))
-                        //.frame(width: 60.0)
+                        .frame(width: 200.0)
                         .disabled(tog8==false&&freeChange==false)
                     
                 }
@@ -345,7 +347,7 @@ struct WireDetail: View {
                     HStack{ Text("Released: ")
                     }
                    // .padding(.trailing, 5.0)
-                    .frame(width: 100.0)
+                    .frame(width: 200.0)
                     
                 }.toggleStyle(
                 ColoredToggleStyle(label: "Released: ",
@@ -628,17 +630,29 @@ struct WireDetail: View {
                 if self.tog10 !=  projects[self.projn].rOfInstall?[self.index].CONN_DEST ?? false {self.changed10=true;self.changed=true}
                 if self.tog11 !=  projects[self.projn].rOfInstall?[self.index].RELEASED ?? false {self.changed11=true;self.changed=true}
                 
-                if projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true{self.toggleColor1 = Color(UIColor.green)}
-                 if  projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true{self.toggleColor2 = Color(UIColor.green)}
-                if   projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true{self.toggleColor3 = Color(UIColor.green)}
-                if   projects[self.projn].rOfInstall![index].ORIGIN_TERM != nil || self.changed4==true{self.toggleColor4 = Color(UIColor.green)}
-                if projects[self.projn].rOfInstall![index].DEST_TERM != nil || self.changed5==true{self.toggleColor5 = Color(UIColor.green)}
-                if  projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN != nil || self.changed6==true{self.toggleColor6 = Color(UIColor.green)}
-                 if  projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST != nil || self.changed7==true{self.toggleColor7 = Color(UIColor.green)}
-                 if  projects[self.projn].rOfInstall![index].TESTED != nil || self.changed8==true{self.toggleColor8 = Color(UIColor.green)}
-                 if  projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true{self.toggleColor9 = Color(UIColor.green)}
-                if   projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true{self.toggleColor10 = Color(UIColor.green)}
-                if   projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true{self.toggleColor11 = Color(UIColor.green)}
+                if (projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true)&&self.tog1==true{self.toggleColor1 = Color(UIColor.green)}
+                if  (projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true)&&self.tog2==true{self.toggleColor2 = Color(UIColor.green)}
+                if   (projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true)&&self.tog3==true{self.toggleColor3 = Color(UIColor.green)}
+                if   (projects[self.projn].rOfInstall![index].ORIGIN_TERM != nil || self.changed4==true)&&self.tog4==true{self.toggleColor4 = Color(UIColor.green)}
+                if (projects[self.projn].rOfInstall![index].DEST_TERM != nil || self.changed5==true)&&self.tog5==true{self.toggleColor5 = Color(UIColor.green)}
+                if  (projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN != nil || self.changed6==true)&&self.tog6==true{self.toggleColor6 = Color(UIColor.green)}
+                if  (projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST != nil || self.changed7==true)&&self.tog7==true{self.toggleColor7 = Color(UIColor.green)}
+                if  (projects[self.projn].rOfInstall![index].TESTED != nil || self.changed8==true)&&self.tog8==true{self.toggleColor8 = Color(UIColor.green)}
+                if  (projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true)&&self.tog9==true{self.toggleColor9 = Color(UIColor.green)}
+                if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10{self.toggleColor10 = Color(UIColor.green)}
+                if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11{self.toggleColor11 = Color(UIColor.green)}
+                
+                if (projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true)&&self.tog1==false{self.toggleColor1 = Color(UIColor.red)}
+                if  (projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true)&&self.tog2==false{self.toggleColor2 = Color(UIColor.red)}
+                               if   (projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true)&&self.tog3==false{self.toggleColor3 = Color(UIColor.red)}
+                               if   (projects[self.projn].rOfInstall![index].ORIGIN_TERM != nil || self.changed4==true)&&self.tog4==false{self.toggleColor4 = Color(UIColor.red)}
+                               if (projects[self.projn].rOfInstall![index].DEST_TERM != nil || self.changed5==true)&&self.tog5==false{self.toggleColor5 = Color(UIColor.red)}
+                               if ( projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN != nil || self.changed6==true)&&self.tog6==false{self.toggleColor6 = Color(UIColor.red)}
+                                if  (projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST != nil || self.changed7==true)&&self.tog7==false{self.toggleColor7 = Color(UIColor.red)}
+                                if ( projects[self.projn].rOfInstall![index].TESTED != nil || self.changed8==true)&&self.tog8==false{self.toggleColor8 = Color(UIColor.red)}
+                                if  (projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true)&&self.tog9==false{self.toggleColor9 = Color(UIColor.red)}
+                               if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10==false{self.toggleColor10 = Color(UIColor.red)}
+                               if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11==false{self.toggleColor11 = Color(UIColor.red)}
             }
         }.onDisappear(){
             print("Wiredetail disappear")
@@ -663,7 +677,7 @@ struct WireDetail: View {
             
             }
         .navigationBarTitle(Text(wire.Cablenum ))
-            
+            //.scaledToFit()
         .navigationBarItems(trailing:
             
             HStack{
