@@ -29,6 +29,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
        // view.addSubview(aimRect)
          qrCodeFrameView = UIView()
        
+        
          
         if let qrCodeFrameView = qrCodeFrameView {
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
@@ -73,7 +74,43 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         view.bringSubviewToFront(scanAreaView!)
         captureSession.startRunning()
     }
-
+//
+    private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
+       layer.videoOrientation = orientation
+       previewLayer?.frame = self.view.bounds
+     }
+     
+     override func viewDidLayoutSubviews() {
+       super.viewDidLayoutSubviews()
+       
+       if let connection =  self.previewLayer?.connection  {
+         let currentDevice: UIDevice = UIDevice.current
+         let orientation: UIDeviceOrientation = currentDevice.orientation
+         let previewLayerConnection : AVCaptureConnection = connection
+         
+         if previewLayerConnection.isVideoOrientationSupported {
+           switch (orientation) {
+           case .portrait:
+             updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
+             break
+           case .landscapeRight:
+             updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeLeft)
+             break
+           case .landscapeLeft:
+             updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeRight)
+             break
+           case .portraitUpsideDown:
+             updatePreviewLayer(layer: previewLayerConnection, orientation: .portraitUpsideDown)
+             break
+           default:
+             updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
+             break
+           }
+         }
+       }
+     }
+    //
+    
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -128,8 +165,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     override var prefersStatusBarHidden: Bool {
         return true
     }
-
+/*
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
+    */
 }

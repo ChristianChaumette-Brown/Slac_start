@@ -78,7 +78,8 @@ struct Changes: Hashable, Codable{
        var user: String
        var date: String
        // var comment: String?
-       /*
+       
+    /*
           init(c:String,p:String,k:String,v:Bool,u:String,d:String){
               self.Cablenum = c
               self.project = p

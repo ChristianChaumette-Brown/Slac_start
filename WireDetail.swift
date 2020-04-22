@@ -724,6 +724,7 @@ struct WireDetail: View {
                         self.changed9=false
                         self.changed10=false
                         self.changed11=false
+                        self.installField=""
                         },.default(Text("Save Changes")){
                             if self.changed1==true{ projects[self.projn].rOfInstall![self.index].INSTALL_STATUS = self.tog1}
                             if self.changed2==true{ projects[self.projn].rOfInstall![self.index].VERIFY_SOURCE = self.tog2}
@@ -736,6 +737,7 @@ struct WireDetail: View {
                                 if self.changed9==true{ projects[self.projn].rOfInstall![self.index].CONN_ORIGIN = self.tog9}
                                 if self.changed10==true{ projects[self.projn].rOfInstall![self.index].CONN_DEST = self.tog10}
                                 if self.changed11==true{ projects[self.projn].rOfInstall![self.index].RELEASED = self.tog11}
+                            if self.installField != ""{projects[self.projn].rOfInstall![self.index].COMMENT_DEST = self.installField}
                             print(projects[self.projn].rOfInstall!)
                             var str = String(projects[self.projn].rOfInstall!.description)
                             // str = str.flatMap{$0}
@@ -831,6 +833,7 @@ struct WireDetail: View {
                             }
                             
                             if self.changed1 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"INSTALL_STATUS",value:self.tog1,user:userID, date:dateOut)
+                                //add to all key:"COMMENT_DEST": projects[self.projn].rOfInstall![self.index].COMMENT_DEST
                                 changes.append(chang)
                             }
                             if self.changed2 == true{var chang = Changes(Cablenum:self.wire.Cablenum,project:self.wire.Area_Code,key:"VERIFY_SOURCE",value:self.tog2,user:userID, date:dateOut)
