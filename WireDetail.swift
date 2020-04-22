@@ -48,17 +48,17 @@ struct WireDetail: View {
     var index = -1
     var setColor = Color(UIColor.gray)
     
-    @State var toggleColor1 = Color(UIColor.orange)
-    @State var toggleColor2 = Color(UIColor.orange)
-     @State var toggleColor3 = Color(UIColor.orange)
-    @State var toggleColor4 = Color(UIColor.orange)
-    @State var toggleColor5 = Color(UIColor.orange)
-    @State var toggleColor6 = Color(UIColor.orange)
-    @State var toggleColor7 = Color(UIColor.orange)
-   @State  var toggleColor8 = Color(UIColor.orange)
-   @State var toggleColor9 = Color(UIColor.orange)
-   @State var toggleColor10 = Color(UIColor.orange)
-   @State var toggleColor11 = Color(UIColor.orange)
+    @State var toggleColor1 = Color(UIColor.systemGray2)
+    @State var toggleColor2 = Color(UIColor.systemGray2)
+     @State var toggleColor3 = Color(UIColor.systemGray2)
+    @State var toggleColor4 = Color(UIColor.systemGray2)
+    @State var toggleColor5 = Color(UIColor.systemGray2)
+    @State var toggleColor6 = Color(UIColor.systemGray2)
+    @State var toggleColor7 = Color(UIColor.systemGray2)
+   @State  var toggleColor8 = Color(UIColor.systemGray2)
+   @State var toggleColor9 = Color(UIColor.systemGray2)
+   @State var toggleColor10 = Color(UIColor.systemGray2)
+   @State var toggleColor11 = Color(UIColor.systemGray2)
     
     @State var installField : String = ""
     
@@ -155,7 +155,7 @@ struct WireDetail: View {
                         }
                     }
                     if changed == true && ((self.tog1==false&&self.changed1==true)||(self.tog2==false&&self.changed2==true)||(self.tog3==false&&self.changed3==true)||(self.tog4==false&&self.changed4==true)||(self.tog5==false&&self.changed5==true)||(self.tog6==false&&self.changed6==true)||(self.tog7==false&&self.changed7==true)||(self.tog8==false&&self.changed8==true)||(self.tog9==false&&self.changed9==true)||(self.tog10==false&&self.changed10==true)||(self.tog11==false&&self.changed11==true)){
-                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle())
+                        TextField("Enter reason for Status",text: self.$installField).textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading,10).frame(width:400)
                         
                     }
                     //.padding()
@@ -642,17 +642,17 @@ struct WireDetail: View {
                 if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10{self.toggleColor10 = Color(UIColor.green)}
                 if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11{self.toggleColor11 = Color(UIColor.green)}
                 
-                if (projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true)&&self.tog1==false{self.toggleColor1 = Color(UIColor.red)}
-                if  (projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true)&&self.tog2==false{self.toggleColor2 = Color(UIColor.red)}
-                               if   (projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true)&&self.tog3==false{self.toggleColor3 = Color(UIColor.red)}
-                               if   (projects[self.projn].rOfInstall![index].ORIGIN_TERM != nil || self.changed4==true)&&self.tog4==false{self.toggleColor4 = Color(UIColor.red)}
-                               if (projects[self.projn].rOfInstall![index].DEST_TERM != nil || self.changed5==true)&&self.tog5==false{self.toggleColor5 = Color(UIColor.red)}
-                               if ( projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN != nil || self.changed6==true)&&self.tog6==false{self.toggleColor6 = Color(UIColor.red)}
-                                if  (projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST != nil || self.changed7==true)&&self.tog7==false{self.toggleColor7 = Color(UIColor.red)}
-                                if ( projects[self.projn].rOfInstall![index].TESTED != nil || self.changed8==true)&&self.tog8==false{self.toggleColor8 = Color(UIColor.red)}
-                                if  (projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true)&&self.tog9==false{self.toggleColor9 = Color(UIColor.red)}
-                               if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10==false{self.toggleColor10 = Color(UIColor.red)}
-                               if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11==false{self.toggleColor11 = Color(UIColor.red)}
+                if (projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true)&&self.tog1==false{self.toggleColor1 = Color(UIColor.orange)}
+                if  (projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true)&&self.tog2==false{self.toggleColor2 = Color(UIColor.orange)}
+                               if   (projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true)&&self.tog3==false{self.toggleColor3 = Color(UIColor.orange)}
+                               if   (projects[self.projn].rOfInstall![index].ORIGIN_TERM != nil || self.changed4==true)&&self.tog4==false{self.toggleColor4 = Color(UIColor.orange)}
+                               if (projects[self.projn].rOfInstall![index].DEST_TERM != nil || self.changed5==true)&&self.tog5==false{self.toggleColor5 = Color(UIColor.orange)}
+                               if ( projects[self.projn].rOfInstall![index].VERIFY_CONN_ORIGIN != nil || self.changed6==true)&&self.tog6==false{self.toggleColor6 = Color(UIColor.orange)}
+                                if  (projects[self.projn].rOfInstall![index].VERIFY_CONN_DEST != nil || self.changed7==true)&&self.tog7==false{self.toggleColor7 = Color(UIColor.orange)}
+                                if ( projects[self.projn].rOfInstall![index].TESTED != nil || self.changed8==true)&&self.tog8==false{self.toggleColor8 = Color(UIColor.orange)}
+                                if  (projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true)&&self.tog9==false{self.toggleColor9 = Color(UIColor.orange)}
+                               if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10==false{self.toggleColor10 = Color(UIColor.orange)}
+                               if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11==false{self.toggleColor11 = Color(UIColor.orange)}
             }
         }.onDisappear(){
             print("Wiredetail disappear")
