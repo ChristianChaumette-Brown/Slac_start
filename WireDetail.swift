@@ -69,6 +69,7 @@ struct WireDetail: View {
         let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-d'T'HH:mm:ss'Z'"
+         formatter.timeZone = TimeZone(abbreviation: "UTC")
         let dateOut = formatter.string(from: modifiedDate)
         print(dateOut)
         self.index = projects[projn].rOfInstall!.firstIndex( where: {$0.Cablenum == self.wire.Cablenum}) ?? -1
@@ -593,7 +594,7 @@ struct WireDetail: View {
             self.tog10 = projects[self.projn].rOfInstall![index].CONN_DEST ?? false
             self.tog11 = projects[self.projn].rOfInstall![index].RELEASED ?? false
         
-            Timer.scheduledTimer(withTimeInterval: 0.01, repeats: self.visable){timer in
+            Timer.scheduledTimer(withTimeInterval: 0.01, repeats: self.visable){ timer in
                 if self.freeChange == false {
                 if self.tog1 == false{
                     self.tog2=false
@@ -616,7 +617,7 @@ struct WireDetail: View {
                 
 
                 
-                
+                if self.visable {
                 
                 if self.tog1 != projects[self.projn].rOfInstall?[self.index].INSTALL_STATUS ?? false {self.changed1=true;self.changed=true}
                 if self.tog2 != projects[self.projn].rOfInstall?[self.index].VERIFY_SOURCE ?? false {self.changed2=true;self.changed=true}
@@ -630,6 +631,7 @@ struct WireDetail: View {
                 if self.tog10 !=  projects[self.projn].rOfInstall?[self.index].CONN_DEST ?? false {self.changed10=true;self.changed=true}
                 if self.tog11 !=  projects[self.projn].rOfInstall?[self.index].RELEASED ?? false {self.changed11=true;self.changed=true}
                 
+                
                 if (projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true)&&self.tog1==true{self.toggleColor1 = Color(UIColor.green)}
                 if  (projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true)&&self.tog2==true{self.toggleColor2 = Color(UIColor.green)}
                 if   (projects[self.projn].rOfInstall![index].VERIFY_DEST != nil || self.changed3==true)&&self.tog3==true{self.toggleColor3 = Color(UIColor.green)}
@@ -641,6 +643,7 @@ struct WireDetail: View {
                 if  (projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true)&&self.tog9==true{self.toggleColor9 = Color(UIColor.green)}
                 if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10{self.toggleColor10 = Color(UIColor.green)}
                 if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11{self.toggleColor11 = Color(UIColor.green)}
+            
                 
                 if (projects[self.projn].rOfInstall![index].INSTALL_STATUS != nil || self.changed1==true)&&self.tog1==false{self.toggleColor1 = Color(UIColor.orange)}
                 if  (projects[self.projn].rOfInstall![index].VERIFY_SOURCE != nil || self.changed2==true)&&self.tog2==false{self.toggleColor2 = Color(UIColor.orange)}
@@ -653,6 +656,7 @@ struct WireDetail: View {
                                 if  (projects[self.projn].rOfInstall![index].CONN_ORIGIN != nil || self.changed9==true)&&self.tog9==false{self.toggleColor9 = Color(UIColor.orange)}
                                if   (projects[self.projn].rOfInstall![index].CONN_DEST != nil || self.changed10==true)&&self.tog10==false{self.toggleColor10 = Color(UIColor.orange)}
                                if   (projects[self.projn].rOfInstall![index].RELEASED != nil || self.changed11==true)&&self.tog11==false{self.toggleColor11 = Color(UIColor.orange)}
+            }
             }
         }.onDisappear(){
             print("Wiredetail disappear")
@@ -740,12 +744,20 @@ struct WireDetail: View {
                             if self.installField != ""{projects[self.projn].rOfInstall![self.index].COMMENT_DEST = self.installField}
                             print(projects[self.projn].rOfInstall!)
                             var str = String(projects[self.projn].rOfInstall!.description)
+                            //line above currently sets up all cables in folder for upload
                             // str = str.flatMap{$0}
                             
+                           // str = String(description: projects[self.projn].rOfInstall![self.index])
+                            //str = String(describing: projects[self.projn].rOfInstall![self.index])
+                            //line above allows for single json write but currently only one item allowed in json at a time
+                            
                             print(str as String)
+                            print("STR above")
                             //str.
                             
                             var cleaned = str.replacingOccurrences(of: "Authenticator.rci(" , with: "{")
+                            
+                            cleaned = cleaned.replacingOccurrences(of: "Optional(false)", with: "nil")
                             
                             cleaned = cleaned.replacingOccurrences(of: "(", with: "{")
                             cleaned = cleaned.replacingOccurrences(of: ")", with: "}")
@@ -824,7 +836,10 @@ struct WireDetail: View {
                             let modifiedDate = Calendar.current.date(byAdding: .day, value: 1, to: today)!
                             let formatter = DateFormatter()
                             formatter.dateFormat = "yyyy-MM-d'T'HH:mm:ss'Z'"
-                            let dateOut = formatter.string(from: modifiedDate)
+                            formatter.timeZone = TimeZone(abbreviation: "UTC")
+                           // let dateOut = formatter.string(from: modifiedDate)
+                            let dateOut = formatter.string(from: today)
+                            
                             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(projects[self.projn].area_code+file1)
                             do {
                                 try cleaned.write(to: url, atomically: true, encoding: .utf8)
