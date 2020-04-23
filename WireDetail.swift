@@ -939,7 +939,7 @@ struct ColoredToggleStyle: ToggleStyle {
                     .animation(Animation.easeInOut(duration: 0.1))
             }
         }
-        .font(.title)
+        //.font(.title)
         .padding(.horizontal)
     }
 }
