@@ -21,9 +21,8 @@ let file0 = "projects.json"
 let file1 = "_rci.json"
 let file2 = "_cables.json"
 let server = "http://10.0.0.236:5000"
-//let server = "http://e6ea27fd.ngrok.io"
-//let server = "http://slacable.serverless.social"
-//let wireData: [Wire] = loader("csvjson.json")
+
+
 var searchData = [""]
 var folderData: [String] = [""]
 var folders : [String:Int]=[:]
@@ -49,9 +48,10 @@ func start(){
     
         print("Initializer called")
         
+    checkWebsite()
         //check for initial app launch
     let successfulLogins = UserDefaults.standard.bool(forKey: "First Launch")
-        if(successfulLogins != true){
+        if(successfulLogins != true && pushMessage != "The request timed out."){
             print("Initial launch data load")
             createInitFiles()
         }
